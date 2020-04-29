@@ -183,8 +183,8 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state: any) {
   return {
-    playersStamina: state.playersStamina,
-    party: state.party,
+    playersStamina: state.Party.Stamina,
+    party: state.Party.Party,
   };
 }
 

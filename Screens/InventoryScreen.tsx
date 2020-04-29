@@ -30,6 +30,8 @@ class InventoryScreen extends Component<any, any> {
   }
 
   getData() {
+    console.log(this.props.weapons);
+    console.log(this.props.spells)
     if (this.state.selectedIndex === 0) {
       return this.props.weapons;
     } else if (this.state.selectedIndex === 1) {
@@ -153,8 +155,8 @@ function mapStateToProps(state: any) {
   //console.log('1')
   return {
     selectedIndex: 0,
-    weapons: state.items,
-    spells: state.spells,
+    weapons: state.Inventory.Items,
+    spells: state.Inventory.Spells,
     other: [],
   };
 }

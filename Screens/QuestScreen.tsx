@@ -68,7 +68,7 @@ class QuestScreen extends Component<any, any> {
   beginQuest() {
     this.setState({ showOverlay: false });
     if (this.props.playersStamina >= 20) {
-      this.props.giveStamina(-20);
+      this.props.giveStamina(20);
       this.props.navigation.navigate("Battle");
     } else {
       this.toggleNoStaminaPopup();
@@ -222,7 +222,7 @@ class QuestScreen extends Component<any, any> {
 
 function mapStateToProps(state: any) {
   return {
-    playersStamina: state.playersStamina,
+    playersStamina: state.Stamina,
   };
 }
 
@@ -230,7 +230,7 @@ function mapDispatchToProps(dispatch: any) {
   //console.log('printing dispatch',dispatch)
   return {
     giveStamina: (stamina: number) =>
-      dispatch({ type: "giveStamina", stamina: stamina }),
+      dispatch({ type: "decreaseStamina", stamina: stamina }),
 
     //decreaseCounter: () => dispatch({type: 'decreaseCounter', name :'test2'})
   };

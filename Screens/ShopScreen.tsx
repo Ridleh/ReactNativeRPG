@@ -75,8 +75,9 @@ class ShopScreen extends Component<any, any> {
 
   purchaseItem() {
     const itemType = this.state.selectedItem.Type;
-    if (this.props.playersGold > this.state.selectedItemPrice) {
-      this.props.giveGold(-1 * this.state.selectedItemPrice);
+    if (this.props.playersGold >= this.state.selectedItemPrice) {
+      var cost: number = this.state.selectedItemPrice
+      this.props.decreaseGold(cost);
     }
 
     if (itemType === ItemTypes.SwordTypes.Sword) {
@@ -277,12 +278,12 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state: any) {
-  return {
+    return {
     selectedIndex: 0,
     selectedItem: {},
     selectedItemName: " ",
     selectedItemPrice: 0,
-    playersGold: state.playersGold,
+    playersGold: state.Party.Gold,
     buttonSelected: "items",
     dummyItems: [],
     dummySpells: [],
@@ -292,9 +293,9 @@ function mapStateToProps(state: any) {
 function mapDispatchToProps(dispatch: any) {
   //console.log('printing dispatch',dispatch)
   return {
-    buyItem: (item: any) => dispatch({ type: "buyItem", item: item }),
-    buySpell: (spell: any) => dispatch({ type: "buySpell", spell: spell }),
-    giveGold: (gold: number) => dispatch({ type: "giveGold", gold: gold }),
+    buyItem: (item: any) => dispatch({ type: "addItem", item: item }),
+    buySpell: (spell: any) => dispatch({ type: "addSpell", spell: spell }),
+    decreaseGold: (gold: number) => dispatch({ type: "decreaseGold", gold: gold }),
 
     //decreaseCounter: () => dispatch({type: 'decreaseCounter', name :'test2'})
   };

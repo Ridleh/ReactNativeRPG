@@ -289,7 +289,7 @@ function mapStateToProps(state: any) {
 function mapDispatchToProps(dispatch: any) {
   //console.log('printing dispatch',dispatch)
   return {
-    giveGold: (gold: number) => dispatch({ type: "giveGold", gold: gold }),
+    giveGold: (gold: number) => dispatch({ type: "increaseGold", gold: gold }),
     //decreaseCounter: () => dispatch({type: 'decreaseCounter', name :'test2'})
   };
 }

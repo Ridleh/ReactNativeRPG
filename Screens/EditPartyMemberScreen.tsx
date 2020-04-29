@@ -159,8 +159,8 @@ class EditPartyMemberScreen extends Component<any, any> {
 
 function mapStateToProps(state: any) {
   return {
-    party: state.party,
-    items: state.items,
+    party: state.Party,
+    items: state.Items,
   };
 }
 
