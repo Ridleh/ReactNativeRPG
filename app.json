@@ -1,0 +1,17 @@
+{
+  "name": "ReactNativeRPG",
+  "displayName": "ReactNativeRPG",
+  "expo": {
+    "name": "ReactNativeRPG",
+    "slug": "ReactNativeRPG",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
