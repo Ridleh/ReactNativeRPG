@@ -15,37 +15,49 @@ import {
   FlatList,
 } from "react-native-gesture-handler";
 import { connect } from "react-redux";
-import * as Interfaces from '../Interfaces/InterfaceIndex';
+import * as Interfaces from "../Interfaces/InterfaceIndex";
+import * as StatHandler from "../Utility/StatHandler";
 
 const { height, width } = Dimensions.get("window");
 
 class PartyScreen extends Component<any, any> {
-  
-  navigation : any = this.props.navigation;
+  navigation: any = this.props.navigation;
 
   constructor(props: any) {
     super(props);
     this.state = {
       showOverlay: false,
       selectedPartyMember: [],
+      party: this.props.party,
+      update: false
     };
     this.closeOverlay = this.closeOverlay.bind(this);
     this.handleOnFocusPartyMember = this.handleOnFocusPartyMember.bind(this);
     this.renderParty = this.renderParty.bind(this);
+    this.handleRemoveFromParty = this.handleRemoveFromParty.bind(this);
   }
 
   closeOverlay() {
     this.setState((prevState: { showOverlay: boolean }) => ({
-      showOverlay: !prevState.showOverlay,
+      showOverlay: !prevState.showOverlay
     }));
   }
 
   handleOnClickEditPartyMember = () => {
     this.closeOverlay();
-    this.navigation.navigate("EditPartyMember", {partyMember : this.state.selectedPartyMember});
+    this.navigation.navigate("EditPartyMember", {
+      partyMember: this.state.selectedPartyMember,
+    });
+  };
+
+  handleRemoveFromParty() {
+    StatHandler.removePartyMemberFromParty(this.state.selectedPartyMember);
+    this.closeOverlay();
   }
 
-  handleOnFocusPartyMember(selectedPartyMember: Interfaces.PartyMemberInterface) {
+  handleOnFocusPartyMember(
+    selectedPartyMember: Interfaces.PartyMemberInterface
+  ) {
     this.setState((prevState: { showOverlay: boolean }) => ({
       selectedPartyMember,
       showOverlay: !prevState.showOverlay,
@@ -66,7 +78,7 @@ class PartyScreen extends Component<any, any> {
             <Text>{partyMember.Name}</Text>
           </View>
           <Image
-            source={require("../assets/Characters/tyro.png")}
+            source={partyMember.Image}
             style={{
               height: 75,
               width: 40,
@@ -112,8 +124,11 @@ class PartyScreen extends Component<any, any> {
           >
             <FlatList
               data={this.props.party}
+              extraData={this.props}
               renderItem={({ item }) => this.renderParty(item)}
-              keyExtractor={(item: Interfaces.PartyMemberInterface) => item.ID.toString()}
+              keyExtractor={(item: Interfaces.PartyMemberInterface) =>
+                item.ID.toString()
+              }
             />
           </View>
           <Overlay
@@ -122,7 +137,7 @@ class PartyScreen extends Component<any, any> {
               backgroundColor: "chocolate",
               borderColor: "black",
               borderRadius: 20,
-              borderWidth: 5,
+              borderWidth: 5
             }}
             animationType="slide"
             isVisible={this.state.showOverlay}
@@ -156,9 +171,22 @@ class PartyScreen extends Component<any, any> {
                 <Text>Speed: {this.state.selectedPartyMember.Speed}</Text>
                 <Text>Luck: {this.state.selectedPartyMember.Luck}</Text>
               </View>
-              <View style={{ flex: 1, flexDirection:'column', justifyContent:'space-around' }}>
-              <Button onPress={() => this.handleOnClickEditPartyMember()} title="Edit Party Member" />
-                <Button onPress={() => this.closeOverlay()} title="Close" />
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "column",
+                  justifyContent: "space-evenly",
+                  alignContent: "space-between"
+                }}
+              >
+                <Button
+                  onPress={() => this.handleOnClickEditPartyMember()}
+                  title="Edit Party Member"
+                />
+                <Button
+                  title="Remove From Party"
+                  onPress={() => this.handleRemoveFromParty()}
+                />
               </View>
             </View>
           </Overlay>

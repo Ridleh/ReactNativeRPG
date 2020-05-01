@@ -7,18 +7,23 @@ const decreaseStamina: string = "decreaseStamina";
 const addPartyMember: string = "addPartyMember";
 const removePartyMember: string = "removePartyMember";
 const updatePartyMember: string = "updatePartyMember";
+const addToCharactersOwned: string = "addToCharactersOwned";
+const removeFromCharactersOwned: string = "removeFromCharactersOwned";
+const updateCharactersOwned: string = "updateCharactersOwned";
 // ^ import instead?
 
 interface Party {
   Gold: number;
   Stamina: number;
   Party: Interfaces.PartyMemberInterface[];
+  CharactersOwned: Interfaces.PartyMemberInterface[];
 }
 
 const PartyState = {
   Gold: 1000,
   Stamina: 100,
   Party: [],
+  CharactersOwned: [],
 };
 
 //TODO: Refactor
@@ -50,12 +55,12 @@ function partyReducer(state: Party = PartyState, action: any) {
         Party: [...state.Party, action.partyMember],
       };
     case removePartyMember:
+      let newParty = state.Party.slice();
+      let index = newParty.indexOf(action.partyMember);
+      newParty.splice(index,1);
       return {
         ...state,
-        Party: [
-          ...state.Party,
-          state.Party.filter((item) => action.partyMember !== item),
-        ],
+        Party: newParty,
       };
     case updatePartyMember:
       return {
@@ -67,6 +72,32 @@ function partyReducer(state: Party = PartyState, action: any) {
           return {
             ...item,
             ...action.partyMember,
+          };
+        }),
+      };
+    case addToCharactersOwned:
+      return {
+        ...state,
+        CharactersOwned: [...state.CharactersOwned, action.character],
+      };
+    case removeFromCharactersOwned:
+      return {
+        ...state,
+        CharactersOwned: [
+          ...state.CharactersOwned,
+          state.CharactersOwned.filter((item) => action.character !== item),
+        ],
+      };
+    case updateCharactersOwned:
+      return {
+        ...state,
+        CharactersOwned: state.CharactersOwned.map((item, index) => {
+          if (item !== action.character) {
+            return item;
+          }
+          return {
+            ...item,
+            ...action.character,
           };
         }),
       };

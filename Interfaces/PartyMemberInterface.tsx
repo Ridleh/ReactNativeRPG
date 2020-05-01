@@ -4,6 +4,7 @@ import Spell from './SpellIterface';
 export default interface PartyMember{
     Name: string,
     ID: number,
+    Image: any //??
     Level: number,
     Health: number,
     CurrentHealth: number,
@@ -16,7 +17,8 @@ export default interface PartyMember{
     Defence: number,
     Luck: number,
     Speed: number,
+    Accuracy: number,
+    Evasion: number,
     Items: Item[],
     Spells: Spell[]
-
 }

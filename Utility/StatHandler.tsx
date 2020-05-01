@@ -1,12 +1,12 @@
 import react, { Component } from "react";
-import Store from "../Redux/Store";
 import * as StateActions from "../Redux/Actions";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
+import { State } from "react-native-gesture-handler";
 
-export function equipItem(
+export const equipItem = (
   partyMember: Interfaces.PartyMemberInterface,
   item: Interfaces.ItemInterface
-) {
+) => {
   partyMember.Items.push(item);
 
   partyMember.Attack += item.AttackModifier;
@@ -19,12 +19,12 @@ export function equipItem(
   partyMember.Speed += item.SpeedModifier;
 
   StateActions.updatePartyMember(partyMember);
-}
+};
 
-export function unequipItem(
+export const unequipItem = (
   partyMember: Interfaces.PartyMemberInterface,
   item: Interfaces.ItemInterface
-) {
+) => {
   const index: number = partyMember.Items.indexOf(item);
   if (index !== 1) {
     partyMember.Items.splice(index, 1);
@@ -40,16 +40,47 @@ export function unequipItem(
   partyMember.Speed -= item.SpeedModifier;
 
   StateActions.updatePartyMember(partyMember);
-}
+};
 
-export function isItemEquipped(
+export const isItemEquipped = (
   partyMember: Interfaces.PartyMemberInterface,
   item: Interfaces.ItemInterface
-) {
+) => {
   for (let index of partyMember.Items) {
     if (index.Name === item.Name) {
       return true;
     }
   }
   return false;
-}
+};
+
+export const addCharacterToParty = (
+  character: Interfaces.PartyMemberInterface
+) => {
+  var partySize = StateActions.getPartyState().Party.length;
+  if (partySize <= 3) {
+    StateActions.addCharacterToParty(character);
+  } else {
+    StateActions.addCharacterToCharactersOwnedList(character);
+  }
+};
+
+export const removePartyMemberFromParty = (
+  partyMember: Interfaces.PartyMemberInterface
+) => {
+  var gameState = StateActions.getState();
+  var partySize = gameState.Party.Party.length;
+  if (partySize <= 0) {
+    console.error(
+      "Error: Attempting to remove a party member when party size is zero"
+    );
+  }
+  var party = gameState.Party.Party;
+  if (party.includes(partyMember)) {
+    StateActions.removePartyMemberFromParty(partyMember);
+  } else {
+    console.error(
+      "Error: Attempting to remove a party member that does not exist in current party"
+    );
+  }
+};

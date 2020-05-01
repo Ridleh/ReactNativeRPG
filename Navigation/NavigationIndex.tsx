@@ -5,12 +5,14 @@ import PartyScreen from "../Screens/PartyScreen";
 import QuestScreen from "../Screens/QuestScreen";
 import ShopScreen from "../Screens/ShopScreen";
 import BattleScreen from "../Screens/BattleScreen";
+import RecruitScreen from "../Screens/RecruitScreen";
 
-import PartyStack from './PartyStack/PartyStack';
-import QuestStack from './QuestStack/QuestStack';
+import PartyStack from "./PartyStack/PartyStack";
+import QuestStack from "./QuestStack/QuestStack";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import {getPartyState} from '../Redux/Actions';
 
 const Drawer = createDrawerNavigator();
 
@@ -31,6 +33,11 @@ export function Navigation() {
         <Drawer.Screen
           name="Inventory"
           component={InventoryScreen}
+          options={{ unmountOnBlur: true }}
+        />
+        <Drawer.Screen
+          name="Recruit"
+          component={RecruitScreen}
           options={{ unmountOnBlur: true }}
         />
         <Drawer.Screen

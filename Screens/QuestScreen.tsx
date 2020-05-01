@@ -222,7 +222,7 @@ class QuestScreen extends Component<any, any> {
 
 function mapStateToProps(state: any) {
   return {
-    playersStamina: state.Stamina,
+    playersStamina: state.Party.Stamina,
   };
 }
 

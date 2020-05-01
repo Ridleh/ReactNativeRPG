@@ -150,6 +150,7 @@ class EditPartyMemberScreen extends Component<any, any> {
             title="Equip or Unequip Items"
             onPress={() => this.toggleItemsScreen()}
           />
+
           <Button title="Go Back" onPress={() => this.navigation.pop()} />
         </ImageBackground>
       </View>
@@ -160,7 +161,7 @@ class EditPartyMemberScreen extends Component<any, any> {
 function mapStateToProps(state: any) {
   return {
     party: state.Party,
-    items: state.Items,
+    items: state.Inventory.Items,
   };
 }
 
