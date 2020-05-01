@@ -1,0 +1,50 @@
+V 0.0.1 Pre-Alpha : MVP 
+
+Todos:
+    -Add to Party from CharactersOwned Array []
+    -Revamp IDs for all Items, Spells, and Characters
+        -Tap two Characters to swap their places like in FFRK []
+    -Implement LocalStorage []
+        -Load from Local Storage gameState and assets []
+        -Button/Option to wipe data []
+        -Ultimately helps debugging []
+    -Use Party instead of dummy data in Battle Screen []
+        -Improve Enemy and Player targeting []
+    -Allow Items to be only equipped by one Character []
+    -Refactor EditPartyMember Screen []
+        -onPress to show stats overlay []
+            -Include button to show EditPartyMember Screen [] 
+        -onLongPress to show EditPartyMember Screen []
+        -Tabs on top of screen to navigate between PartyMembers []
+        -Able to un/equip items from this screen []
+    -Refactor Spells []
+        -Flesh out Attributes more []
+            -Single Target Spells, Multi-hit, DOT,AOE, etc. []
+        -Decide: Should spells use mana or have limited uses? []
+            -Limited uses easier to implement, mana usage adds more dept []
+    -Allow Characters to un/equip Spells []
+    -Allow Spells to be used in combat []
+        -Up to 4 can be eqipped []
+    -Implement EXP and Level Up System []
+        -Stats should grow based on different factors []
+            - A warriors Attack would be higher than a Mage's []
+            - Ranger gets bonus to Accuracy []
+            - Thief and Ninja gets bonus to Evasion []
+            - General trend should be exponential []
+    -Implement battle mechanic formulas []
+        -Use formulas from FFRK, less thinking and planning involved []
+            -Custom formulas to better suit games needs []
+    -Implement new Quests []
+        -Multi Enemy Round Battle []
+        -Multi Wave Round Battle []
+        -Boss Battle Battle []
+        -All three []
+    -Refactor all Screens
+        -Refactor names, types, etc
+        -Create Folders for each stack
+
+    V 0.0.1 complete []
+
+    Backlog:
+        - Fix splashscreen[]
+        - Figure out HomeScreen purpose

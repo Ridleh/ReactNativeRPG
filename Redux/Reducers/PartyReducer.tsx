@@ -20,7 +20,7 @@ interface Party {
 }
 
 const PartyState = {
-  Gold: 1000,
+  Gold: 10000,
   Stamina: 100,
   Party: [],
   CharactersOwned: [],
@@ -32,7 +32,7 @@ function partyReducer(state: Party = PartyState, action: any) {
     case increaseGold:
       return {
         ...state,
-        Gold: state.Gold - action.gold,
+        Gold: state.Gold + action.gold,
       };
     case decreaseGold:
       return {

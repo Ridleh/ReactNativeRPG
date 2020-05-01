@@ -81,7 +81,10 @@ class RecruitScreen extends Component<any, any> {
       var cost: number = this.state.selectedItemPrice
       this.props.decreaseGold(cost);
       //this.props.buyCharacter(this.state.selectedItem);
-      StatHandler.addCharacterToParty(this.state.selectedItem);
+      StatHandler.addCharacterToCharactersOwnedList(this.state.selectedItem)
+      if( !StatHandler.isPartyFull() ){
+        StatHandler.addCharacterToParty(this.state.selectedItem);
+      }
     }
   }
 

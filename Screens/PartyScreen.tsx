@@ -34,7 +34,7 @@ class PartyScreen extends Component<any, any> {
     this.closeOverlay = this.closeOverlay.bind(this);
     this.handleOnFocusPartyMember = this.handleOnFocusPartyMember.bind(this);
     this.renderParty = this.renderParty.bind(this);
-    this.handleRemoveFromParty = this.handleRemoveFromParty.bind(this);
+    this.handleSwapOutPartyMember = this.handleSwapOutPartyMember.bind(this);
   }
 
   closeOverlay() {
@@ -50,9 +50,10 @@ class PartyScreen extends Component<any, any> {
     });
   };
 
-  handleRemoveFromParty() {
-    StatHandler.removePartyMemberFromParty(this.state.selectedPartyMember);
+  handleSwapOutPartyMember() {
+    //StatHandler.removePartyMemberFromParty(this.state.selectedPartyMember);
     this.closeOverlay();
+    this.navigation.navigate("AddToParty");
   }
 
   handleOnFocusPartyMember(
@@ -184,8 +185,8 @@ class PartyScreen extends Component<any, any> {
                   title="Edit Party Member"
                 />
                 <Button
-                  title="Remove From Party"
-                  onPress={() => this.handleRemoveFromParty()}
+                  title="Swap Out Party Member"
+                  onPress={() => this.handleSwapOutPartyMember()}
                 />
               </View>
             </View>

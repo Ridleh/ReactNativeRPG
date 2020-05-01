@@ -61,9 +61,15 @@ export const addCharacterToParty = (
   if (partySize <= 3) {
     StateActions.addCharacterToParty(character);
   } else {
-    StateActions.addCharacterToCharactersOwnedList(character);
+    //StateActions.addCharacterToCharactersOwnedList(character);
+    console.error("Error: Attempting to add to Party when Party is full");
   }
 };
+
+export const addCharacterToCharactersOwnedList = (character: Interfaces.PartyMemberInterface) => {
+  //Add verification checks
+  StateActions.addCharacterToCharactersOwnedList(character);
+}
 
 export const removePartyMemberFromParty = (
   partyMember: Interfaces.PartyMemberInterface
@@ -84,3 +90,9 @@ export const removePartyMemberFromParty = (
     );
   }
 };
+
+export const isPartyFull = () =>{
+  var gameState = StateActions.getState();
+  var partyState = gameState.Party.Party;
+  return partyState.length > 3;
+}
