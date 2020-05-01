@@ -1,7 +1,7 @@
 V 0.0.1 Pre-Alpha : MVP 
 
 Todos:
-    -Add to Party from CharactersOwned Array []
+    -Add to Party from CharactersOwned Array [x]
     -Revamp IDs for all Items, Spells, and Characters
         -Tap two Characters to swap their places like in FFRK []
     -Implement LocalStorage []
@@ -47,4 +47,5 @@ Todos:
 
     Backlog:
         - Fix splashscreen[]
-        - Figure out HomeScreen purpose
+        - Figure out HomeScreen purpose []
+        - Character Swap is buggy but works for now []
