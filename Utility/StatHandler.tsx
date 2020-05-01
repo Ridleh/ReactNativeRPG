@@ -66,10 +66,12 @@ export const addCharacterToParty = (
   }
 };
 
-export const addCharacterToCharactersOwnedList = (character: Interfaces.PartyMemberInterface) => {
+export const addCharacterToCharactersOwnedList = (
+  character: Interfaces.PartyMemberInterface
+) => {
   //Add verification checks
   StateActions.addCharacterToCharactersOwnedList(character);
-}
+};
 
 export const removePartyMemberFromParty = (
   partyMember: Interfaces.PartyMemberInterface
@@ -91,8 +93,17 @@ export const removePartyMemberFromParty = (
   }
 };
 
-export const isPartyFull = () =>{
+export const isPartyFull = () => {
   var gameState = StateActions.getState();
   var partyState = gameState.Party.Party;
   return partyState.length > 3;
-}
+};
+
+export const SwapPartyMemberForCharacter = (
+  partyMember: Interfaces.PartyMemberInterface,
+  character: Interfaces.PartyMemberInterface
+) => {
+  //need validation
+  removePartyMemberFromParty(partyMember);
+  addCharacterToParty(character);
+};
