@@ -52,6 +52,7 @@ export default class HomeScreen extends Component<any, any> {
           <Button title="Increase" onPress={() => this.increaseCounter()} />
           <Text>{this.state.counter}</Text>
           <Button title="Decrease" onPress={() => this.decreaseCounter()} />
+          <Button title="Wipe" onPress={() => this.deleteGameStateFromStorage()} />
         </ImageBackground>
       </View>
     );

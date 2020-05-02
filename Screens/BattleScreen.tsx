@@ -43,22 +43,14 @@ class BattleScreen extends Component<any, any> {
 
   getData() {
     this.setState({
-      party: [
-        {
-          Name: "Tyro",
-          level: 30,
-          Health: 100,
-          Mana: 300,
-          id: 1,
-        },
-      ],
+      party: this.props.party,
       enemies: [
         {
           Name: "Nega Tyro",
           level: 30,
           Health: 99,
           Mana: 300,
-          id: 2,
+          ID: "22234",
         },
       ],
     });
@@ -108,12 +100,12 @@ class BattleScreen extends Component<any, any> {
     this.props.navigation.pop();
   }
 
-  renderPlayer(player: any) {
+  renderPlayer(player: Interfaces.PartyMemberInterface) {
     return (
       <Row style={{ justifyContent: "center" }}>
         <View>
           <HealthBar
-            currentHealth={player.player.Health}
+            currentHealth={player.Health}
             totalHealth={100}
             label={player.Name}
           />
@@ -124,7 +116,7 @@ class BattleScreen extends Component<any, any> {
               width: 100,
               paddingBottom: 10,
             }}
-            source={require("../assets/Characters/tyro.png")}
+            source={player.Image}
           />
         </View>
       </Row>
@@ -136,7 +128,7 @@ class BattleScreen extends Component<any, any> {
       <Row style={{ justifyContent: "center" }}>
         <View>
           <HealthBar
-            currentHealth={enemy.enemy.Health}
+            currentHealth={enemy.Health}
             totalHealth={100}
             label={enemy.Name}
           />
@@ -179,27 +171,17 @@ class BattleScreen extends Component<any, any> {
               <Col style={{ flex: 1 }}>
                 <FlatList
                   data={this.state.enemies}
-                  renderItem={({ item }) => (
-                    <this.renderEnemy
-                      enemy={item}
-                      keyExtrator={(item: Interfaces.ItemInterface) =>
-                        item.ID.toString()
-                      }
-                    />
-                  )}
+                  renderItem={({ item }) => this.renderEnemy(item)}
+                  keyExtractor={(item: any) => item.ID.toString()}
                 />
               </Col>
               <Col style={{ flex: 1 }}>
                 <FlatList
                   data={this.state.party}
-                  renderItem={({ item }) => (
-                    <this.renderPlayer
-                      player={item}
-                      keyExtrator={(item: Interfaces.ItemInterface) =>
-                        item.ID.toString()
-                      }
-                    />
-                  )}
+                  renderItem={({ item }) => this.renderPlayer(item)}
+                  keyExtractor={(item: Interfaces.PartyMemberInterface) =>
+                    item.ID
+                  }
                 />
               </Col>
             </Row>
@@ -283,6 +265,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state: any) {
   return {
     playersGold: 1000,
+    party: state.Party.Party,
   };
 }
 
