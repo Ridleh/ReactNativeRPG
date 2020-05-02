@@ -1,7 +1,7 @@
 export default interface Spell{
     Name: string,
     Image: string, //??
-    ID: number,
+    ID: string,
     Type: any, //enum
     Price: number,
   }

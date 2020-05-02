@@ -4,7 +4,7 @@ export const swordDatabase = [
     {
         Name: 'Broadsword',
         Image: require('../../assets/Items/Swords/Broadsword.png'),
-        ID: 1,
+        ID: "WSRD1",
         Type: ItemTypes.SwordTypes.Sword,
         Price: 100,
         HealthModifier: 0,
@@ -19,7 +19,7 @@ export const swordDatabase = [
     {
         Name: 'Galbadian Blade',
         Image: require('../../assets/Items/Swords/Galbadian_Blade.png'),
-        ID: 2,
+        ID: "WSRD2",
         Type: ItemTypes.SwordTypes.Sword,
         Price: 100,
         HealthModifier: 0,
@@ -34,7 +34,7 @@ export const swordDatabase = [
     {
         Name: 'Iron Sword',
         Image: require('../../assets/Items/Swords/Iron_Sword.png'),
-        ID: 3,
+        ID: "WSRD3",
         Type: ItemTypes.SwordTypes.Sword,
         Price: 100,
         HealthModifier: 0,
@@ -49,7 +49,7 @@ export const swordDatabase = [
     {
         Name: 'Longsword',
         Image: require('../../assets/Items/Swords/Longsword.png'),
-        ID: 4,
+        ID: "WSRD4",
         Type: ItemTypes.SwordTypes.Sword,
         Price: 100,
         HealthModifier: 0,
@@ -64,7 +64,7 @@ export const swordDatabase = [
     {
         Name: 'Zwill Blade',
         Image: require('../../assets/Items/Swords/Zwill_Blade.png'),
-        ID: 5,
+        ID: "WSRD5",
         Type: ItemTypes.SwordTypes.Sword,
         Price: 100,
         HealthModifier: 0,

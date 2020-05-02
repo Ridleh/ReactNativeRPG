@@ -4,7 +4,7 @@ export const staffDatabase = [
     {
         Name: 'Charry Staff',
         Image: require('../../assets/Items/Staffs/Cherry_Staff.png'),
-        ID: 1,
+        ID: "WSTF1",
         Type: ItemTypes.StaffTypes.Staff,
         Price: 100,
         HealthModifier: 0,
@@ -19,7 +19,7 @@ export const staffDatabase = [
     {
         Name: "Mage's Staff",
         Image: require("../../assets/Items/Staffs/Mage's_Staff.png"),
-        ID: 1,
+        ID: "WSTF2",
         Type: ItemTypes.StaffTypes.Staff,
         Price: 100,
         HealthModifier: 0,
@@ -34,7 +34,7 @@ export const staffDatabase = [
     {
         Name: 'Mythril Staff',
         Image: require('../../assets/Items/Staffs/Mythril_Staff.png'),
-        ID: 1,
+        ID: "WSTF3",
         Type: ItemTypes.StaffTypes.Staff,
         Price: 100,
         HealthModifier: 0,
@@ -49,7 +49,7 @@ export const staffDatabase = [
     {
         Name: 'Oak Staff',
         Image: require('../../assets/Items/Staffs/Oak_Staff.png'),
-        ID: 1,
+        ID: "WSTF4",
         Type: ItemTypes.StaffTypes.Staff,
         Price: 100,
         HealthModifier: 0,
@@ -64,7 +64,7 @@ export const staffDatabase = [
     {
         Name: 'Power Staff',
         Image: require('../../assets/Items/Staffs/Power_Staff.png'),
-        ID: 1,
+        ID: "WSTF5",
         Type: ItemTypes.StaffTypes.Staff,
         Price: 100,
         HealthModifier: 0,

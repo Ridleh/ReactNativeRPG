@@ -1,6 +1,6 @@
 export default interface Item{
     Name: string,
-    ID: number
+    ID: string
     Image: any //??
     Type: any //?? enum
     Price: number,

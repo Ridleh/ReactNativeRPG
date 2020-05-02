@@ -3,7 +3,7 @@ import Spell from './SpellIterface';
 
 export default interface PartyMember{
     Name: string,
-    ID: number,
+    ID: string,
     Image: any //??
     Level: number,
     Health: number,

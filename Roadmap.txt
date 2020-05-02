@@ -2,8 +2,8 @@ V 0.0.1 Pre-Alpha : MVP
 
 Todos:
     -Add to Party from CharactersOwned Array [x]
-    -Revamp IDs for all Items, Spells, and Characters
-        -Tap two Characters to swap their places like in FFRK []
+        -Tap two Characters to swap their places like in FFRK [x]
+    -Revamp IDs for all Items, Spells, and Characters [X]
     -Implement LocalStorage []
         -Load from Local Storage gameState and assets []
         -Button/Option to wipe data []

@@ -1,7 +1,7 @@
 export const CoreClassDatabase = [
     {
         Name: "Bard",
-        ID: 11,
+        ID: "C1",
         Image: require("../../assets/Characters/Bard.png"),
         Level: 1,
         Health: 96,
@@ -22,7 +22,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Bezerker",
-        ID: 12,
+        ID: "C2",
         Image: require("../../assets/Characters/Berzerker.png"),
         Level: 1,
         Health: 145,
@@ -43,7 +43,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Black Mage",
-        ID: 13,
+        ID: "C3",
         Image: require("../../assets/Characters/Black_Mage.png"),
         Level: 1,
         Health: 84,
@@ -64,7 +64,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Dark Knight",
-        ID: 14,
+        ID: "C4",
         Level: 1,
         Image: require("../../assets/Characters/Dark_Knight.png"),
         Health: 112,
@@ -85,7 +85,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Devout",
-        ID: 15,
+        ID: "C5",
         Image: require("../../assets/Characters/Devout.png"),
         Level: 1,
         Health: 111,
@@ -106,7 +106,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Dragoon",
-        ID: 15,
+        ID: "C6",
         Image: require("../../assets/Characters/Dragoon.png"),
         Level: 1,
         Health: 120,
@@ -127,7 +127,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Gladiator",
-        ID: 16,
+        ID: "C7",
         Image: require("../../assets/Characters/Gladiator.png"),
         Level: 1,
         Health: 144,
@@ -148,7 +148,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Knight",
-        ID: 17,
+        ID: "C8",
         Image: require("../../assets/Characters/Knight.png"),
         Level: 1,
         Health: 122,
@@ -169,7 +169,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Magus",
-        ID: 18,
+        ID: "C9",
         Image: require("../../assets/Characters/Magus.png"),
         Level: 1,
         Health: 97,
@@ -190,7 +190,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Monk",
-        ID: 19,
+        ID: "C10",
         Image: require("../../assets/Characters/Monk.png"),
         Level: 1,
         Health: 132,
@@ -211,7 +211,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Ninja",
-        ID: 120,
+        ID: "C11",
         Image: require("../../assets/Characters/Ninja.png"),
         Level: 1,
         Health: 118,
@@ -232,7 +232,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Ranger",
-        ID: 121,
+        ID: "C12",
         Image: require("../../assets/Characters/Ranger.png"),
         Level: 1,
         Health: 108,
@@ -253,7 +253,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Red Mage",
-        ID: 122,
+        ID: "C13",
         Image: require("../../assets/Characters/Red_Mage.png"),
         Level: 1,
         Health: 97,
@@ -274,7 +274,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Samurai",
-        ID: 123,
+        ID: "C14",
         Image: require("../../assets/Characters/Samurai.png"),
         Level: 1,
         Health: 130,
@@ -295,7 +295,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Spellblade",
-        ID: 124,
+        ID: "C15",
         Image: require("../../assets/Characters/Spellblade.png"),
         Level: 1,
         Health: 108,
@@ -316,7 +316,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Thief",
-        ID: 125,
+        ID: "C16",
         Image: require("../../assets/Characters/Thief.png"),
         Level: 1,
         Health: 113,
@@ -337,7 +337,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Viking",
-        ID: 126,
+        ID: "C17",
         Image: require("../../assets/Characters/Viking.png"),
         Level: 1,
         Health: 144,
@@ -358,7 +358,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Warrior",
-        ID: 127,
+        ID: "C18",
         Image: require("../../assets/Characters/Warrior.png"),
         Level: 1,
         Health: 144,
@@ -379,7 +379,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "White Mage",
-        ID: 128,
+        ID: "C19",
         Level: 1,
         Image: require("../../assets/Characters/White_Mage.png"),
         Health: 96,
@@ -400,7 +400,7 @@ export const CoreClassDatabase = [
     },
     {
         Name: "Tyro",
-        ID: 129,
+        ID: "C20",
         Image: require("../../assets/Characters/tyro.png"),
         Level: 1,
         Health: 120,
