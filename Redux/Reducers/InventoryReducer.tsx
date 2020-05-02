@@ -4,6 +4,7 @@ const addItem: string = "addItem";
 const addSpell: string = "addSpell";
 const removeItem: string = "removeItem";
 const removeSpell: string = "removeSpell";
+const updateStateFromLocalStorage: string = "updateStateFromLocalStorage";
 // ^ import instead?
 
 interface Inventory {
@@ -19,8 +20,12 @@ const inventoryState = {
 //TODO: Refactor
 function inventoryReducer(state: Inventory = inventoryState, action: any) {
   switch (action.type) {
+    case updateStateFromLocalStorage:
+      return Object.assign({}, state, {
+        Items: action.state.Inventory.Items,
+        Spells: action.state.Inventory.Spells,
+      });
     case addItem:
-      console.log("insde addItem");
       return {
         ...state,
         Items: [...state.Items, action.item],

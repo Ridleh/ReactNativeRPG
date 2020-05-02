@@ -4,10 +4,10 @@ Todos:
     -Add to Party from CharactersOwned Array [x]
         -Tap two Characters to swap their places like in FFRK [x]
     -Revamp IDs for all Items, Spells, and Characters [X]
-    -Implement LocalStorage []
-        -Load from Local Storage gameState and assets []
-        -Button/Option to wipe data []
-        -Ultimately helps debugging []
+    -Implement LocalStorage [x]
+        -Load from Local Storage gameState and assets [x]
+        -Button/Option to wipe data [x]
+        -Ultimately helps debugging [x]
     -Use Party instead of dummy data in Battle Screen []
         -Improve Enemy and Player targeting []
     -Allow Items to be only equipped by one Character []
@@ -40,8 +40,8 @@ Todos:
         -Boss Battle Battle []
         -All three []
     -Refactor all Screens
-        -Refactor names, types, etc
-        -Create Folders for each stack
+        -Refactor names, types, etc []
+        -Create Folders for each stack []
 
     V 0.0.1 complete []
 

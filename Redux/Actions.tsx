@@ -34,3 +34,7 @@ export const addCharacterToCharactersOwnedList = (
   Dispatch({ type: "addToCharactersOwned", character: character });
 };
 
+export const updateStateFromLocalStorage = (state: any) => {
+  Dispatch({type: "updateStateFromLocalState", state: state});
+}
+

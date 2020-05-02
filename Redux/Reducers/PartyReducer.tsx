@@ -10,6 +10,7 @@ const updatePartyMember: string = "updatePartyMember";
 const addToCharactersOwned: string = "addToCharactersOwned";
 const removeFromCharactersOwned: string = "removeFromCharactersOwned";
 const updateCharactersOwned: string = "updateCharactersOwned";
+const updateStateFromLocalStorage: string = "updateStateFromLocalStorage";
 // ^ import instead?
 
 interface Party {
@@ -29,6 +30,12 @@ const PartyState = {
 //TODO: Refactor
 function partyReducer(state: Party = PartyState, action: any) {
   switch (action.type) {
+    case updateStateFromLocalStorage:
+      return Object.assign({}, state, {
+        Gold: action.state.Party.Gold,
+        Party: action.state.Party.Party,
+        CharactersOwned: action.state.Party.CharactersOwned
+      });
     case increaseGold:
       return {
         ...state,
@@ -57,7 +64,7 @@ function partyReducer(state: Party = PartyState, action: any) {
     case removePartyMember:
       let newParty = state.Party.slice();
       let index = newParty.indexOf(action.partyMember);
-      newParty.splice(index,1);
+      newParty.splice(index, 1);
       return {
         ...state,
         Party: newParty,

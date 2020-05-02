@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import { Text, View, Dimensions, ImageBackground } from "react-native";
 import { Header, Button } from "react-native-elements";
+import {DeleteState} from '../Redux/Store';
 
 const { height, width } = Dimensions.get("window");
 
@@ -8,6 +9,7 @@ export default class HomeScreen extends Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = { counter: 0 };
+    this.deleteGameStateFromStorage = this.deleteGameStateFromStorage.bind(this);
   }
 
   componentDidMount() {}
@@ -24,6 +26,10 @@ export default class HomeScreen extends Component<any, any> {
     this.setState((prevState: { counter: number }) => ({
       counter: prevState.counter - 1,
     }));
+  }
+
+  deleteGameStateFromStorage(){
+    DeleteState();
   }
 
   render() {

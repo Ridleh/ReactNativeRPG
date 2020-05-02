@@ -1,3 +1,9 @@
+if(!__DEV__){
+  console.log = () => {};
+  console.warn = () => {};
+  console.error = () => {};
+}
+
 import { AppLoading } from "expo";
 import { Asset } from "expo-asset";
 import * as Font from "expo-font";
@@ -7,7 +13,7 @@ import { Platform, StatusBar, StyleSheet, View } from "react-native";
 import * as NavigationIndex from "./Navigation/NavigationIndex";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Provider } from "react-redux";
-import store from "./Redux/Store";
+import store, {LoadState} from "./Redux/Store";
 
 export default function App(props: any) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -45,6 +51,11 @@ async function loadResourcesAsync() {
       //'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
     }),
   ]);
+  LoadState().then((persistedState) => {
+    //save myself an import and use dispatch directly
+    store.dispatch({type: "updateStateFromLocalStorage", state: persistedState});
+    //console.log("Successfully loaded state");
+  })
 }
 
 function handleLoadingError(error: any) {
