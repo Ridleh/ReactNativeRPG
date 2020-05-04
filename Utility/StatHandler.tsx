@@ -1,7 +1,6 @@
 import react, { Component } from "react";
 import * as StateActions from "../Redux/Actions";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
-import { State } from "react-native-gesture-handler";
 
 export const equipItem = (
   partyMember: Interfaces.PartyMemberInterface,
@@ -53,6 +52,17 @@ export const isItemEquipped = (
   }
   return false;
 };
+
+export const canEquipItem = (item : Interfaces.ItemInterface) => {
+  const charactersOwned: Interfaces.PartyMemberInterface[] = StateActions.getState().Party.CharactersOwned;
+  let canEquip = true;
+  charactersOwned.forEach(character => {
+    if(character.Items.includes(item)){
+      canEquip = false;
+    }
+  })
+  return true;
+}
 
 export const addCharacterToParty = (
   character: Interfaces.PartyMemberInterface
@@ -107,3 +117,69 @@ export const SwapPartyMemberForCharacter = (
   removePartyMemberFromParty(partyMember);
   addCharacterToParty(character);
 };
+
+export const equipSpell = (
+  partyMember: Interfaces.PartyMemberInterface,
+  spell: Interfaces.SpellInterface
+) => {
+  partyMember.Spells.push(spell);
+
+  /*
+  partyMember.Attack += spell.AttackModifier;
+  partyMember.Defence += .DefenceModifier;
+  partyMember.Health += item.HealthModifier;
+  partyMember.Luck += item.LuckModifier;
+  partyMember.Magic += item.MagicModifier;
+  partyMember.Mind += item.MindModifier;
+  partyMember.Resistance += item.ResistanceModifier;
+  partyMember.Speed += item.SpeedModifier;
+  */
+
+  StateActions.updatePartyMember(partyMember);
+};
+
+export const unequipSpell = (
+  partyMember: Interfaces.PartyMemberInterface,
+  spell: Interfaces.SpellInterface
+) => {
+  const index: number = partyMember.Spells.indexOf(spell);
+  if (index !== 1) {
+    partyMember.Spells.splice(index, 1);
+  }
+
+    /*
+  partyMember.Attack -= item.AttackModifier;
+  partyMember.Defence -= item.DefenceModifier;
+  partyMember.Health -= item.HealthModifier;
+  partyMember.Luck -= item.LuckModifier;
+  partyMember.Magic -= item.MagicModifier;
+  partyMember.Mind -= item.MindModifier;
+  partyMember.Resistance -= item.ResistanceModifier;
+  partyMember.Speed -= item.SpeedModifier;
+  */
+
+  StateActions.updatePartyMember(partyMember);
+};
+
+export const isSpellEquipped = (
+  partyMember: Interfaces.PartyMemberInterface,
+  spell: Interfaces.SpellInterface
+) => {
+  for (let index of partyMember.Spells) {
+    if (index.Name === spell.Name) {
+      return true;
+    }
+  }
+  return false;
+};
+
+export const canEquipSpell = (spell : Interfaces.SpellInterface) => {
+  const charactersOwned: Interfaces.PartyMemberInterface[] = StateActions.getState().Party.CharactersOwned;
+  let canEquip = true;
+  charactersOwned.forEach(character => {
+    if(character.Spells.includes(spell)){
+      canEquip = false;
+    }
+  })
+  return true;
+}

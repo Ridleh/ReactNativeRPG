@@ -6,7 +6,7 @@ import {
   ImageBackground,
   FlatList,
 } from "react-native";
-import { Header, Button, Overlay, ListItem } from "react-native-elements";
+import { Header, Button, Overlay, ListItem, ButtonGroup } from "react-native-elements";
 import { connect } from "react-redux";
 import * as StatHandler from "../Utility/StatHandler";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
@@ -19,15 +19,31 @@ class EditPartyMemberScreen extends Component<any, any> {
 
   constructor(props: any) {
     super(props);
-    this.state = { counter: 0, showOverlay: false };
+    this.state = { 
+      counter: 0, 
+      showOverlay: false,
+      showOverlaySpell: false,
+      selectedIndex: 0,
+      Names: [] };
     this.toggleItemsScreen = this.toggleItemsScreen.bind(this);
+    this.toggleSpellsScreen = this.toggleSpellsScreen.bind(this);
     this.renderItems = this.renderItems.bind(this);
     this.handleEquipItem = this.handleEquipItem.bind(this);
     this.handleUnequipItem = this.handleUnequipItem.bind(this);
     this.isItemEquipped = this.isItemEquipped.bind(this);
+    this.handleEquipSpell = this.handleEquipSpell.bind(this);
+    this.handleUnequipSpell = this.handleUnequipSpell.bind(this);
+    this.isSpellEquipped = this.isSpellEquipped.bind(this);
+    this.updateIndex = this.updateIndex.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    var Names: string[] = []
+    this.props.party.forEach((partyMember: Interfaces.PartyMemberInterface)  => {
+      Names.push(partyMember.Name);
+    });
+    this.setState({Names})
+  }
 
   componentWillUnmount() {}
 
@@ -37,32 +53,82 @@ class EditPartyMemberScreen extends Component<any, any> {
     }));
   };
 
+  toggleSpellsScreen = () => {
+    this.setState((prevState: { showOverlaySpell: boolean }) => ({
+      showOverlaySpell: !prevState.showOverlaySpell,
+    }));
+  };
+
   handleEquipItem(item: Interfaces.ItemInterface) {
-    StatHandler.equipItem(this.partyMember, item);
-    this.setState({});
+    if (StatHandler.canEquipItem(item)) {
+      StatHandler.equipItem(this.props.party[this.state.selectedIndex], item);
+      this.setState({});
+    } else {
+      console.warn("you cannot equip this item");
+    }
   }
 
   handleUnequipItem(item: Interfaces.ItemInterface) {
-    StatHandler.unequipItem(this.partyMember, item);
+    StatHandler.unequipItem(this.props.party[this.state.selectedIndex], item);
     this.setState({});
   }
 
   isItemEquipped(item: Interfaces.ItemInterface) {
-    return StatHandler.isItemEquipped(this.partyMember, item);
+    return StatHandler.isItemEquipped(this.props.party[this.state.selectedIndex], item);
   }
 
-  renderItems(item: any) {
+  updateIndex(selectedIndex: number){
+    this.setState({selectedIndex});
+  }
+
+  handleEquipSpell(spell: Interfaces.SpellInterface) {
+    if (StatHandler.canEquipSpell(spell)) {
+      StatHandler.equipSpell(this.props.party[this.state.selectedIndex], spell);
+      this.setState({});
+    } else {
+      console.warn("you cannot equip this spell");
+    }
+  }
+
+  handleUnequipSpell(spell: Interfaces.SpellInterface) {
+    StatHandler.unequipSpell(this.props.party[this.state.selectedIndex], spell);
+    this.setState({});
+  }
+
+  isSpellEquipped(spell: Interfaces.SpellInterface) {
+    return StatHandler.isSpellEquipped(this.props.party[this.state.selectedIndex], spell);
+  }
+
+  renderItems(item: Interfaces.ItemInterface) {
     return (
       <View style={{ flex: 1 }}>
         <ListItem
-          title={item.item.Name}
+          title={item.Name}
           bottomDivider
           chevron
-          checkmark={this.isItemEquipped(item.item)}
+          checkmark={this.isItemEquipped(item)}
           onPress={() =>
-            this.isItemEquipped(item.item)
-              ? this.handleUnequipItem(item.item)
-              : this.handleEquipItem(item.item)
+            this.isItemEquipped(item)
+              ? this.handleUnequipItem(item)
+              : this.handleEquipItem(item)
+          }
+        />
+      </View>
+    );
+  }
+
+  renderSpells(spell: Interfaces.SpellInterface){
+    return (
+      <View style={{ flex: 1 }}>
+        <ListItem
+          title={spell.Name}
+          bottomDivider
+          chevron
+          checkmark={this.isSpellEquipped(spell)}
+          onPress={() =>
+            this.isSpellEquipped(spell)
+              ? this.handleUnequipSpell(spell)
+              : this.handleEquipSpell(spell)
           }
         />
       </View>
@@ -70,6 +136,9 @@ class EditPartyMemberScreen extends Component<any, any> {
   }
 
   render() {
+    const buttons = this.state.Names;
+    const {selectedIndex} = this.state;
+
     return (
       <View>
         <ImageBackground
@@ -88,6 +157,11 @@ class EditPartyMemberScreen extends Component<any, any> {
               style: { color: "#fff" },
             }}
           />
+          <ButtonGroup
+          onPress={this.updateIndex}
+          selectedIndex={selectedIndex}
+          buttons={buttons}
+          containerStyle={{height: 55}}/>
           <View style={{ flex: 1 }}>
             <Overlay
               overlayStyle={{
@@ -104,7 +178,7 @@ class EditPartyMemberScreen extends Component<any, any> {
               <View>
                 <FlatList
                   data={this.props.items}
-                  renderItem={(item) => this.renderItems(item)}
+                  renderItem={({item}) => this.renderItems(item)}
                   keyExtractor={(item: Interfaces.ItemInterface) =>
                     item.ID.toString()
                   }
@@ -114,6 +188,31 @@ class EditPartyMemberScreen extends Component<any, any> {
                 <Button title="Back" onPress={() => this.toggleItemsScreen()} />
               </View>
             </Overlay>
+            <Overlay
+              overlayStyle={{
+                flexDirection: "column",
+                backgroundColor: "chocolate",
+                borderColor: "black",
+                borderRadius: 20,
+                borderWidth: 5,
+              }}
+              isVisible={this.state.showOverlaySpell}
+              onBackdropPress={() => this.toggleSpellsScreen()}
+              animationType="slide"
+            >
+              <View>
+                <FlatList
+                  data={this.props.spells}
+                  renderItem={({item}) => this.renderSpells(item)}
+                  keyExtractor={(item: Interfaces.SpellInterface) =>
+                    item.ID
+                  }
+                  scrollEnabled
+                />
+                <Text>test</Text>
+                <Button title="Back" onPress={() => this.toggleSpellsScreen()} />
+              </View>
+            </Overlay>
             <View
               style={{
                 flex: 9,
@@ -121,22 +220,22 @@ class EditPartyMemberScreen extends Component<any, any> {
                 justifyContent: "space-evenly",
               }}
             >
-              <Text>Name: {this.partyMember.Name}</Text>
-              <Text>Level: {this.partyMember.Level}</Text>
+              <Text>Name: {this.props.party[this.state.selectedIndex].Name}</Text>
+              <Text>Level: {this.props.party[this.state.selectedIndex].Level}</Text>
               <Text>
-                Health: {this.partyMember.CurrentHealth}/
-                {this.partyMember.Health}
+                Health: {this.props.party[this.state.selectedIndex].CurrentHealth}/
+                {this.props.party[this.state.selectedIndex].Health}
               </Text>
               <Text>
-                Mana: {this.partyMember.CurrentMana}/{this.partyMember.Mana}
+                Mana: {this.props.party[this.state.selectedIndex].CurrentMana}/{this.props.party[this.state.selectedIndex].Mana}
               </Text>
-              <Text>Attack: {this.partyMember.Attack}</Text>
-              <Text>Magic: {this.partyMember.Magic}</Text>
-              <Text>Mind: {this.partyMember.Mind}</Text>
-              <Text>Resistance: {this.partyMember.Resistance}</Text>
-              <Text>Defence: {this.partyMember.Defence}</Text>
-              <Text>Speed: {this.partyMember.Speed}</Text>
-              <Text>Luck: {this.partyMember.Luck}</Text>
+              <Text>Attack: {this.props.party[this.state.selectedIndex].Attack}</Text>
+              <Text>Magic: {this.props.party[this.state.selectedIndex].Magic}</Text>
+              <Text>Mind: {this.props.party[this.state.selectedIndex].Mind}</Text>
+              <Text>Resistance: {this.props.party[this.state.selectedIndex].Resistance}</Text>
+              <Text>Defence: {this.props.party[this.state.selectedIndex].Defence}</Text>
+              <Text>Speed: {this.props.party[this.state.selectedIndex].Speed}</Text>
+              <Text>Luck: {this.props.party[this.state.selectedIndex].Luck}</Text>
             </View>
             <View
               style={{
@@ -150,6 +249,10 @@ class EditPartyMemberScreen extends Component<any, any> {
             title="Equip or Unequip Items"
             onPress={() => this.toggleItemsScreen()}
           />
+          <Button
+            title="Equip or Unequip Spells"
+            onPress={() => this.toggleSpellsScreen()}
+          />
 
           <Button title="Go Back" onPress={() => this.navigation.pop()} />
         </ImageBackground>
@@ -160,8 +263,9 @@ class EditPartyMemberScreen extends Component<any, any> {
 
 function mapStateToProps(state: any) {
   return {
-    party: state.Party,
+    party: state.Party.Party,
     items: state.Inventory.Items,
+    spells: state.Inventory.Spells
   };
 }
 

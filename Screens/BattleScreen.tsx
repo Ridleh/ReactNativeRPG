@@ -29,12 +29,14 @@ class BattleScreen extends Component<any, any> {
       enemies: [],
       turnNumber: 0,
       showEndGameScreen: false,
+      firstPartyMember: {}
     };
 
     this.renderPlayer = this.renderPlayer.bind(this);
     this.getData = this.getData.bind(this);
     this.useSpell = this.useSpell.bind(this);
     this.handleGameOver = this.handleGameOver.bind(this);
+    this.renderSpell = this.renderSpell.bind(this);
   }
 
   static navigationOptions = {
@@ -53,6 +55,7 @@ class BattleScreen extends Component<any, any> {
           ID: "22234",
         },
       ],
+      firstPartyMember: this.props.party[0]
     });
   }
 
@@ -65,6 +68,8 @@ class BattleScreen extends Component<any, any> {
   useSpell() {
     var endGame: boolean = false;
     var damage: number = Math.floor(Math.random() * 100);
+    var player: number = this.state.turnNumber % 4;
+    console.log("damage is " + damage);
 
     if (this.state.turnNumber % 2 === 0) {
       let enemies = [...this.state.enemies];
@@ -75,20 +80,24 @@ class BattleScreen extends Component<any, any> {
       }
     } else {
       let party = [...this.state.party];
-      party[0] = { ...party[0], Health: party[0].Health - damage };
+      party[player] = {
+        ...party[player],
+        Health: party[player].Health - damage,
+      };
       this.setState({ party });
-      if (party[0].Health <= 0) {
+      if (party[player].Health <= 0) {
         endGame = true;
       }
     }
     this.setState((prevState: { turnNumber: number }) => ({
       turnNumber: prevState.turnNumber + 1,
+      firstPartyMember: this.state.party[(prevState.turnNumber + 1) % 4]
     }));
     if (endGame) {
       let enemies = [...this.state.enemies];
       let party = [...this.state.party];
       enemies[0].Health = 100;
-      party[0].Health = 100;
+      party[player].Health = 100;
       this.setState({ showEndGameScreen: true, party, enemies });
     }
   }
@@ -147,6 +156,22 @@ class BattleScreen extends Component<any, any> {
     );
   }
 
+  renderSpell(spell: Interfaces.SpellInterface) {
+    return (
+      <TouchableOpacity onPress={this.useSpell}>
+        <Image
+          style={{
+            height: 100,
+            width: 100,
+            paddingBottom: 10,
+            transform: [{ scaleX: -1 }],
+          }}
+          source={spell.Image}
+        />
+      </TouchableOpacity>
+    );
+  }
+
   render() {
     return (
       <ImageBackground
@@ -195,30 +220,12 @@ class BattleScreen extends Component<any, any> {
                 }}
               >
                 <Col>
-                  <TouchableOpacity onPress={this.useSpell}>
-                    <Image
-                      style={{
-                        height: 100,
-                        width: 100,
-                        paddingBottom: 10,
-                        transform: [{ scaleX: -1 }],
-                      }}
-                      source={require("../assets/Spells/Black_Magic/Fire.png")}
-                    />
-                  </TouchableOpacity>
-                </Col>
-                <Col>
-                  <TouchableOpacity onPress={this.useSpell}>
-                    <Image
-                      style={{
-                        height: 100,
-                        width: 100,
-                        paddingBottom: 10,
-                        transform: [{ scaleX: -1 }],
-                      }}
-                      source={require("../assets/Spells/Black_Magic/Thunder.png")}
-                    />
-                  </TouchableOpacity>
+                  <FlatList
+                  contentContainerStyle={{flexGrow:1, flexDirection:"row", justifyContent:"center"}}
+                    data={this.state.firstPartyMember.Spells}
+                    renderItem={({ item }) => this.renderSpell(item)}
+                    keyExtractor={(item: Interfaces.SpellInterface) => item.ID}
+                  />
                 </Col>
               </View>
             </Row>

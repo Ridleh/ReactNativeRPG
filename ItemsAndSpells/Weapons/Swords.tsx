@@ -14,7 +14,9 @@ export const swordDatabase = [
         MagicModifier: 0,
         MindModifier: 0,
         LuckModifier: 0,
-        SpeedModifier: 0
+        SpeedModifier: 0,
+        Rank: 1,
+        Level: 1
     },
     {
         Name: 'Galbadian Blade',
@@ -29,7 +31,9 @@ export const swordDatabase = [
         MagicModifier: 0,
         MindModifier: 0,
         LuckModifier: 0,
-        SpeedModifier: 0
+        SpeedModifier: 0,
+        Rank: 2,
+        Level: 1
     },
     {
         Name: 'Iron Sword',
@@ -44,7 +48,9 @@ export const swordDatabase = [
         MagicModifier: 0,
         MindModifier: 0,
         LuckModifier: 0,
-        SpeedModifier: 0
+        SpeedModifier: 0,
+        Rank: 2,
+        Level: 1
     },
     {
         Name: 'Longsword',
@@ -59,7 +65,9 @@ export const swordDatabase = [
         MagicModifier: 0,
         MindModifier: 0,
         LuckModifier: 0,
-        SpeedModifier: 0 
+        SpeedModifier: 0,
+        Rank: 1,
+        Level: 1
     },
     {
         Name: 'Zwill Blade',
@@ -74,6 +82,8 @@ export const swordDatabase = [
         MagicModifier: 0,
         MindModifier: 0,
         LuckModifier: 0,
-        SpeedModifier: 0
+        SpeedModifier: 0,
+        Rank: 2,
+        Level: 1
     },
 ]

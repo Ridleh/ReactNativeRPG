@@ -11,6 +11,8 @@ export default interface Item{
     MagicModifier: number,
     MindModifier: number,
     LuckModifier: number,
-    SpeedModifier: number
+    SpeedModifier: number,
+    Rank: number,
+    Level: number
     
 }
