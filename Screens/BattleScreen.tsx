@@ -16,6 +16,7 @@ import { Col, Row, Grid } from "react-native-easy-grid";
 import HealthBar from "./Components/HealthBar";
 import { connect } from "react-redux";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
+import * as StatHandler from "../Systems/StatHandler";
 
 const { height, width } = Dimensions.get("window");
 
@@ -104,6 +105,7 @@ class BattleScreen extends Component<any, any> {
 
   handleGameOver() {
     this.setState({ showEndGameScreen: false });
+    StatHandler.giveEXP(this.props.party, 10);
     const gold: number = Math.floor(Math.random() * 1000);
     this.props.giveGold(gold);
     this.props.navigation.pop();

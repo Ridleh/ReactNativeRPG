@@ -18,7 +18,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Bezerker",
@@ -39,7 +40,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Black Mage",
@@ -60,7 +62,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Dark Knight",
@@ -81,7 +84,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Devout",
@@ -102,7 +106,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Dragoon",
@@ -123,7 +128,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Gladiator",
@@ -144,7 +150,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Knight",
@@ -165,7 +172,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Magus",
@@ -186,7 +194,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Monk",
@@ -207,7 +216,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Ninja",
@@ -228,7 +238,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Ranger",
@@ -249,7 +260,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Red Mage",
@@ -270,7 +282,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Samurai",
@@ -291,7 +304,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Spellblade",
@@ -312,7 +326,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Thief",
@@ -333,7 +348,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 22,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Viking",
@@ -354,7 +370,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Warrior",
@@ -375,7 +392,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "White Mage",
@@ -396,7 +414,8 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     },
     {
         Name: "Tyro",
@@ -417,6 +436,7 @@ export const CoreClassDatabase = [
         Accuracy: 20,
         Evasion: 20,
         Items: [],
-        Spells: []
+        Spells: [],
+        Experience: 0
     }, 
 ]

@@ -73,7 +73,7 @@ function partyReducer(state: Party = PartyState, action: any) {
       return {
         ...state,
         Party: state.Party.map((item, index) => {
-          if (item !== action.partyMember) {
+          if (item.ID !== action.partyMember.ID) {
             return item;
           }
           return {

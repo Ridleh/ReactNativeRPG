@@ -17,7 +17,7 @@ import {
 } from "../ItemsAndSpells/ItemsAndSpellsDatabase";
 import { connect } from "react-redux";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
-import * as StatHandler from "../Utility/StatHandler";
+import * as StatHandler from "../Systems/StatHandler";
 
 import { ItemTypes } from "../ItemsAndSpells/ItemsAndSpellsDatabase";
 //import {swordDatabase} from '../ItemsAndSpells/Weapons/Swords'

@@ -5,7 +5,7 @@ import { Grid, Col, Row } from "react-native-easy-grid";
 import { FlatList, TouchableHighlight } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
-import * as StatHandler from "../Utility/StatHandler";
+import * as StatHandler from "../Systems/StatHandler";
 const { height, width } = Dimensions.get("window");
 
 class AddToPartyScreen extends Component<any, any> {

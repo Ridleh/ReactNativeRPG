@@ -20,5 +20,6 @@ export default interface PartyMember{
     Accuracy: number,
     Evasion: number,
     Items: Item[],
-    Spells: Spell[]
+    Spells: Spell[],
+    Experience: number
 }

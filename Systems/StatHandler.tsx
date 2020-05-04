@@ -53,16 +53,17 @@ export const isItemEquipped = (
   return false;
 };
 
-export const canEquipItem = (item : Interfaces.ItemInterface) => {
-  const charactersOwned: Interfaces.PartyMemberInterface[] = StateActions.getState().Party.CharactersOwned;
+export const canEquipItem = (item: Interfaces.ItemInterface) => {
+  const charactersOwned: Interfaces.PartyMemberInterface[] = StateActions.getState()
+    .Party.CharactersOwned;
   let canEquip = true;
-  charactersOwned.forEach(character => {
-    if(character.Items.includes(item)){
+  charactersOwned.forEach((character) => {
+    if (character.Items.includes(item)) {
       canEquip = false;
     }
-  })
+  });
   return true;
-}
+};
 
 export const addCharacterToParty = (
   character: Interfaces.PartyMemberInterface
@@ -147,7 +148,7 @@ export const unequipSpell = (
     partyMember.Spells.splice(index, 1);
   }
 
-    /*
+  /*
   partyMember.Attack -= item.AttackModifier;
   partyMember.Defence -= item.DefenceModifier;
   partyMember.Health -= item.HealthModifier;
@@ -173,13 +174,41 @@ export const isSpellEquipped = (
   return false;
 };
 
-export const canEquipSpell = (spell : Interfaces.SpellInterface) => {
-  const charactersOwned: Interfaces.PartyMemberInterface[] = StateActions.getState().Party.CharactersOwned;
+export const canEquipSpell = (spell: Interfaces.SpellInterface) => {
+  const charactersOwned: Interfaces.PartyMemberInterface[] = StateActions.getState()
+    .Party.CharactersOwned;
   let canEquip = true;
-  charactersOwned.forEach(character => {
-    if(character.Spells.includes(spell)){
+  charactersOwned.forEach((character) => {
+    if (character.Spells.includes(spell)) {
       canEquip = false;
     }
-  })
+  });
   return true;
-}
+};
+
+export const giveEXP = (
+  party: Interfaces.PartyMemberInterface[],
+  EXP: number
+) => {
+  party.forEach((partyMember) => {
+    const currentEXP: number = partyMember.Experience;
+    const x: number = partyMember.Level;
+    const EXPRequirement: number = 0.04 * Math.pow(x, 3) + 0.4 * Math.pow(x, 2) + 2 * x;
+
+    if (Math.floor(currentEXP + EXP) >= EXPRequirement) {
+      console.log(partyMember.Name + " has leveled up")
+      partyMember.Attack += 35 * partyMember.Level + 84;
+      partyMember.Defence += 35 * partyMember.Level + 84;
+      partyMember.Health += 35 * partyMember.Level + 84;
+      partyMember.Luck += 35 * partyMember.Level + 84;
+      partyMember.Magic += 35 * partyMember.Level + 84;
+      partyMember.Mind += 35 * partyMember.Level + 84;
+      partyMember.Resistance += 35 * partyMember.Level + 84;
+      partyMember.Speed += 35 * partyMember.Level + 84;
+      partyMember.Level += 1;
+    }
+    partyMember.Experience = Math.floor((currentEXP + EXP) % EXPRequirement);
+    console.log(partyMember.Experience)
+    StateActions.updatePartyMember(partyMember);
+  });
+};

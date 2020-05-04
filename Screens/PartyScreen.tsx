@@ -16,7 +16,7 @@ import {
 } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
-import * as StatHandler from "../Utility/StatHandler";
+import * as StatHandler from "../Systems/StatHandler";
 
 const { height, width } = Dimensions.get("window");
 

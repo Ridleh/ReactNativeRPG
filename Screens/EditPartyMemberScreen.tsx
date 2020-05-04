@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Header, Button, Overlay, ListItem, ButtonGroup } from "react-native-elements";
 import { connect } from "react-redux";
-import * as StatHandler from "../Utility/StatHandler";
+import * as StatHandler from "../Systems/StatHandler";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
 
 const { height, width } = Dimensions.get("window");

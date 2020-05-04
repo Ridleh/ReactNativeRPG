@@ -25,8 +25,8 @@ Todos:
         -Decide: Should spells use mana or have limited uses? [x]
             -Limited uses easier to implement, mana usage adds more dept []
     -Allow Characters to un/equip Spells [x]
-    -Allow Spells to be used in combat []
-        -Up to 4 can be eqipped []
+    -Allow Spells to be used in combat [x]
+        -Up to 4 can be eqipped [x]
     -Implement EXP and Level Up System []
         -Stats should grow based on different factors []
             - A warriors Attack would be higher than a Mage's []
@@ -60,3 +60,10 @@ Todos:
         - Show who has what equipped on iventory and equip screen []
         - Un/Equipping items sometimes reduces stats into the negatives []
         - CanEquip check may not work []
+
+        f(1) = 84
+        f(99) = 3500
+
+        f(x) = 35x + 84
+
+        
