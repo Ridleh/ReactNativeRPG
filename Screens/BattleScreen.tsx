@@ -66,10 +66,10 @@ class BattleScreen extends Component<any, any> {
 
   componentWillUnmount() {}
 
-  useSpell() {
+  useSpell(spell: Interfaces.SpellInterface) {
     var endGame: boolean = false;
     var damage: number = Math.floor(Math.random() * 100);
-    var player: number = this.state.turnNumber % 4;
+    var player: number = this.state.turnNumber % this.state.party.length;
     console.log("damage is " + damage);
 
     if (this.state.turnNumber % 2 === 0) {
@@ -92,7 +92,7 @@ class BattleScreen extends Component<any, any> {
     }
     this.setState((prevState: { turnNumber: number }) => ({
       turnNumber: prevState.turnNumber + 1,
-      firstPartyMember: this.state.party[(prevState.turnNumber + 1) % 4]
+      firstPartyMember: this.state.party[(prevState.turnNumber + 1) % this.state.party.length]
     }));
     if (endGame) {
       let enemies = [...this.state.enemies];
@@ -160,7 +160,7 @@ class BattleScreen extends Component<any, any> {
 
   renderSpell(spell: Interfaces.SpellInterface) {
     return (
-      <TouchableOpacity onPress={this.useSpell}>
+      <TouchableOpacity onPress={() => this.useSpell(spell)}>
         <Image
           style={{
             height: 100,

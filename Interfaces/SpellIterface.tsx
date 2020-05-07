@@ -5,5 +5,6 @@ export default interface Spell{
     Type: any, //enum
     Price: number,
     Rank: number,
-    Level: number
+    Level: number,
+    Uses: number
   }

@@ -67,8 +67,8 @@ class QuestScreen extends Component<any, any> {
 
   beginQuest() {
     this.setState({ showOverlay: false });
-    if (this.props.playersStamina >= 20) {
-      this.props.giveStamina(20);
+    if (this.props.playersStamina >= 0) {
+      this.props.giveStamina(0);
       this.props.navigation.navigate("Battle");
     } else {
       this.toggleNoStaminaPopup();

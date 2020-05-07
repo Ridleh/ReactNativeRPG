@@ -27,7 +27,7 @@ Todos:
     -Allow Characters to un/equip Spells [x]
     -Allow Spells to be used in combat [x]
         -Up to 4 can be eqipped [x]
-    -Implement EXP and Level Up System []
+    -Implement EXP and Level Up System [x]
         -Stats should grow based on different factors []
             - A warriors Attack would be higher than a Mage's []
             - Ranger gets bonus to Accuracy []
