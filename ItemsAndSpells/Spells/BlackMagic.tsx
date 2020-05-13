@@ -9,7 +9,7 @@ export const blackMagicSpellsDatabase = [
         Price: 100,
         Rank: 1,
         Level: 1,
-        uses: 2
+        Uses: 2
     },
     {
         Name: 'Fire',
@@ -19,7 +19,7 @@ export const blackMagicSpellsDatabase = [
         Price: 100,
         Rank: 1,
         Level: 1,
-        uses: 2
+        Uses: 2
     },
     {
         Name: 'Thunder',
@@ -29,7 +29,7 @@ export const blackMagicSpellsDatabase = [
         Price: 100,
         Rank: 1,
         Level: 1,
-        uses: 2
+        Uses: 2
     },
     {
         Name: 'Water',
@@ -39,6 +39,6 @@ export const blackMagicSpellsDatabase = [
         Price: 100,
         Rank: 1,
         Level: 1,
-        uses: 2
+        Uses: 2
     },
 ]

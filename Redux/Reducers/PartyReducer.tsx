@@ -11,6 +11,7 @@ const addToCharactersOwned: string = "addToCharactersOwned";
 const removeFromCharactersOwned: string = "removeFromCharactersOwned";
 const updateCharactersOwned: string = "updateCharactersOwned";
 const updateStateFromLocalStorage: string = "updateStateFromLocalStorage";
+const updateParty: string = "updateParty";
 // ^ import instead?
 
 interface Party {
@@ -108,6 +109,10 @@ function partyReducer(state: Party = PartyState, action: any) {
           };
         }),
       };
+      case updateParty:
+        return Object.assign({}, state, {
+          Party: action.party,
+        });
     default:
       return state;
   }

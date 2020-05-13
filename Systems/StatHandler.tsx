@@ -115,8 +115,19 @@ export const SwapPartyMemberForCharacter = (
   character: Interfaces.PartyMemberInterface
 ) => {
   //need validation
-  removePartyMemberFromParty(partyMember);
-  addCharacterToParty(character);
+  //removePartyMemberFromParty(partyMember);
+  //addCharacterToParty(character);
+  const gameState = StateActions.getState();
+  const partyState = gameState.Party.Party;
+  const index = partyState.indexOf(partyMember);
+  if(index === -1){
+    console.error("Attempting to remove PartyMember " + partyMember.Name + " but PartyMember was not found in current Party")
+  }
+  partyState[index] = character;
+  if(partyState.length > 4){
+    
+  }
+  StateActions.updateParty(partyState);
 };
 
 export const equipSpell = (

@@ -38,3 +38,7 @@ export const updateStateFromLocalStorage = (state: any) => {
   Dispatch({type: "updateStateFromLocalState", state: state});
 }
 
+export const updateParty = (party: Interfaces.PartyMemberInterface[]) => {
+  Dispatch({type: "updateParty", party: party})
+}
+

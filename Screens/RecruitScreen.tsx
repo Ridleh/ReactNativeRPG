@@ -187,10 +187,10 @@ class RecruitScreen extends Component<any, any> {
                   justifyContent: "space-evenly",
                 }}
               >
-                <Text>HEALTH: {this.state.selectedItem.HealthModifier} </Text>
-                <Text>ATTACK: {this.state.selectedItem.AttackModifier}</Text>
+                <Text>HEALTH: {this.state.selectedItem.Health} </Text>
+                <Text>ATTACK: {this.state.selectedItem.Attack}</Text>
                 <Text>
-                  RESISTANCE: {this.state.selectedItem.ResistanceModifier}
+                  RESISTANCE: {this.state.selectedItem.Resistance}
                 </Text>
               </View>
               <View
@@ -200,9 +200,9 @@ class RecruitScreen extends Component<any, any> {
                   justifyContent: "space-evenly",
                 }}
               >
-                <Text>DEFENCE: {this.state.selectedItem.DefenceModifier}</Text>
-                <Text>MAGIC: {this.state.selectedItem.MagicModifier}</Text>
-                <Text>MIND: {this.state.selectedItem.MindModifier}</Text>
+                <Text>DEFENCE: {this.state.selectedItem.Defence}</Text>
+                <Text>MAGIC: {this.state.selectedItem.Magic}</Text>
+                <Text>MIND: {this.state.selectedItem.Mind}</Text>
               </View>
               <View
                 style={{
@@ -211,8 +211,8 @@ class RecruitScreen extends Component<any, any> {
                   justifyContent: "space-evenly",
                 }}
               >
-                <Text>LUCK: +0 </Text>
-                <Text>SPEED: +0</Text>
+                <Text>LUCK: {this.state.selectedItem.Luck} </Text>
+              <Text>SPEED: {this.state.selectedItem.Speed}</Text>
                 <Text>COPIES OWNED: 0</Text>
               </View>
             </View>

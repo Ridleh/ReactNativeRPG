@@ -46,12 +46,12 @@ class BattleScreen extends Component<any, any> {
 
   getData() {
     this.setState({
-      party: this.props.party,
+      party: [...this.props.party],
       enemies: [
         {
           Name: "Nega Tyro",
           level: 30,
-          Health: 99,
+          Health: 9999,
           Mana: 300,
           ID: "22234",
         },
@@ -67,6 +67,7 @@ class BattleScreen extends Component<any, any> {
   componentWillUnmount() {}
 
   useSpell(spell: Interfaces.SpellInterface) {
+    spell.Uses -= 1;
     var endGame: boolean = false;
     var damage: number = Math.floor(Math.random() * 100);
     var player: number = this.state.turnNumber % this.state.party.length;
@@ -161,6 +162,7 @@ class BattleScreen extends Component<any, any> {
   renderSpell(spell: Interfaces.SpellInterface) {
     return (
       <TouchableOpacity onPress={() => this.useSpell(spell)}>
+        <Text>Uses: {spell.Uses}</Text>
         <Image
           style={{
             height: 100,
