@@ -9,7 +9,8 @@ export const blackMagicSpellsDatabase = [
         Price: 100,
         Rank: 1,
         Level: 1,
-        Uses: 2
+        Uses: 2,
+        EquippedBy: ''
     },
     {
         Name: 'Fire',
@@ -19,7 +20,8 @@ export const blackMagicSpellsDatabase = [
         Price: 100,
         Rank: 1,
         Level: 1,
-        Uses: 2
+        Uses: 2,
+        EquippedBy: ''
     },
     {
         Name: 'Thunder',
@@ -29,7 +31,8 @@ export const blackMagicSpellsDatabase = [
         Price: 100,
         Rank: 1,
         Level: 1,
-        Uses: 2
+        Uses: 2,
+        EquippedBy: ''
     },
     {
         Name: 'Water',
@@ -39,6 +42,7 @@ export const blackMagicSpellsDatabase = [
         Price: 100,
         Rank: 1,
         Level: 1,
-        Uses: 2
+        Uses: 2,
+        EquippedBy: ''
     },
 ]

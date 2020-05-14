@@ -16,7 +16,8 @@ export const swordDatabase = [
         LuckModifier: 0,
         SpeedModifier: 0,
         Rank: 1,
-        Level: 1
+        Level: 1,
+        EquippedBy: ''
     },
     {
         Name: 'Galbadian Blade',
@@ -33,7 +34,8 @@ export const swordDatabase = [
         LuckModifier: 0,
         SpeedModifier: 0,
         Rank: 2,
-        Level: 1
+        Level: 1,
+        EquippedBy: ''
     },
     {
         Name: 'Iron Sword',
@@ -50,7 +52,8 @@ export const swordDatabase = [
         LuckModifier: 0,
         SpeedModifier: 0,
         Rank: 2,
-        Level: 1
+        Level: 1,
+        EquippedBy: ''
     },
     {
         Name: 'Longsword',
@@ -67,7 +70,8 @@ export const swordDatabase = [
         LuckModifier: 0,
         SpeedModifier: 0,
         Rank: 1,
-        Level: 1
+        Level: 1,
+        EquippedBy: ''
     },
     {
         Name: 'Zwill Blade',
@@ -84,6 +88,7 @@ export const swordDatabase = [
         LuckModifier: 0,
         SpeedModifier: 0,
         Rank: 2,
-        Level: 1
+        Level: 1,
+        EquippedBy: ''
     },
 ]

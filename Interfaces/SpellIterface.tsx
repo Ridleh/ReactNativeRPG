@@ -6,5 +6,6 @@ export default interface Spell{
     Price: number,
     Rank: number,
     Level: number,
-    Uses: number
+    Uses: number,
+    EquippedBy: string
   }

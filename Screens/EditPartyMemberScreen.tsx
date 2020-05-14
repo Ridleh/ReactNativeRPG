@@ -80,6 +80,7 @@ class EditPartyMemberScreen extends Component<any, any> {
   };
 
   handleEquipItem(item: Interfaces.ItemInterface) {
+    console.log('not here')
     if (StatHandler.canEquipItem(item)) {
       StatHandler.equipItem(this.props.party[this.state.selectedIndex], item);
       this.setState({});
@@ -89,6 +90,7 @@ class EditPartyMemberScreen extends Component<any, any> {
   }
 
   handleUnequipItem(item: Interfaces.ItemInterface) {
+    console.log('here');
     StatHandler.unequipItem(this.props.party[this.state.selectedIndex], item);
     this.setState({});
   }
@@ -116,7 +118,7 @@ class EditPartyMemberScreen extends Component<any, any> {
       StatHandler.equipSpell(this.props.party[this.state.selectedIndex], spell);
       this.setState({});
     } else {
-      console.warn("you cannot equip this spell");
+      console.warn("you cannot equip this spell. It is equipped by " + spell.EquippedBy);
     }
   }
 
@@ -141,7 +143,6 @@ class EditPartyMemberScreen extends Component<any, any> {
           chevron
           leftAvatar={{rounded: true, source: item.Image}}
           checkmark={this.isItemEquipped(item)}
-          disabled={!this.canEquipItem(item)}
           onPress={() =>
             this.isItemEquipped(item)
               ? this.handleUnequipItem(item)

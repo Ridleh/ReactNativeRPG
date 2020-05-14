@@ -16,7 +16,8 @@ export const staffDatabase = [
         LuckModifier: 0,
         SpeedModifier: 0,
         Rank: 1,
-        Level: 1
+        Level: 1,
+        EquippedBy: ''
     },
     {
         Name: "Mage's Staff",
@@ -33,7 +34,8 @@ export const staffDatabase = [
         LuckModifier: 0,
         SpeedModifier: 0,
         Rank: 2,
-        Level: 1
+        Level: 1,
+        EquippedBy: ''
     },
     {
         Name: 'Mythril Staff',
@@ -50,7 +52,8 @@ export const staffDatabase = [
         LuckModifier: 0,
         SpeedModifier: 0,
         Rank: 2,
-        Level: 1
+        Level: 1,
+        EquippedBy: ''
     },
     {
         Name: 'Oak Staff',
@@ -67,7 +70,8 @@ export const staffDatabase = [
         LuckModifier: 0,
         SpeedModifier: 0,
         Rank: 1,
-        Level: 1
+        Level: 1,
+        EquippedBy: ''
     },
     {
         Name: 'Power Staff',
@@ -84,6 +88,7 @@ export const staffDatabase = [
         LuckModifier: 0,
         SpeedModifier: 0,
         Rank: 2,
-        Level: 1
+        Level: 1,
+        EquippedBy: ''
     },
 ]

@@ -13,6 +13,7 @@ export default interface Item{
     LuckModifier: number,
     SpeedModifier: number,
     Rank: number,
-    Level: number
+    Level: number,
+    EquippedBy: string
     
 }

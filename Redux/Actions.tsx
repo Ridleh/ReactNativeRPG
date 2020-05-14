@@ -8,6 +8,7 @@ export const updatePartyMember = (
   partyMember: Interfaces.PartyMemberInterface
 ) => {
   Dispatch({ type: "updatePartyMember", partyMember: partyMember });
+  Dispatch({ type: "updateCharactersOwned", character: partyMember });
 };
 
 export const getState = () => {

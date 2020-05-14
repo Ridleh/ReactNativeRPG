@@ -6,6 +6,7 @@ export const equipItem = (
   partyMember: Interfaces.PartyMemberInterface,
   item: Interfaces.ItemInterface
 ) => {
+  item.EquippedBy = partyMember.ID;
   partyMember.Items.push(item);
 
   partyMember.Attack += item.AttackModifier;
@@ -26,6 +27,7 @@ export const unequipItem = (
 ) => {
   const index: number = partyMember.Items.indexOf(item);
   if (index !== 1) {
+    item.EquippedBy = '';
     partyMember.Items.splice(index, 1);
   }
 
@@ -45,15 +47,19 @@ export const isItemEquipped = (
   partyMember: Interfaces.PartyMemberInterface,
   item: Interfaces.ItemInterface
 ) => {
+  /*
   for (let index of partyMember.Items) {
     if (index.Name === item.Name) {
       return true;
     }
   }
   return false;
+  */
+ return partyMember.ID === item.EquippedBy;
 };
 
 export const canEquipItem = (item: Interfaces.ItemInterface) => {
+  /*
   const charactersOwned: Interfaces.PartyMemberInterface[] = StateActions.getState()
     .Party.CharactersOwned;
   let canEquip = true;
@@ -63,6 +69,8 @@ export const canEquipItem = (item: Interfaces.ItemInterface) => {
     }
   });
   return true;
+  */
+ return item.EquippedBy === '';
 };
 
 export const addCharacterToParty = (
@@ -134,6 +142,7 @@ export const equipSpell = (
   partyMember: Interfaces.PartyMemberInterface,
   spell: Interfaces.SpellInterface
 ) => {
+  spell.EquippedBy = partyMember.ID
   partyMember.Spells.push(spell);
 
   /*
@@ -156,6 +165,7 @@ export const unequipSpell = (
 ) => {
   const index: number = partyMember.Spells.indexOf(spell);
   if (index !== 1) {
+    spell.EquippedBy = '';
     partyMember.Spells.splice(index, 1);
   }
 
@@ -177,15 +187,14 @@ export const isSpellEquipped = (
   partyMember: Interfaces.PartyMemberInterface,
   spell: Interfaces.SpellInterface
 ) => {
-  for (let index of partyMember.Spells) {
-    if (index.Name === spell.Name) {
-      return true;
-    }
+  if(spell.EquippedBy === partyMember.ID){
+    return true
   }
   return false;
 };
 
 export const canEquipSpell = (spell: Interfaces.SpellInterface) => {
+  /*
   const charactersOwned: Interfaces.PartyMemberInterface[] = StateActions.getState()
     .Party.CharactersOwned;
   let canEquip = true;
@@ -194,7 +203,9 @@ export const canEquipSpell = (spell: Interfaces.SpellInterface) => {
       canEquip = false;
     }
   });
-  return true;
+  return canEquip;
+  */
+ return spell.EquippedBy === '';
 };
 
 export const giveEXP = (

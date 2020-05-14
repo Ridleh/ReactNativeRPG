@@ -10,6 +10,7 @@ export default interface Staff{
     MagicModifier: number,
     MindModifier: number,
     LuckModifier: number,
-    SpeedModifier: number
+    SpeedModifier: number,
+    EquippedBy: string
     
 }
