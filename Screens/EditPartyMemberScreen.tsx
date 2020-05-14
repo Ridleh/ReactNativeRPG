@@ -20,6 +20,7 @@ import * as StatHandler from "../Systems/StatHandler";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
 import { Grid, Row, Col } from "react-native-easy-grid";
 import { TouchableHighlight } from "react-native-gesture-handler";
+import { ItemTypes } from "../ItemsAndSpells/ItemsAndSpellsDatabase";
 
 const { height, width } = Dimensions.get("window");
 
@@ -36,6 +37,11 @@ class EditPartyMemberScreen extends Component<any, any> {
       selectedIndex: 0,
       Names: [],
       partyMember: [],
+      ActionNames: [
+        'Spells',
+        'Actions',
+        'Items'
+      ]
     };
     this.toggleItemsScreen = this.toggleItemsScreen.bind(this);
     this.toggleSpellsScreen = this.toggleSpellsScreen.bind(this);
@@ -94,6 +100,10 @@ class EditPartyMemberScreen extends Component<any, any> {
     );
   }
 
+  canEquipItem(item: Interfaces.ItemInterface){
+    return StatHandler.canEquipItem(item);
+  }
+
   updateIndex(selectedIndex: number) {
     this.setState({
       selectedIndex,
@@ -129,7 +139,9 @@ class EditPartyMemberScreen extends Component<any, any> {
           title={item.Name}
           bottomDivider
           chevron
+          leftAvatar={{rounded: true, source: item.Image}}
           checkmark={this.isItemEquipped(item)}
+          disabled={!this.canEquipItem(item)}
           onPress={() =>
             this.isItemEquipped(item)
               ? this.handleUnequipItem(item)
@@ -175,6 +187,7 @@ class EditPartyMemberScreen extends Component<any, any> {
           title={spell.Name}
           bottomDivider
           chevron
+          leftAvatar={{rounded: true, source: spell.Image}}
           checkmark={this.isSpellEquipped(spell)}
           onPress={() =>
             this.isSpellEquipped(spell)
@@ -221,12 +234,19 @@ class EditPartyMemberScreen extends Component<any, any> {
               flexDirection: "column",
               backgroundColor: "chocolate",
               borderColor: "black",
-              borderRadius: 20,
+              borderRadius: 5,
               borderWidth: 5,
+              width: '100%'
             }}
             animationType="slide"
           >
             <View>
+            <ButtonGroup
+            onPress={this.updateIndex}
+            selectedIndex={selectedIndex}
+            buttons={this.state.ActionNames}
+            containerStyle={{ height: 55 }}
+          />
               <FlatList
                 data={this.props.spells}
                 renderItem={({ item }) => this.renderSpellsEquip(item)}
@@ -300,7 +320,7 @@ class EditPartyMemberScreen extends Component<any, any> {
                 style={{ justifyContent: "space-evenly", alignItems: "center" }}
               >
                 <Button
-                  title="Edit Spells"
+                  title="Edit Actions"
                   onPress={() => this.toggleSpellsScreen()}
                 />
                 <FlatList
