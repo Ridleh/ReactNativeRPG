@@ -222,6 +222,7 @@ export const giveEXP = (
       partyMember.Attack += 35 * partyMember.Level + 84;
       partyMember.Defence += 35 * partyMember.Level + 84;
       partyMember.Health += 35 * partyMember.Level + 84;
+      partyMember.CurrentHealth += 35 * partyMember.Level + 84;
       partyMember.Luck += 35 * partyMember.Level + 84;
       partyMember.Magic += 35 * partyMember.Level + 84;
       partyMember.Mind += 35 * partyMember.Level + 84;

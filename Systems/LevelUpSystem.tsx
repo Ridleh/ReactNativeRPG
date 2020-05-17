@@ -1,5 +1,77 @@
 import * as Interfaces from "../Interfaces/InterfaceIndex";
 
+export const LevelUpCharacter = (
+  character: Interfaces.PartyMemberInterface
+) => {
+  switch (character.Name) {
+    case "Warrior":
+      LevelUpWarrior(character);
+      break;
+    case "Knight":
+      LevelUpKnight(character);
+      break;
+    case "Monk":
+      LevelUpMonk(character);
+      break;
+    case "Red Mage":
+      LevelUpRedMage(character);
+      break;
+    case "Black Mage":
+      LevelUpBlackMage(character);
+      break;
+    case "Magus":
+      LevelUpMagus(character);
+      break;
+    case "White Mage":
+      LevelUpWhiteMage(character);
+      break;
+    case "Devout":
+      LevelUpDevout(character);
+      break;
+    case "Summoner":
+      LevelUpSummoner(character);
+      break;
+    case "Samurai":
+      LevelUpSamurai(character);
+      break;
+    case "Dragoon":
+      LevelUpDragoon(character);
+      break;
+    case "Dark Knight":
+      LevelUpDarkKnight(character);
+      break;
+    case "Spellblade":
+      LevelUpSpellblade(character);
+      break;
+    case "Viking":
+      LevelUpViking(character);
+      break;
+    case "Beserker":
+      LevelUpBerserker(character);
+      break;
+    case "Ranger":
+      LevelUpRanger(character);
+      break;
+    case "Thief":
+      LevelUpThief(character);
+      break;
+    case "Bard":
+      LevelUpBard(character);
+      break;
+    case "Ninja":
+      LevelUpNinja(character);
+      break;
+    case "Gladiator":
+      LevelUpGladiator(character);
+      break;
+    case "Tyro":
+      LevelUpTyro(character);
+      break;
+    default:
+      console.error("Error: Unknown Name", character.Name);
+  }
+};
+
 export const LevelUpWarrior = (character: Interfaces.PartyMemberInterface) => {
   /*
 HP  144 	6000
@@ -11,6 +83,20 @@ Mind 	5 	83
 Accuracy 	20 	25
 Evasion 	20 	25
 Speed 	56 	95
+ */
+};
+
+export const LevelUpTyro = (character: Interfaces.PartyMemberInterface) => {
+  /*
+HP  120 	6800
+Attack 	8 	    131
+Defense 	7 	130
+Magic 	7 	130
+Resistance 	7 	130
+Mind 	5 	83
+Accuracy 	20 	25
+Evasion 	20 	25
+Speed 	81 	130
  */
 };
 
@@ -103,10 +189,8 @@ Speed 	69 	118
     */
 };
 
-export const LevelUpDevout = (
-    character: Interfaces.PartyMemberInterface
-  ) => {
-    /*
+export const LevelUpDevout = (character: Interfaces.PartyMemberInterface) => {
+  /*
    HP 	111 	4625
 Attack 	5 	83
 Defense 	5 	83
@@ -117,12 +201,10 @@ Accuracy 	20 	25
 Evasion 	20 	25
 Speed 	63 	107
       */
-  };
+};
 
-  export const LevelUpSummoner = (
-    character: Interfaces.PartyMemberInterface
-  ) => {
-    /*
+export const LevelUpSummoner = (character: Interfaces.PartyMemberInterface) => {
+  /*
   HP 	82 	3449
 Attack 	5 	84
 Defense 	4 	70
@@ -133,12 +215,10 @@ Accuracy 	20 	25
 Evasion 	20 	25
 Speed 	69 	118
       */
-  };
+};
 
-  export const LevelUpSamurai = (
-    character: Interfaces.PartyMemberInterface
-  ) => {
-    /*
+export const LevelUpSamurai = (character: Interfaces.PartyMemberInterface) => {
+  /*
  HP 	130 	5410
 Attack 	8 	154
 Defense 	7 	136
@@ -149,12 +229,10 @@ Accuracy 	20 	25
 Evasion 	20 	25
 Speed 	69 	118
       */
-  };
+};
 
-  export const LevelUpDragoon = (
-    character: Interfaces.PartyMemberInterface
-  ) => {
-    /*
+export const LevelUpDragoon = (character: Interfaces.PartyMemberInterface) => {
+  /*
  HP 	120 	5000
 Attack 	8 	148
 Defense 	7 	136
@@ -165,12 +243,12 @@ Accuracy 	20 	25
 Evasion 	20 	25
 Speed 	83 	142
       */
-  };
+};
 
-  export const LevelUpDarkKnight = (
-    character: Interfaces.PartyMemberInterface
-  ) => {
-    /*
+export const LevelUpDarkKnight = (
+  character: Interfaces.PartyMemberInterface
+) => {
+  /*
 HP 	112 	4650
 Attack 	8 	157
 Defense 	7 	120
@@ -181,12 +259,12 @@ Accuracy 	20 	25
 Evasion 	20 	25
 Speed 	56 	95
       */
-  };
+};
 
-  export const LevelUpSpellblade = (
-    character: Interfaces.PartyMemberInterface
-  ) => {
-    /*
+export const LevelUpSpellblade = (
+  character: Interfaces.PartyMemberInterface
+) => {
+  /*
 HP 	108 	4500
 Attack 	8 	152
 Defense 	6 	118
@@ -197,12 +275,10 @@ Accuracy 	20 	25
 Evasion 	20 	25
 Speed 	76 	130
       */
-  };
+};
 
-  export const LevelUpViking = (
-    character: Interfaces.PartyMemberInterface
-  ) => {
-    /*
+export const LevelUpViking = (character: Interfaces.PartyMemberInterface) => {
+  /*
 HP 	144 	6000
 Attack 	9 	160
 Defense 	7 	121
@@ -213,12 +289,26 @@ Accuracy 	20 	25
 Evasion 	20 	25
 Speed 	66 	113
       */
-  };
+};
 
-  export const LevelUpRanger = (
-    character: Interfaces.PartyMemberInterface
-  ) => {
-    /*
+export const LevelUpBerserker = (
+  character: Interfaces.PartyMemberInterface
+) => {
+  /*
+HP 	144 	6049
+Attack 	9 	162
+Defense 6 	116
+Magic 	4 	71
+Resistance 	6 	101
+Mind 	4 	71
+Accuracy 	20 	25
+Evasion 	20 	25
+Speed 	69 	118
+      */
+};
+
+export const LevelUpRanger = (character: Interfaces.PartyMemberInterface) => {
+  /*
 HP 	108 	4500
 Attack 	6 	118
 Defense 	5 	95
@@ -229,12 +319,10 @@ Accuracy 	24 	30
 Evasion 	20 	25
 Speed 	76 	130
       */
-  };
+};
 
-  export const LevelUpThief = (
-    character: Interfaces.PartyMemberInterface
-  ) => {
-    /*
+export const LevelUpThief = (character: Interfaces.PartyMemberInterface) => {
+  /*
 HP 	113 	4700
 Attack 	7 	130
 Defense 	6 	113
@@ -245,12 +333,10 @@ Accuracy 	20 	25
 Evasion 	22 	28
 Speed 	101 	172
       */
-  };
+};
 
-  export const LevelUpBard = (
-    character: Interfaces.PartyMemberInterface
-  ) => {
-    /*
+export const LevelUpBard = (character: Interfaces.PartyMemberInterface) => {
+  /*
 HP 	96 	4000
 Attack 	5 	95
 Defense 	5 	95
@@ -261,12 +347,10 @@ Accuracy 	20 	25
 Evasion 	20 	25
 Speed 	69 	118
       */
-  };
+};
 
-  export const LevelUpNinja = (
-    character: Interfaces.PartyMemberInterface
-  ) => {
-    /*
+export const LevelUpNinja = (character: Interfaces.PartyMemberInterface) => {
+  /*
 HP 	118 	4900
 Attack 	8 	157
 Defense 	6 	111
@@ -277,12 +361,12 @@ Accuracy 	20 	25
 Evasion 	20 	25
 Speed 	97 	166
       */
-  };
+};
 
-  export const LevelUpGladiator = (
-    character: Interfaces.PartyMemberInterface
-  ) => {
-    /*
+export const LevelUpGladiator = (
+  character: Interfaces.PartyMemberInterface
+) => {
+  /*
 HP 	144 	6000
 Attack 	8 	156
 Defense 	7 	130
@@ -293,15 +377,4 @@ Accuracy 	20 	25
 Evasion 	20 	25
 Speed 	69 	118
       */
-  };
-
-
-
-
-
-
-
-  
-
-
-
+};

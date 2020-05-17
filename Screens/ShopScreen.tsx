@@ -9,11 +9,7 @@ import {
 } from "react-native";
 import { Button, ButtonGroup, Icon, Header } from "react-native-elements";
 import { TouchableHighlight } from "react-native-gesture-handler";
-import {
-  swordDatabase,
-  staffDatabase,
-  blackMagicSpellsDatabase,
-} from "../ItemsAndSpells/ItemsAndSpellsDatabase";
+import * as Database from "../ItemsAndSpells/ItemsAndSpellsDatabase";
 import { connect } from "react-redux";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
 
@@ -33,13 +29,52 @@ class ShopScreen extends Component<any, any> {
       buttonSelected: "items",
       dummyItems: [],
       dummySpells: [],
+      armors: [],
+      weapons: [],
+      blackMagic: [],
+      whiteMagic: []
     };
   }
 
   componentDidMount() {
+    var swords = Database.swordDatabase.slice();
+    var staffs = Database.staffDatabase.slice();
+    var weapons = [...swords, ...staffs];
+
+    var bracers = Database.BracersDataBase.slice();
+    var hats = Database.HatsDataBase.slice();
+    var helms = Database.HelmsDataBase.slice();
+    var lightArmors = Database.LightArmorsDataBase.slice();
+    var robes = Database.RobesDataBase.slice();
+    var shields = Database.ShieldDataBase.slice();
+    var armors = [
+      ...bracers,
+      ...hats,
+      ...helms,
+      ...lightArmors,
+      ...robes,
+      ...shields,
+    ];
+
+    var blackMagic = Database.blackMagicSpellsDatabase.slice();
+
+    var whiteMagic = Database.WhiteMagicDataBase.slice();
+
+    this.setState({
+      weapons,
+      armors,
+      blackMagic,
+      whiteMagic
+    })
+
+
+
+    /*
     var swords = swordDatabase.slice();
     var staffs = staffDatabase.slice();
-    var weaponsAndArmor = [...swords, ...staffs];
+    var weapons = [...swords, ...staffs];
+
+    var armors = []
 
     var blackMagicSpells = blackMagicSpellsDatabase.slice();
     var spells = [...blackMagicSpells];
@@ -48,6 +83,7 @@ class ShopScreen extends Component<any, any> {
       dummyItems: weaponsAndArmor,
       dummySpells: spells,
     });
+    */
   }
 
   componentWillUnmount() {
@@ -55,9 +91,16 @@ class ShopScreen extends Component<any, any> {
   }
 
   getData() {
-    return this.state.selectedIndex === 0
-      ? this.state.dummyItems
-      : this.state.dummySpells;
+    switch (this.state.selectedIndex){
+      case 0:
+        return this.state.weapons
+      case 1: 
+      return this.state.armors
+      case 2: 
+      return this.state.blackMagic
+      case 3:
+        return this.state.whiteMagic
+    }
   }
 
   updateIndex(selectedIndex: number) {
@@ -76,7 +119,7 @@ class ShopScreen extends Component<any, any> {
   purchaseItem() {
     const itemType = this.state.selectedItem.Type;
     if (this.props.playersGold >= this.state.selectedItemPrice) {
-      var cost: number = this.state.selectedItemPrice
+      var cost: number = this.state.selectedItemPrice;
       this.props.decreaseGold(cost);
     }
 
@@ -94,9 +137,6 @@ class ShopScreen extends Component<any, any> {
       );
     }
   }
-
-  component1 = () => <Text>Weapons and Armor</Text>;
-  component2 = () => <Text>Abilities</Text>;
 
   //Spells can use Item interfce due to duck typing
   renderItem(item: Interfaces.ItemInterface) {
@@ -134,10 +174,7 @@ class ShopScreen extends Component<any, any> {
   }
 
   render() {
-    const buttons = [
-      { element: this.component1 },
-      { element: this.component2 },
-    ];
+    const buttons = ["Weapons", "Armors", "Black Magic", "White Magic"];
     const { selectedIndex } = this.state;
     return (
       <View style={{ paddingTop: 25, flex: 1 }}>
@@ -278,7 +315,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state: any) {
-    return {
+  return {
     selectedIndex: 0,
     selectedItem: {},
     selectedItemName: " ",
@@ -295,7 +332,8 @@ function mapDispatchToProps(dispatch: any) {
   return {
     buyItem: (item: any) => dispatch({ type: "addItem", item: item }),
     buySpell: (spell: any) => dispatch({ type: "addSpell", spell: spell }),
-    decreaseGold: (gold: number) => dispatch({ type: "decreaseGold", gold: gold }),
+    decreaseGold: (gold: number) =>
+      dispatch({ type: "decreaseGold", gold: gold }),
 
     //decreaseCounter: () => dispatch({type: 'decreaseCounter', name :'test2'})
   };

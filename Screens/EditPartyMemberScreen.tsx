@@ -74,9 +74,14 @@ class EditPartyMemberScreen extends Component<any, any> {
   };
 
   toggleSpellsScreen = () => {
-    this.setState((prevState: { showOverlaySpell: boolean }) => ({
-      showOverlaySpell: !prevState.showOverlaySpell,
-    }));
+    if(this.props.party[this.state.selectedIndex].Spells.length === 0){
+      console.log("Partymember's spell list is empty. ")
+    }
+    else{
+      this.setState((prevState: { showOverlaySpell: boolean }) => ({
+        showOverlaySpell: !prevState.showOverlaySpell,
+      }));
+    }
   };
 
   handleEquipItem(item: Interfaces.ItemInterface) {
@@ -143,6 +148,7 @@ class EditPartyMemberScreen extends Component<any, any> {
           chevron
           leftAvatar={{rounded: true, source: item.Image}}
           checkmark={this.isItemEquipped(item)}
+          rightAvatar={{rounded: true, source: this.props.party[this.state.selectedIndex].Image}}
           onPress={() =>
             this.isItemEquipped(item)
               ? this.handleUnequipItem(item)
@@ -187,7 +193,7 @@ class EditPartyMemberScreen extends Component<any, any> {
         <ListItem
           title={spell.Name}
           bottomDivider
-          chevron
+          rightAvatar={{rounded: true, source: this.props.party[this.state.selectedIndex].Image}}
           leftAvatar={{rounded: true, source: spell.Image}}
           checkmark={this.isSpellEquipped(spell)}
           onPress={() =>
