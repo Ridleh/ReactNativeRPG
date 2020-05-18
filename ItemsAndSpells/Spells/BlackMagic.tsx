@@ -1,11 +1,11 @@
-import ItemTypes from '../ItemTypes/ItemTypesIndex';
+import {Types} from '../ItemTypes/Types'
 
 export const blackMagicSpellsDatabase = [
     {
         Name: 'Blizzard',
         Image: require('../../assets/Spells/Black_Magic/Blizzard.png'),
         ID: "SBM1",
-        Type: ItemTypes.BlackMagicTypes.BlackMagic,
+        Type: Types.BlackMagic,
         Price: 100,
         Rank: 1,
         Level: 1,
@@ -16,7 +16,7 @@ export const blackMagicSpellsDatabase = [
         Name: 'Fire',
         Image: require('../../assets/Spells/Black_Magic/Fire.png'),
         ID: "SBM2",
-        Type: ItemTypes.BlackMagicTypes.BlackMagic,
+        Type: Types.BlackMagic,
         Price: 100,
         Rank: 1,
         Level: 1,
@@ -27,7 +27,7 @@ export const blackMagicSpellsDatabase = [
         Name: 'Thunder',
         Image: require('../../assets/Spells/Black_Magic/Thunder.png'),
         ID: "SBM3",
-        Type: ItemTypes.BlackMagicTypes.BlackMagic,
+        Type: Types.BlackMagic,
         Price: 100,
         Rank: 1,
         Level: 1,
@@ -38,7 +38,7 @@ export const blackMagicSpellsDatabase = [
         Name: 'Water',
         Image: require('../../assets/Spells/Black_Magic/Water.png'),
         ID: "SBM4",
-        Type: ItemTypes.BlackMagicTypes.BlackMagic,
+        Type: Types.BlackMagic,
         Price: 100,
         Rank: 1,
         Level: 1,

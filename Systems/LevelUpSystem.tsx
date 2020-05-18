@@ -74,7 +74,7 @@ export const LevelUpCharacter = (
 
 export const LevelUpWarrior = (character: Interfaces.PartyMemberInterface) => {
   /*
-HP  144 	6000
+HP 144 	6000
 Attack 	8 	    154
 Defense 	8 	154
 Magic 	5 	83

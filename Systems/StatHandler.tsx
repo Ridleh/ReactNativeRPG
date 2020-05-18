@@ -2,6 +2,9 @@ import react, { Component } from "react";
 import * as StateActions from "../Redux/Actions";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
 
+//This is largely a list of methods that handles work to be done 
+//inbetween the "front"-end and the "back"-end
+
 export const equipItem = (
   partyMember: Interfaces.PartyMemberInterface,
   item: Interfaces.ItemInterface
@@ -235,3 +238,121 @@ export const giveEXP = (
     StateActions.updatePartyMember(partyMember);
   });
 };
+
+export const handleWeaponPurchase = (item: Interfaces.ItemInterface) => {
+  var newItem = JSON.parse(JSON.stringify(item));
+  var tempID: string = newItem.ID
+  var numCopies: number = 1;
+  var currentWeapons: Interfaces.ItemInterface[] = StateActions.getState().Inventory.Weapons;
+  var weaponHasUniqueID: boolean = false;
+  var currentWeaponIDs: string[] = [];
+  console.log(currentWeapons);
+  if(currentWeapons.length === 0){
+    weaponHasUniqueID = true;
+  }
+  else{
+    currentWeapons.forEach((weapon) => {
+      currentWeaponIDs.push(weapon.ID);
+    })
+  }
+  while( !weaponHasUniqueID ){
+     if(currentWeaponIDs.includes(tempID)){
+       //weaponHasUniqueID = true;
+       tempID = newItem.ID + 'C' + numCopies;
+       numCopies = numCopies +  1;
+     }
+     else{
+       weaponHasUniqueID = true;
+       newItem.ID = tempID;
+     }
+  }
+  StateActions.addWeapon(newItem);
+}
+
+export const handleArmorPurchase = (item: Interfaces.ItemInterface) => {
+  //odd wat to deep copy an object
+  var newItem = JSON.parse(JSON.stringify(item));
+  var tempID: string = newItem.ID
+  var numCopies: number = 1;
+  var currentArmors: Interfaces.ItemInterface[] = StateActions.getState().Inventory.Armors;
+  var armorHasUniqueID: boolean = false;
+  var currentArmorsIDs: string[] = [];
+  if(currentArmors.length === 0){
+    armorHasUniqueID = true;
+  }
+  else{
+    currentArmors.forEach((armor) => {
+      currentArmorsIDs.push(armor.ID);
+    })
+  }
+  while( !armorHasUniqueID ){
+     if(currentArmorsIDs.includes(tempID)){
+       //weaponHasUniqueID = true;
+       tempID = newItem.ID + 'C' + numCopies;
+       numCopies = numCopies + 1;
+     }
+     else{
+       armorHasUniqueID = true;
+       newItem.ID = tempID;
+     }
+  }
+  StateActions.addArmor(newItem);
+}
+
+export const handleBlackMagicSpellPurchase = (item: Interfaces.SpellInterface) => {
+  var newItem = JSON.parse(JSON.stringify(item));
+  var tempID: string = newItem.ID
+  var numCopies: number = 1;
+  var currentBlackMagicSpells: Interfaces.SpellInterface[] = StateActions.getState().Inventory.BlackMagicSpells;
+  var spellHasUniqueID: boolean = false;
+  var currentBlackMagicSpellsIDs: string[] = [];
+  if(currentBlackMagicSpells.length === 0){
+    spellHasUniqueID = true;
+  }
+  else{
+    currentBlackMagicSpells.forEach((spell) => {
+      currentBlackMagicSpellsIDs.push(spell.ID);
+    })
+  }
+  while( !spellHasUniqueID ){
+     if(currentBlackMagicSpellsIDs.includes(tempID)){
+       //weaponHasUniqueID = true;
+       tempID = newItem.ID + 'C' + numCopies;
+       numCopies = numCopies + 1;
+     }
+     else{
+       spellHasUniqueID = true;
+       newItem.ID = tempID;
+     }
+  }
+  StateActions.addBlackMagicSpell(newItem);
+}
+
+export const handleWhiteMagicSpellPurchase = (item: Interfaces.SpellInterface) => {
+  var newItem = JSON.parse(JSON.stringify(item));
+  var tempID: string = newItem.ID
+  var numCopies: number = 1;
+  var currentWhiteMagicSpells: Interfaces.SpellInterface[] = StateActions.getState().Inventory.WhiteMagicSpells;
+  var spellHasUniqueID: boolean = false;
+  var currentWhiteMagicSpellsIDs: string[] = [];
+  if(currentWhiteMagicSpells.length === 0){
+    spellHasUniqueID = true;
+  }
+  else{
+    currentWhiteMagicSpells.forEach((weapon) => {
+      currentWhiteMagicSpellsIDs.push(weapon.ID);
+    })
+  }
+  while( !spellHasUniqueID ){
+     if(currentWhiteMagicSpellsIDs.includes(tempID)){
+       //weaponHasUniqueID = true;
+       tempID = newItem.ID + 'C' + numCopies;
+       numCopies = numCopies + 1;
+     }
+     else{
+       spellHasUniqueID = true;
+       newItem.ID = tempID;
+     }
+  }
+  StateActions.addWhiteMagicSpell(newItem);
+}

@@ -12,10 +12,10 @@ import { TouchableHighlight } from "react-native-gesture-handler";
 import * as Database from "../ItemsAndSpells/ItemsAndSpellsDatabase";
 import { connect } from "react-redux";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
+import * as StatHandler from '../Systems/StatHandler';
 
 import { ItemTypes } from "../ItemsAndSpells/ItemsAndSpellsDatabase";
-//import {swordDatabase} from '../ItemsAndSpells/Weapons/Swords'
-//import {staffDatabase} from '../ItemsAndSpells/Weapons/Staffs'
+import { Types } from "../ItemsAndSpells/ItemTypes/Types";
 
 class ShopScreen extends Component<any, any> {
   constructor(props: any) {
@@ -32,14 +32,15 @@ class ShopScreen extends Component<any, any> {
       armors: [],
       weapons: [],
       blackMagic: [],
-      whiteMagic: []
+      whiteMagic: [],
     };
   }
 
   componentDidMount() {
     var swords = Database.swordDatabase.slice();
     var staffs = Database.staffDatabase.slice();
-    var weapons = [...swords, ...staffs];
+    var bows = Database.BowsDatabase.slice();
+    var weapons = [...swords, ...staffs, ...bows];
 
     var bracers = Database.BracersDataBase.slice();
     var hats = Database.HatsDataBase.slice();
@@ -64,26 +65,8 @@ class ShopScreen extends Component<any, any> {
       weapons,
       armors,
       blackMagic,
-      whiteMagic
-    })
-
-
-
-    /*
-    var swords = swordDatabase.slice();
-    var staffs = staffDatabase.slice();
-    var weapons = [...swords, ...staffs];
-
-    var armors = []
-
-    var blackMagicSpells = blackMagicSpellsDatabase.slice();
-    var spells = [...blackMagicSpells];
-
-    this.setState({
-      dummyItems: weaponsAndArmor,
-      dummySpells: spells,
+      whiteMagic,
     });
-    */
   }
 
   componentWillUnmount() {
@@ -91,20 +74,19 @@ class ShopScreen extends Component<any, any> {
   }
 
   getData() {
-    switch (this.state.selectedIndex){
+    switch (this.state.selectedIndex) {
       case 0:
-        return this.state.weapons
-      case 1: 
-      return this.state.armors
-      case 2: 
-      return this.state.blackMagic
+        return this.state.weapons;
+      case 1:
+        return this.state.armors;
+      case 2:
+        return this.state.blackMagic;
       case 3:
-        return this.state.whiteMagic
+        return this.state.whiteMagic;
     }
   }
 
   updateIndex(selectedIndex: number) {
-    //console.log(selectedIndex)
     this.setState({ selectedIndex });
   }
 
@@ -122,19 +104,59 @@ class ShopScreen extends Component<any, any> {
       var cost: number = this.state.selectedItemPrice;
       this.props.decreaseGold(cost);
     }
+    //StatHandler.handlePurchase(this.state.selectedItem);
 
-    if (itemType === ItemTypes.SwordTypes.Sword) {
-      this.props.buyItem(this.state.selectedItem);
-    } else if (itemType === ItemTypes.StaffTypes.Staff) {
-      this.props.buyItem(this.state.selectedItem);
-    } else if (itemType === ItemTypes.BlackMagicTypes.BlackMagic) {
-      this.props.buySpell(this.state.selectedItem);
-    } else {
-      console.error(
-        "Error: The type of the purchased item, " +
-          itemType +
-          "cannot be found or does not exist in type database"
-      );
+    switch (itemType) {
+      case Types.Bow:
+        //this.props.buyItem(this.state.selectedItem);
+        StatHandler.handleWeaponPurchase(this.state.selectedItem);
+        break;
+      case Types.Staff:
+        //this.props.buyItem(this.state.selectedItem);
+        StatHandler.handleWeaponPurchase(this.state.selectedItem);
+        break;
+      case Types.Sword:
+        //this.props.buyItem(this.state.selectedItem);
+        StatHandler.handleWeaponPurchase(this.state.selectedItem);
+        break;
+      case Types.Bracer:
+        //this.props.buyItem(this.state.selectedItem);
+        StatHandler.handleArmorPurchase(this.state.selectedItem);
+        break;
+      case Types.Hat:
+        //this.props.buyItem(this.state.selectedItem);
+        StatHandler.handleArmorPurchase(this.state.selectedItem);
+        break;
+      case Types.Helm:
+        //this.props.buyItem(this.state.selectedItem);
+        StatHandler.handleArmorPurchase(this.state.selectedItem);
+        break;
+      case Types.LightArmor:
+        //this.props.buyItem(this.state.selectedItem);
+        StatHandler.handleArmorPurchase(this.state.selectedItem);
+        break;
+      case Types.Robe:
+        //this.props.buyItem(this.state.selectedItem);
+        StatHandler.handleArmorPurchase(this.state.selectedItem);
+        break;
+      case Types.Shield:
+        //this.props.buyItem(this.state.selectedItem);
+        StatHandler.handleArmorPurchase(this.state.selectedItem);
+        break;
+      case Types.BlackMagic:
+        //this.props.buySpell(this.state.selectedItem);
+        StatHandler.handleBlackMagicSpellPurchase(this.state.selectedItem);
+        break;
+      case Types.WhiteMagic:
+        //this.props.buyS(this.state.selectedItem);
+        StatHandler.handleWhiteMagicSpellPurchase(this.state.selectedItem);
+        break;
+      default:
+        console.error(
+          "Error: The type of the purchased item, " +
+            itemType +
+            "cannot be found or does not exist in type database"
+        );
     }
   }
 
@@ -174,7 +196,7 @@ class ShopScreen extends Component<any, any> {
   }
 
   render() {
-    const buttons = ["Weapons", "Armors", "Black Magic", "White Magic"];
+    const buttons = ["Weapons", "Armors", "Black\n Magic", "White\n Magic"];
     const { selectedIndex } = this.state;
     return (
       <View style={{ paddingTop: 25, flex: 1 }}>

@@ -1,11 +1,11 @@
-import ItemTypes from '../ItemTypes/ItemTypesIndex';
+import {Types} from '../ItemTypes/Types'
 
 export const swordDatabase = [
     {
         Name: 'Broadsword',
         Image: require('../../assets/Items/Swords/Broadsword.png'),
         ID: "WSRD1",
-        Type: ItemTypes.SwordTypes.Sword,
+        Type: Types.Sword,
         Price: 100,
         HealthModifier: 0,
         AttackModifier: 10,
@@ -23,7 +23,7 @@ export const swordDatabase = [
         Name: 'Galbadian Blade',
         Image: require('../../assets/Items/Swords/Galbadian_Blade.png'),
         ID: "WSRD2",
-        Type: ItemTypes.SwordTypes.Sword,
+        Type: Types.Sword,
         Price: 100,
         HealthModifier: 0,
         AttackModifier: 25,
@@ -41,7 +41,7 @@ export const swordDatabase = [
         Name: 'Iron Sword',
         Image: require('../../assets/Items/Swords/Iron_Sword.png'),
         ID: "WSRD3",
-        Type: ItemTypes.SwordTypes.Sword,
+        Type: Types.Sword,
         Price: 100,
         HealthModifier: 0,
         AttackModifier: 25,
@@ -59,7 +59,7 @@ export const swordDatabase = [
         Name: 'Longsword',
         Image: require('../../assets/Items/Swords/Longsword.png'),
         ID: "WSRD4",
-        Type: ItemTypes.SwordTypes.Sword,
+        Type: Types.Sword,
         Price: 100,
         HealthModifier: 0,
         AttackModifier: 10,
@@ -77,7 +77,7 @@ export const swordDatabase = [
         Name: 'Zwill Blade',
         Image: require('../../assets/Items/Swords/Zwill_Blade.png'),
         ID: "WSRD5",
-        Type: ItemTypes.SwordTypes.Sword,
+        Type: Types.Sword,
         Price: 100,
         HealthModifier: 0,
         AttackModifier: 25,

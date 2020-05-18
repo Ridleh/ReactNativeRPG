@@ -9,6 +9,7 @@ import {HelmsDataBase} from './Armor/Helms';
 import {LightArmorsDataBase} from './Armor/Light Armors';
 import {RobesDataBase} from './Armor/Robes';
 import {ShieldDataBase} from './Armor/Shields';
+import {BowsDatabase} from './Weapons/Bows';
 
 
 import ItemTypes from './ItemTypes/ItemTypesIndex';
@@ -25,5 +26,6 @@ export {
     LightArmorsDataBase,
     RobesDataBase,
     ShieldDataBase,
+    BowsDatabase,
     ItemTypes
 }

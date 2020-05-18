@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { Header, ButtonGroup } from "react-native-elements";
 import { connect } from "react-redux";
-import store from "../Redux/Store";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
 
 const { height, width } = Dimensions.get("window");
@@ -33,11 +32,11 @@ class InventoryScreen extends Component<any, any> {
     if (this.state.selectedIndex === 0) {
       return this.props.weapons;
     } else if (this.state.selectedIndex === 1) {
-      return this.props.weapons;
+      return this.props.armors;
     } else if (this.state.selectedIndex === 2) {
-      return this.props.spells;
+      return this.props.BlackMagicSpells;
     } else {
-      return this.props.spells;
+      return this.props.WhiteMagicSpells;
     }
   }
 
@@ -68,7 +67,7 @@ class InventoryScreen extends Component<any, any> {
   }
 
   render() {
-    const buttons = ["Weapons", "Armor", "Spells", "Other"];
+    const buttons = ["Weapons", "Armor", "Black\n Magic", "White\nMagic"];
     const { selectedIndex } = this.state;
 
     return (
@@ -153,9 +152,10 @@ function mapStateToProps(state: any) {
   //console.log('1')
   return {
     selectedIndex: 0,
-    weapons: state.Inventory.Items,
-    spells: state.Inventory.Spells,
-    other: [],
+    weapons: state.Inventory.Weapons,
+    armors: state.Inventory.Armors,
+    BlackMagicSpells: state.Inventory.BlackMagicSpells,
+    WhiteMagicSpells: state.Inventory.WhiteMagicSpells,
   };
 }
 
