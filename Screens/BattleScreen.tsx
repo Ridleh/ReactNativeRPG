@@ -51,7 +51,7 @@ class BattleScreen extends Component<any, any> {
         {
           Name: "Nega Tyro",
           level: 30,
-          Health: 9999,
+          Health: 100,
           Mana: 300,
           ID: "22234",
         },
@@ -147,12 +147,11 @@ class BattleScreen extends Component<any, any> {
 
           <Image
             style={{
-              height: 100,
-              width: 100,
+              height: 50,
+              width: 50,
               paddingBottom: 10,
-              transform: [{ scaleX: -1 }],
             }}
-            source={require("../assets/Characters/dummy_enemy.png")}
+            source={require("../assets/Enemies/Giant_Rat.png")}
           />
         </View>
       </Row>

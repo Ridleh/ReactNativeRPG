@@ -13,7 +13,7 @@ import {
   swordDatabase,
   staffDatabase,
   blackMagicSpellsDatabase,
-  CoreClassDatabase
+  CoreClassDatabase,
 } from "../ItemsAndSpells/ItemsAndSpellsDatabase";
 import { connect } from "react-redux";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
@@ -35,22 +35,27 @@ class RecruitScreen extends Component<any, any> {
       buttonSelected: "items",
       dummyItems: [],
       dummySpells: [],
-      classes: []
+      classes: [],
     };
   }
 
   componentDidMount() {
-    var swords = swordDatabase.slice();
-    var staffs = staffDatabase.slice();
-    var coreClasses : Interfaces.PartyMemberInterface[] = CoreClassDatabase.slice();
-
-    var weaponsAndArmor = [...swords, ...staffs];
-
-    var blackMagicSpells = blackMagicSpellsDatabase.slice();
-    var spells = [...blackMagicSpells];
+    var coreClasses: Interfaces.PartyMemberInterface[] = JSON.parse(
+      JSON.stringify(CoreClassDatabase.slice())
+    );
+    var charactersOwnedID: string[] = []
+    this.props.charactersOwned.forEach((character: Interfaces.PartyMemberInterface) => {
+      charactersOwnedID.push(character.ID);
+    })
+    var charactersToShow: Interfaces.PartyMemberInterface[] = [];
+    coreClasses.forEach((character) => {
+      if (!charactersOwnedID.includes(character.ID)) {
+        charactersToShow.push(character);
+      }
+    });
 
     this.setState({
-      classes : coreClasses
+      classes: charactersToShow,
     });
   }
 
@@ -59,7 +64,7 @@ class RecruitScreen extends Component<any, any> {
   }
 
   getData() {
-    return this.state.classes
+    return this.state.classes;
   }
 
   updateIndex(selectedIndex: number) {
@@ -78,12 +83,27 @@ class RecruitScreen extends Component<any, any> {
   purchaseItem() {
     const itemType = this.state.selectedItem.Type;
     if (this.props.playersGold >= this.state.selectedItemPrice) {
-      var cost: number = this.state.selectedItemPrice
+      var cost: number = this.state.selectedItemPrice;
       this.props.decreaseGold(cost);
       //this.props.buyCharacter(this.state.selectedItem);
-      StatHandler.addCharacterToCharactersOwnedList(this.state.selectedItem)
-      if( !StatHandler.isPartyFull() ){
+      StatHandler.addCharacterToCharactersOwnedList(this.state.selectedItem);
+      if (!StatHandler.isPartyFull()) {
         StatHandler.addCharacterToParty(this.state.selectedItem);
+      }
+      var index = this.state.classes.indexOf(this.state.selectedItem);
+      if (index === -1) {
+        console.error(
+          "Error: Attempting to purchase character " +
+            this.state.selectedItem +
+            "which is not found in shop"
+        );
+      }
+      else{
+        var tempList = this.state.classes
+        tempList.splice(index,1);
+        this.setState({
+          classes: tempList
+        })
       }
     }
   }
@@ -189,9 +209,7 @@ class RecruitScreen extends Component<any, any> {
               >
                 <Text>HEALTH: {this.state.selectedItem.Health} </Text>
                 <Text>ATTACK: {this.state.selectedItem.Attack}</Text>
-                <Text>
-                  RESISTANCE: {this.state.selectedItem.Resistance}
-                </Text>
+                <Text>RESISTANCE: {this.state.selectedItem.Resistance}</Text>
               </View>
               <View
                 style={{
@@ -212,7 +230,7 @@ class RecruitScreen extends Component<any, any> {
                 }}
               >
                 <Text>LUCK: {this.state.selectedItem.Luck} </Text>
-              <Text>SPEED: {this.state.selectedItem.Speed}</Text>
+                <Text>SPEED: {this.state.selectedItem.Speed}</Text>
                 <Text>COPIES OWNED: 0</Text>
               </View>
             </View>
@@ -271,7 +289,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state: any) {
-    return {
+  return {
     selectedIndex: 0,
     selectedItem: {},
     selectedItemName: " ",
@@ -280,6 +298,7 @@ function mapStateToProps(state: any) {
     buttonSelected: "items",
     dummyItems: [],
     dummySpells: [],
+    charactersOwned: state.Party.CharactersOwned,
   };
 }
 
@@ -288,7 +307,8 @@ function mapDispatchToProps(dispatch: any) {
   return {
     buyItem: (item: any) => dispatch({ type: "addItem", item: item }),
     buySpell: (spell: any) => dispatch({ type: "addSpell", spell: spell }),
-    decreaseGold: (gold: number) => dispatch({ type: "decreaseGold", gold: gold }),
+    decreaseGold: (gold: number) =>
+      dispatch({ type: "decreaseGold", gold: gold }),
     //buyCharacter: (character: Interfaces.PartyMemberInterface) => dispatch({type:'addPartyMember', partyMember: character}),
 
     //decreaseCounter: () => dispatch({type: 'decreaseCounter', name :'test2'})
