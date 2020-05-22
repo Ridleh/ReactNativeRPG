@@ -53,7 +53,35 @@ class BattleScreen extends Component<any, any> {
           level: 30,
           Health: 100,
           Mana: 300,
-          ID: "22234",
+          ID: "122234",
+        },
+        {
+          Name: "Nega Tyro",
+          level: 30,
+          Health: 100,
+          Mana: 300,
+          ID: "222234",
+        },
+        {
+          Name: "Nega Tyro",
+          level: 30,
+          Health: 100,
+          Mana: 300,
+          ID: "322234",
+        },
+        {
+          Name: "Nega Tyro",
+          level: 30,
+          Health: 100,
+          Mana: 300,
+          ID: "422234",
+        },
+        {
+          Name: "Nega Tyro",
+          level: 30,
+          Health: 100,
+          Mana: 300,
+          ID: "522234",
         },
       ],
       firstPartyMember: this.props.party[0]
@@ -117,8 +145,8 @@ class BattleScreen extends Component<any, any> {
       <Row style={{ justifyContent: "center" }}>
         <View>
           <HealthBar
-            currentHealth={player.Health}
-            totalHealth={100}
+            currentHealth={player.CurrentHealth}
+            totalHealth={player.Health}
             label={player.Name}
           />
 
@@ -137,6 +165,8 @@ class BattleScreen extends Component<any, any> {
 
   renderEnemy(enemy: any) {
     return (
+      <TouchableOpacity
+      onPress={() => console.log(enemy.Name,enemy.ID)}>   
       <Row style={{ justifyContent: "center" }}>
         <View>
           <HealthBar
@@ -155,6 +185,7 @@ class BattleScreen extends Component<any, any> {
           />
         </View>
       </Row>
+      </TouchableOpacity>
     );
   }
 
@@ -164,8 +195,8 @@ class BattleScreen extends Component<any, any> {
         <Text>Uses: {spell.Uses}</Text>
         <Image
           style={{
-            height: 100,
-            width: 100,
+            height: 75,
+            width: 75,
             paddingBottom: 10,
             transform: [{ scaleX: -1 }],
           }}
@@ -195,7 +226,7 @@ class BattleScreen extends Component<any, any> {
           )}
 
           <Grid style={{ flex: 1 }}>
-            <Row size={3}>
+            <Row size={4}>
               <Col style={{ flex: 1 }}>
                 <FlatList
                   data={this.state.enemies}

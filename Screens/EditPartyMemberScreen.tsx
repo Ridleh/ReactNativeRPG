@@ -37,11 +37,9 @@ class EditPartyMemberScreen extends Component<any, any> {
       selectedIndex: 0,
       Names: [],
       partyMember: [],
-      ActionNames: [
-        'Spells',
-        'Actions',
-        'Items'
-      ]
+      ActionNames: ["Spells", "Actions", "Items"],
+      weaponsAndArmors: [],
+      spells: []
     };
     this.toggleItemsScreen = this.toggleItemsScreen.bind(this);
     this.toggleSpellsScreen = this.toggleSpellsScreen.bind(this);
@@ -62,7 +60,13 @@ class EditPartyMemberScreen extends Component<any, any> {
     this.props.party.forEach((partyMember: Interfaces.PartyMemberInterface) => {
       Names.push(partyMember.Name);
     });
-    this.setState({ Names, partyMember: this.props.party[0] });
+
+    const weaponsAndArmors = [...this.props.weapons, ...this.props.armors];
+    const spells = [...this.props.blackMagicSpells, ...this.props.whiteMagicSpells];
+
+
+
+    this.setState({ Names, partyMember: this.props.party[0], weaponsAndArmors, spells });
   }
 
   componentWillUnmount() {}
@@ -74,18 +78,17 @@ class EditPartyMemberScreen extends Component<any, any> {
   };
 
   toggleSpellsScreen = () => {
-    if(this.props.party[this.state.selectedIndex].Spells.length === 0){
-      console.log("Partymember's spell list is empty. ")
+    if (this.props.party[this.state.selectedIndex].Spells.length === 0) {
+      console.log("Partymember's spell list is empty. ");
     }
-    else{
-      this.setState((prevState: { showOverlaySpell: boolean }) => ({
-        showOverlaySpell: !prevState.showOverlaySpell,
-      }));
-    }
+
+    this.setState((prevState: { showOverlaySpell: boolean }) => ({
+      showOverlaySpell: !prevState.showOverlaySpell,
+    }));
   };
 
   handleEquipItem(item: Interfaces.ItemInterface) {
-    console.log('not here')
+    console.log("not here");
     if (StatHandler.canEquipItem(item)) {
       StatHandler.equipItem(this.props.party[this.state.selectedIndex], item);
       this.setState({});
@@ -95,7 +98,7 @@ class EditPartyMemberScreen extends Component<any, any> {
   }
 
   handleUnequipItem(item: Interfaces.ItemInterface) {
-    console.log('here');
+    console.log("here");
     StatHandler.unequipItem(this.props.party[this.state.selectedIndex], item);
     this.setState({});
   }
@@ -107,7 +110,7 @@ class EditPartyMemberScreen extends Component<any, any> {
     );
   }
 
-  canEquipItem(item: Interfaces.ItemInterface){
+  canEquipItem(item: Interfaces.ItemInterface) {
     return StatHandler.canEquipItem(item);
   }
 
@@ -123,7 +126,9 @@ class EditPartyMemberScreen extends Component<any, any> {
       StatHandler.equipSpell(this.props.party[this.state.selectedIndex], spell);
       this.setState({});
     } else {
-      console.warn("you cannot equip this spell. It is equipped by " + spell.EquippedBy);
+      console.warn(
+        "you cannot equip this spell. It is equipped by " + spell.EquippedBy
+      );
     }
   }
 
@@ -146,9 +151,12 @@ class EditPartyMemberScreen extends Component<any, any> {
           title={item.Name}
           bottomDivider
           chevron
-          leftAvatar={{rounded: true, source: item.Image}}
+          leftAvatar={{ rounded: true, source: item.Image }}
           checkmark={this.isItemEquipped(item)}
-          rightAvatar={{rounded: true, source: this.props.party[this.state.selectedIndex].Image}}
+          rightAvatar={{
+            rounded: true,
+            source: this.props.party[this.state.selectedIndex].Image,
+          }}
           onPress={() =>
             this.isItemEquipped(item)
               ? this.handleUnequipItem(item)
@@ -193,8 +201,11 @@ class EditPartyMemberScreen extends Component<any, any> {
         <ListItem
           title={spell.Name}
           bottomDivider
-          rightAvatar={{rounded: true, source: this.props.party[this.state.selectedIndex].Image}}
-          leftAvatar={{rounded: true, source: spell.Image}}
+          rightAvatar={{
+            rounded: true,
+            source: this.props.party[this.state.selectedIndex].Image,
+          }}
+          leftAvatar={{ rounded: true, source: spell.Image }}
           checkmark={this.isSpellEquipped(spell)}
           onPress={() =>
             this.isSpellEquipped(spell)
@@ -243,19 +254,19 @@ class EditPartyMemberScreen extends Component<any, any> {
               borderColor: "black",
               borderRadius: 5,
               borderWidth: 5,
-              width: '100%'
+              width: "95%",
             }}
             animationType="slide"
           >
             <View>
-            <ButtonGroup
-            onPress={this.updateIndex}
-            selectedIndex={selectedIndex}
-            buttons={this.state.ActionNames}
-            containerStyle={{ height: 55 }}
-          />
+              <ButtonGroup
+                onPress={this.updateIndex}
+                selectedIndex={selectedIndex}
+                buttons={this.state.ActionNames}
+                containerStyle={{ height: 55 }}
+              />
               <FlatList
-                data={this.props.spells}
+                data={this.state.spells}
                 renderItem={({ item }) => this.renderSpellsEquip(item)}
                 keyExtractor={(item: Interfaces.SpellInterface) => item.ID}
               />
@@ -275,7 +286,7 @@ class EditPartyMemberScreen extends Component<any, any> {
           >
             <View>
               <FlatList
-                data={this.props.items}
+                data={this.state.weaponsAndArmors}
                 renderItem={({ item }) => this.renderItemsEquip(item)}
                 keyExtractor={(item: Interfaces.ItemInterface) => item.ID}
               />
@@ -364,6 +375,10 @@ function mapStateToProps(state: any) {
     party: state.Party.Party,
     items: state.Inventory.Items,
     spells: state.Inventory.Spells,
+    weapons: state.Inventory.Weapons,
+    armors: state.Inventory.Armors,
+    blackMagicSpells: state.Inventory.BlackMagicSpells,
+    whiteMagicSpells: state.Inventory.WhiteMagicSpells
   };
 }
 

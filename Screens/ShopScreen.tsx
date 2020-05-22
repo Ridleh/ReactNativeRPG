@@ -214,7 +214,8 @@ class ShopScreen extends Component<any, any> {
           onPress={(index) => this.updateIndex(index)}
           selectedIndex={selectedIndex}
           buttons={buttons}
-          containerStyle={{ height: 75 }}
+          containerStyle={{ height: 75,
+           width: Dimensions.get('window').width }}
         />
         <View style={{ flex: 1 }}>
           <View style={{ flex: 4 }}>
@@ -308,13 +309,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   item: {
-    backgroundColor: "#4D243D",
+    backgroundColor: "black",
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
     margin: 1 / 5,
     height: Dimensions.get("window").width / 4, // approximate a square
     width: Dimensions.get("window").width / 4,
+
   },
   title: {
     fontSize: 32,

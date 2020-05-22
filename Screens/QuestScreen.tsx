@@ -15,6 +15,7 @@ import {
 } from "react-native-elements";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { connect } from "react-redux";
+import * as Interfaces from '../Interfaces/InterfaceIndex';
 
 const { height, width } = Dimensions.get("window");
 
@@ -44,6 +45,9 @@ class QuestScreen extends Component<any, any> {
     this.beginQuest = this.beginQuest.bind(this);
     this.toggleNoStaminaPopup = this.toggleNoStaminaPopup.bind(this);
   }
+  componentDidMount(){
+    console.log(this.props.party)
+  }
 
   keyExtractor = (item: any, index: number) => index.toString();
 
@@ -67,7 +71,15 @@ class QuestScreen extends Component<any, any> {
 
   beginQuest() {
     this.setState({ showOverlay: false });
-    if (this.props.playersStamina >= 0) {
+
+    var noEmptyActionSlots = true;
+    this.props.party.forEach((partyMember: Interfaces.PartyMemberInterface) => {
+      if(partyMember.Spells.length === 0){
+        noEmptyActionSlots = false;
+      }
+    });
+
+    if (this.props.playersStamina >= 0 && noEmptyActionSlots) {
       this.props.giveStamina(0);
       this.props.navigation.navigate("Battle");
     } else {
@@ -223,6 +235,7 @@ class QuestScreen extends Component<any, any> {
 function mapStateToProps(state: any) {
   return {
     playersStamina: state.Party.Stamina,
+    party: state.Party.Party
   };
 }
 
