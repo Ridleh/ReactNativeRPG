@@ -31,7 +31,7 @@ class BattleScreen extends Component<any, any> {
       turnNumber: 0,
       showEndGameScreen: false,
       firstPartyMember: {},
-      shouldSelectTarget: false
+      shouldSelectTarget: false,
     };
 
     this.renderPlayer = this.renderPlayer.bind(this);
@@ -85,7 +85,7 @@ class BattleScreen extends Component<any, any> {
           ID: "522234",
         },
       ],
-      firstPartyMember: this.props.party[0]
+      firstPartyMember: this.props.party[0],
     });
   }
 
@@ -97,8 +97,8 @@ class BattleScreen extends Component<any, any> {
     this.props.party.forEach((partyMember: Interfaces.PartyMemberInterface) => {
       partyMember.Spells.forEach((spell: Interfaces.SpellInterface) => {
         spell.Uses = spell.Rank * 2;
-      })
-    })
+      });
+    });
   }
 
   useSpell(spell: Interfaces.SpellInterface) {
@@ -128,7 +128,9 @@ class BattleScreen extends Component<any, any> {
     }
     this.setState((prevState: { turnNumber: number }) => ({
       turnNumber: prevState.turnNumber + 1,
-      firstPartyMember: this.state.party[(prevState.turnNumber + 1) % this.state.party.length]
+      firstPartyMember: this.state.party[
+        (prevState.turnNumber + 1) % this.state.party.length
+      ],
     }));
     if (endGame) {
       let enemies = [...this.state.enemies];
@@ -140,7 +142,7 @@ class BattleScreen extends Component<any, any> {
   }
 
   handleGameOver() {
-    this.setState({ showEndGameScreen: false });
+    this.setState({ showEndGameScreen: true });
     StatHandler.giveEXP(this.props.party, 10);
     const gold: number = Math.floor(Math.random() * 1000);
     this.props.giveGold(gold);
@@ -172,26 +174,25 @@ class BattleScreen extends Component<any, any> {
 
   renderEnemy(enemy: any) {
     return (
-      <TouchableOpacity
-      onPress={() => this.targetSelected(enemy)}>   
-      <Row style={{ justifyContent: "center" }}>
-        <View>
-          <HealthBar
-            currentHealth={enemy.Health}
-            totalHealth={100}
-            label={enemy.Name}
-          />
+      <TouchableOpacity onPress={() => this.targetSelected(enemy)}>
+        <Row style={{ justifyContent: "center" }}>
+          <View>
+            <HealthBar
+              currentHealth={enemy.Health}
+              totalHealth={100}
+              label={enemy.Name}
+            />
 
-          <Image
-            style={{
-              height: 50,
-              width: 50,
-              paddingBottom: 10,
-            }}
-            source={require("../assets/Enemies/Giant_Rat.png")}
-          />
-        </View>
-      </Row>
+            <Image
+              style={{
+                height: 50,
+                width: 50,
+                paddingBottom: 10,
+              }}
+              source={require("../assets/Enemies/Giant_Rat.png")}
+            />
+          </View>
+        </Row>
       </TouchableOpacity>
     );
   }
@@ -213,33 +214,66 @@ class BattleScreen extends Component<any, any> {
     );
   }
 
-  handleSpellCast(spell: Interfaces.SpellInterface){
-    if(spell.Uses >= 1){
+  handleSpellCast(spell: Interfaces.SpellInterface) {
+    if (spell.Uses >= 1) {
       spell.Uses -= 1;
-      this.setState((prevState: { turnNumber: number, shouldSelectTarget: boolean }) => ({
-        shouldSelectTarget: !prevState.shouldSelectTarget,
-        turnNumber: prevState.turnNumber + 1,
-        firstPartyMember: this.state.party[(prevState.turnNumber + 1) % this.state.party.length]
-      }));
-    }
-    else{
+      this.setState(
+        (prevState: { turnNumber: number; shouldSelectTarget: boolean }) => ({
+          shouldSelectTarget: !prevState.shouldSelectTarget,
+          turnNumber: prevState.turnNumber + 1,
+          firstPartyMember: this.state.party[
+            (prevState.turnNumber + 1) % this.state.party.length
+          ],
+        })
+      );
+    } else {
       console.log("cannot cast spell");
     }
   }
 
-  targetSelected(target: any){
-    if(this.state.shouldSelectTarget){
+  targetSelected(target: any) {
+    var enemyIndex = -2;
+    if (this.state.shouldSelectTarget) {
       var damage: number = Math.floor(Math.random() * 100);
-      target.Health -= damage;
-    }
-    else{
+      target.Health -= 100;
+      if (target.Health <= 0) {
+        enemyIndex = this.state.enemies
+          .map(function (enemy: any) {
+            return enemy.ID;
+          })
+          .indexOf(target.ID);
+        if (enemyIndex === -1) {
+          console.error(
+            "Error: index of enemy " + target.Name + " could not be found"
+          );
+        }
+      }
+    } else {
       console.log("you cannot attack right now");
     }
-    this.setState((prevState: { shouldSelectTarget: boolean }) => ({
-        shouldSelectTarget: !prevState.shouldSelectTarget
+    if(enemyIndex === -2){
+      this.setState((prevState: { shouldSelectTarget: boolean }) => ({
+        shouldSelectTarget: !prevState.shouldSelectTarget,
       }));
+    }
+    else{
+      var newEnemies = [...this.state.enemies];
+      newEnemies.splice(enemyIndex,1);
+      if(newEnemies.length === 0){
+        this.setState((prevState: { shouldSelectTarget: boolean }) => ({
+          shouldSelectTarget: !prevState.shouldSelectTarget,
+          enemies: newEnemies,
+          showEndGameScreen: true
+        }));
+      }
+      else{
+        this.setState((prevState: { shouldSelectTarget: boolean }) => ({
+          shouldSelectTarget: !prevState.shouldSelectTarget,
+          enemies: newEnemies
+        }));
+      }
+    }
   }
-
 
   render() {
     return (
@@ -289,17 +323,22 @@ class BattleScreen extends Component<any, any> {
                 }}
               >
                 <Col>
-                { this.state.shouldSelectTarget?
-                  <Text>Please select a Target</Text>
-                  :
-                  <FlatList
-                  contentContainerStyle={{flexGrow:1, flexDirection:"row", justifyContent:"center"}}
-                    data={this.state.firstPartyMember.Spells}
-                    renderItem={({ item }) => this.renderSpell(item)}
-                    keyExtractor={(item: Interfaces.SpellInterface) => item.ID}
-                  />
-                }
-                  
+                  {this.state.shouldSelectTarget ? (
+                    <Text>Please select a Target</Text>
+                  ) : (
+                    <FlatList
+                      contentContainerStyle={{
+                        flexGrow: 1,
+                        flexDirection: "row",
+                        justifyContent: "center",
+                      }}
+                      data={this.state.firstPartyMember.Spells}
+                      renderItem={({ item }) => this.renderSpell(item)}
+                      keyExtractor={(item: Interfaces.SpellInterface) =>
+                        item.ID
+                      }
+                    />
+                  )}
                 </Col>
               </View>
             </Row>
