@@ -17,6 +17,7 @@ import HealthBar from "./Components/HealthBar";
 import { connect } from "react-redux";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
 import * as StatHandler from "../Systems/StatHandler";
+import * as CombatHandler from "../Systems/CombatHandler";
 
 const { height, width } = Dimensions.get("window");
 
@@ -52,37 +53,47 @@ class BattleScreen extends Component<any, any> {
         {
           Name: "Nega Tyro",
           level: 30,
-          Health: 100,
+          Health: 10,
           Mana: 300,
           ID: "122234",
+          Defence: 10,
+          Resistance: 50
         },
         {
           Name: "Nega Tyro",
           level: 30,
-          Health: 100,
+          Health: 10,
           Mana: 300,
           ID: "222234",
+          Defence: 10,
+          Resistance: 50
         },
         {
           Name: "Nega Tyro",
           level: 30,
-          Health: 100,
+          Health: 10,
           Mana: 300,
           ID: "322234",
+          Defence: 10,
+          Resistance: 50
         },
         {
           Name: "Nega Tyro",
           level: 30,
-          Health: 100,
+          Health: 10,
           Mana: 300,
           ID: "422234",
+          Defence: 10,
+          Resistance: 50
         },
         {
           Name: "Nega Tyro",
           level: 30,
-          Health: 100,
+          Health: 10,
           Mana: 300,
           ID: "522234",
+          Defence: 10,
+          Resistance: 50
         },
       ],
       firstPartyMember: this.props.party[0],
@@ -201,22 +212,34 @@ class BattleScreen extends Component<any, any> {
     return (
       <TouchableOpacity onPress={() => this.handleSpellCast(spell)}>
         <Text>Uses: {spell.Uses}</Text>
-        <Image
-          style={{
-            height: 75,
-            width: 75,
-            paddingBottom: 10,
-            transform: [{ scaleX: -1 }],
-          }}
-          source={spell.Image}
-        />
+        {spell.Uses === 0 ? (
+          <Image
+            style={{
+              height: 75,
+              width: 75,
+              paddingBottom: 10,
+              transform: [{ scaleX: -1 }],
+              tintColor: "gray",
+            }}
+            source={spell.Image}
+          />
+        ) : (
+          <Image
+            style={{
+              height: 75,
+              width: 75,
+              paddingBottom: 10,
+              transform: [{ scaleX: -1 }],
+            }}
+            source={spell.Image}
+          />
+        )}
       </TouchableOpacity>
     );
   }
 
   handleSpellCast(spell: Interfaces.SpellInterface) {
     if (spell.Uses >= 1) {
-      spell.Uses -= 1;
       this.setState(
         (prevState: { turnNumber: number; shouldSelectTarget: boolean }) => ({
           shouldSelectTarget: !prevState.shouldSelectTarget,
@@ -226,6 +249,7 @@ class BattleScreen extends Component<any, any> {
           ],
         })
       );
+      CombatHandler.useAction(spell);
     } else {
       console.log("cannot cast spell");
     }
@@ -234,8 +258,11 @@ class BattleScreen extends Component<any, any> {
   targetSelected(target: any) {
     var enemyIndex = -2;
     if (this.state.shouldSelectTarget) {
-      var damage: number = Math.floor(Math.random() * 100);
-      target.Health -= 100;
+      const attacker = this.state.firstPartyMember;
+
+      CombatHandler.handlePhysicalDamageTEnemy(target,attacker);
+      //var damage: number = Math.floor(Math.random() * 100);
+      //target.Health -= 1;
       if (target.Health <= 0) {
         enemyIndex = this.state.enemies
           .map(function (enemy: any) {
@@ -251,25 +278,23 @@ class BattleScreen extends Component<any, any> {
     } else {
       console.log("you cannot attack right now");
     }
-    if(enemyIndex === -2){
+    if (enemyIndex === -2) {
       this.setState((prevState: { shouldSelectTarget: boolean }) => ({
         shouldSelectTarget: !prevState.shouldSelectTarget,
       }));
-    }
-    else{
+    } else {
       var newEnemies = [...this.state.enemies];
-      newEnemies.splice(enemyIndex,1);
-      if(newEnemies.length === 0){
+      newEnemies.splice(enemyIndex, 1);
+      if (newEnemies.length === 0) {
         this.setState((prevState: { shouldSelectTarget: boolean }) => ({
           shouldSelectTarget: !prevState.shouldSelectTarget,
           enemies: newEnemies,
-          showEndGameScreen: true
+          showEndGameScreen: true,
         }));
-      }
-      else{
+      } else {
         this.setState((prevState: { shouldSelectTarget: boolean }) => ({
           shouldSelectTarget: !prevState.shouldSelectTarget,
-          enemies: newEnemies
+          enemies: newEnemies,
         }));
       }
     }
