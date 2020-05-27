@@ -1,7 +1,7 @@
 import Item from './ItemIterface';
-import Spell from './SpellIterface';
+import Spell from './ActionInterface';
 
-export default interface PartyMember{
+export default interface Character{
     Name: string,
     ID: string,
     Image: any //??

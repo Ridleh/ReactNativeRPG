@@ -12,7 +12,7 @@ export default interface Item{
     MindModifier: number,
     LuckModifier: number,
     SpeedModifier: number,
-    Rank: number,
+    Rarity: number,
     Level: number,
     EquippedBy: string
     

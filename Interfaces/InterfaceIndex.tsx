@@ -1,9 +1,9 @@
-import PartyMemberInterface from './PartyMemberInterface';
+import CharacterInterface from './CharacterInterface';
 import ItemInterface from './ItemIterface';
-import SpellInterface from './SpellIterface';
+import ActionInterface from './ActionInterface';
 
 export {
     ItemInterface,
-    SpellInterface,
-    PartyMemberInterface
+    ActionInterface,
+    CharacterInterface
 }
