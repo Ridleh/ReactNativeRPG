@@ -6,16 +6,19 @@ import {
   StyleSheet,
   FlatList,
   ImageBackground,
+  Image,
 } from "react-native";
 import { Button, ButtonGroup, Icon, Header } from "react-native-elements";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import * as Database from "../ItemsAndSpells/ItemsAndSpellsDatabase";
 import { connect } from "react-redux";
 import * as Interfaces from "../Interfaces/InterfaceIndex";
-import * as StatHandler from '../Systems/StatHandler';
+import * as StatHandler from "../Systems/StatHandler";
 
 import { ItemTypes } from "../ItemsAndSpells/ItemsAndSpellsDatabase";
 import { Types } from "../ItemsAndSpells/ItemTypes/Types";
+
+const { height, width } = Dimensions.get("window");
 
 class ShopScreen extends Component<any, any> {
   constructor(props: any) {
@@ -167,20 +170,19 @@ class ShopScreen extends Component<any, any> {
         <View style={styles.item}>
           <ImageBackground
             style={{ height: "100%", width: "100%" }}
-            source={item.Image}
+            source={require("../Assets/GUI_Parts_Free/Mini_background.png")}
           >
-            <View
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
+            <ImageBackground
+              style={{ height: "100%", width: "100%" }}
+              source={require("../Assets/GUI_Parts_Free/Mini_frame0.png")}
             >
-              <Text adjustsFontSizeToFit style={styles.itemText}>
-                {item.Name}
-              </Text>
-              <Text style={styles.itemText}>{item.Price}</Text>
-            </View>
+              <View>
+                <Image
+                  source={require("../Assets/Icons_Free/armor_icon.png")}
+                  style={{ width: width / 4, height: width / 4 }}
+                />
+              </View>
+            </ImageBackground>
           </ImageBackground>
         </View>
       </TouchableHighlight>
@@ -199,101 +201,100 @@ class ShopScreen extends Component<any, any> {
     const buttons = ["Weapons", "Armors", "Black\n Magic", "White\n Magic"];
     const { selectedIndex } = this.state;
     return (
-      <View style={{ paddingTop: 25, flex: 1 }}>
-        <Header
-          containerStyle={{ backgroundColor: "#964b00" }}
-          leftComponent={{
-            icon: "menu",
-            color: "#fff",
-            onPress: () => this.props.navigation.openDrawer(),
-          }}
-          centerComponent={{ text: "SHOP", style: { color: "#fff" } }}
-          rightComponent={this.renderCurrencies()}
-        />
-        <ButtonGroup
-          onPress={(index) => this.updateIndex(index)}
-          selectedIndex={selectedIndex}
-          buttons={buttons}
-          containerStyle={{ height: 75,
-           width: Dimensions.get('window').width }}
-        />
-        <View style={{ flex: 1 }}>
-          <View style={{ flex: 4 }}>
-            <FlatList
-              keyExtractor={(item: Interfaces.ItemInterface) =>
-                item.ID.toString()
-              }
-              numColumns={4}
-              data={this.getData()}
-              style={{
-                flex: 1,
-                marginVertical: 10,
-              }}
-              renderItem={({ item }) => this.renderItem(item)}
-            />
-          </View>
-
-          <View style={{ flex: 3 }}>
-            <View style={styles.checkOutBox}>
-              <View
+      <View style={{ flex: 1 }}>
+        <ImageBackground
+          source={require("../Assets/GUI_Parts_Free/big_background.png")}
+          style={{ height: height, width: width }}
+        >
+          <ButtonGroup
+            onPress={(index) => this.updateIndex(index)}
+            selectedIndex={selectedIndex}
+            buttons={buttons}
+            containerStyle={{
+              height: 75,
+              width: Dimensions.get("window").width,
+            }}
+          />
+          <View style={{ flex: 1 }}>
+            <View style={{ flex: 4 }}>
+              <FlatList
+                keyExtractor={(item: Interfaces.ItemInterface) =>
+                  item.ID.toString()
+                }
+                numColumns={4}
+                data={this.getData()}
                 style={{
                   flex: 1,
-                  flexDirection: "row",
-                  justifyContent: "space-evenly",
+                  marginVertical: 10,
                 }}
-              >
-                <Text style={{ paddingBottom: 10 }}>
-                  NAME : {this.state.selectedItemName}
-                </Text>
-                <Text>COST: {this.state.selectedItemPrice} </Text>
-              </View>
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: "row",
-                  justifyContent: "space-evenly",
-                }}
-              >
-                <Text>HEALTH: {this.state.selectedItem.HealthModifier} </Text>
-                <Text>ATTACK: {this.state.selectedItem.AttackModifier}</Text>
-                <Text>
-                  RESISTANCE: {this.state.selectedItem.ResistanceModifier}
-                </Text>
-              </View>
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: "row",
-                  justifyContent: "space-evenly",
-                }}
-              >
-                <Text>DEFENCE: {this.state.selectedItem.DefenceModifier}</Text>
-                <Text>MAGIC: {this.state.selectedItem.MagicModifier}</Text>
-                <Text>MIND: {this.state.selectedItem.MindModifier}</Text>
-              </View>
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: "row",
-                  justifyContent: "space-evenly",
-                }}
-              >
-                <Text>LUCK: +0 </Text>
-                <Text>SPEED: +0</Text>
-                <Text>COPIES OWNED: 0</Text>
-              </View>
+                renderItem={({ item }) => this.renderItem(item)}
+              />
             </View>
-            <Button
-              onPress={() => this.purchaseItem()}
-              style={{ flex: 2, paddingVertical: 10 }}
-              title={
-                this.state.playersGold > this.state.selectedItemPrice
-                  ? "PURCHASE"
-                  : "INSUFFICIENT FUNDS"
-              }
-            />
+
+            <View style={{ flex: 3 }}>
+              <View style={styles.checkOutBox}>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                    justifyContent: "space-evenly",
+                  }}
+                >
+                  <Text style={{ paddingBottom: 10 }}>
+                    NAME : {this.state.selectedItemName}
+                  </Text>
+                  <Text>COST: {this.state.selectedItemPrice} </Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                    justifyContent: "space-evenly",
+                  }}
+                >
+                  <Text>HEALTH: {this.state.selectedItem.HealthModifier} </Text>
+                  <Text>ATTACK: {this.state.selectedItem.AttackModifier}</Text>
+                  <Text>
+                    RESISTANCE: {this.state.selectedItem.ResistanceModifier}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                    justifyContent: "space-evenly",
+                  }}
+                >
+                  <Text>
+                    DEFENCE: {this.state.selectedItem.DefenceModifier}
+                  </Text>
+                  <Text>MAGIC: {this.state.selectedItem.MagicModifier}</Text>
+                  <Text>MIND: {this.state.selectedItem.MindModifier}</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                    justifyContent: "space-evenly",
+                  }}
+                >
+                  <Text>LUCK: +0 </Text>
+                  <Text>SPEED: +0</Text>
+                  <Text>COPIES OWNED: 0</Text>
+                </View>
+              </View>
+              <Button
+                onPress={() => this.purchaseItem()}
+                style={{ flex: 2, paddingVertical: 10 }}
+                title={
+                  this.state.playersGold > this.state.selectedItemPrice
+                    ? "PURCHASE"
+                    : "INSUFFICIENT FUNDS"
+                }
+              />
+            </View>
           </View>
-        </View>
+        </ImageBackground>
       </View>
     );
   }
@@ -316,7 +317,6 @@ const styles = StyleSheet.create({
     margin: 1 / 5,
     height: Dimensions.get("window").width / 4, // approximate a square
     width: Dimensions.get("window").width / 4,
-
   },
   title: {
     fontSize: 32,

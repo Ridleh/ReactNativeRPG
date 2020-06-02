@@ -14,7 +14,7 @@
       "**/*"
     ],
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./Assets/splash.png",
       "backgroundColor": "#000000"
     }
   }

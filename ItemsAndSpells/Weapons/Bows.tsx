@@ -4,7 +4,7 @@ export const BowsDatabase = [
   {
     Name: "Frost Bow",
     ID: "IBW1",
-    Image: require("../../assets/Items/Bows/Frost_Bow.png"), //??
+    //Image: require("../../assets/Items/Bows/Frost_Bow.png"), //??
     Type: Types.Bow, //?? enum
     Price: 100,
     HealthModifier: 0,
@@ -22,7 +22,7 @@ export const BowsDatabase = [
   {
     Name: "Longbow",
     ID: "IBW2",
-    Image: require("../../assets/Items/Bows/Longbow.png"), //??
+    ////Image: require("../../assets/Items/Bows/Longbow.png"), //??
     Type: Types.Bow, //?? enum
     Price: 100,
     HealthModifier: 0,
@@ -40,7 +40,7 @@ export const BowsDatabase = [
   {
     Name: "Shortbow",
     ID: "IBW3",
-    Image: require("../../assets/Items/Bows/Shortbow.png"), //??
+    //Image: require("../../assets/Items/Bows/Shortbow.png"), //??
     Type: Types.Bow, //?? enum
     Price: 100,
     HealthModifier: 0,
@@ -58,7 +58,7 @@ export const BowsDatabase = [
   {
     Name: "Silver Bow",
     ID: "IBW4",
-    Image: require("../../assets/Items/Bows/SilverBow.png"), //??
+    //Image: require("../../assets/Items/Bows/SilverBow.png"), //??
     Type: Types.Bow, //?? enum
     Price: 100,
     HealthModifier: 0,
@@ -76,7 +76,7 @@ export const BowsDatabase = [
   {
     Name: "Thunder Bow",
     ID: "IBW1",
-    Image: require("../../assets/Items/Bows/Thunder_Bow.png"), //??
+    //Image: require("../../assets/Items/Bows/Thunder_Bow.png"), //??
     Type: Types.Bow, //?? enum
     Price: 100,
     HealthModifier: 0,

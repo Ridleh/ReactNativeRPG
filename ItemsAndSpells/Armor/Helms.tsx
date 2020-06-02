@@ -3,7 +3,7 @@ import { Types } from "../ItemTypes/Types";
 export const HelmsDataBase = [
   {
     Name: "Bronze Helm",
-    Image: require("../../assets/Items/Helms/Bronze_Helm.png"),
+    //Image: require("../../assets/Items/Helms/Bronze_Helm.png"),
     Type: Types.Helm,
     ID: "IHLM1",
     Price: 100,
@@ -21,7 +21,7 @@ export const HelmsDataBase = [
   },
   {
     Name: "Warden's Helm",
-    Image: require("../../assets/Items/Helms/Warden's_Helm.png"),
+    //Image: require("../../assets/Items/Helms/Warden's_Helm.png"),
     Type: Types.Bracer,
     ID: "IHLM2",
     Price: 100,

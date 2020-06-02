@@ -3,7 +3,7 @@ import {Types} from '../ItemTypes/Types';
 export const staffDatabase = [
     {
         Name: 'Charry Staff',
-        Image: require('../../assets/Items/Staffs/Cherry_Staff.png'),
+        //Image: require('../../assets/Items/Staffs/Cherry_Staff.png'),
         ID: "WSTF1",
         Type: Types.Staff,
         Price: 100,
@@ -21,7 +21,7 @@ export const staffDatabase = [
     },
     {
         Name: "Mage's Staff",
-        Image: require("../../assets/Items/Staffs/Mage's_Staff.png"),
+        //Image: require("../../assets/Items/Staffs/Mage's_Staff.png"),
         ID: "WSTF2",
         Type: Types.Staff,
         Price: 100,
@@ -39,7 +39,7 @@ export const staffDatabase = [
     },
     {
         Name: 'Mythril Staff',
-        Image: require('../../assets/Items/Staffs/Mythril_Staff.png'),
+        //Image: require('../../assets/Items/Staffs/Mythril_Staff.png'),
         ID: "WSTF3",
         Type: Types.Staff,
         Price: 100,
@@ -57,7 +57,7 @@ export const staffDatabase = [
     },
     {
         Name: 'Oak Staff',
-        Image: require('../../assets/Items/Staffs/Oak_Staff.png'),
+        //Image: require('../../assets/Items/Staffs/Oak_Staff.png'),
         ID: "WSTF4",
         Type: Types.Staff,
         Price: 100,
@@ -75,7 +75,7 @@ export const staffDatabase = [
     },
     {
         Name: 'Power Staff',
-        Image: require('../../assets/Items/Staffs/Power_Staff.png'),
+        ////Image: require('../../assets/Items/Staffs/Power_Staff.png'),
         ID: "WSTF5",
         Type: Types.Staff,
         Price: 100,

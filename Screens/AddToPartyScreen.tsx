@@ -114,7 +114,7 @@ class AddToPartyScreen extends Component<any, any> {
   render() {
     return (
       <ImageBackground
-        source={require("../assets/Backgrounds/SampleBackgroundQuests.png")}
+        source={require("../Assets/Backgrounds/SampleBackgroundQuests.png")}
         style={{ height: height, width: width }}
       >
         <Header

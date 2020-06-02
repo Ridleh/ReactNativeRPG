@@ -3,7 +3,7 @@ import { Types } from "../ItemTypes/Types";
 export const HatsDataBase = [
   {
     Name: "Hairband",
-    Image: require("../../assets/Items/Hats/Hairband.png"),
+    //Image: require("../../assets/Items/Hats/Hairband.png"),
     Type: Types.Hat,
     ID: "IHT1",
     Price: 100,
@@ -21,7 +21,7 @@ export const HatsDataBase = [
   },
   {
     Name: "Twist Headband",
-    Image: require("../../assets/Items/Hats/Twist_Headband.png"),
+    //Image: require("../../assets/Items/Hats/Twist_Headband.png"),
     Type: Types.Hat,
     ID: "IHT2",
     Price: 100,
@@ -39,7 +39,7 @@ export const HatsDataBase = [
   },
   {
     Name: "Hairband",
-    Image: require("../../assets/Items/Hats/Hairband.png"),
+    //Image: require("../../assets/Items/Hats/Hairband.png"),
     Type: Types.Hat,
     ID: "IHT3",
     Price: 100,
@@ -57,7 +57,7 @@ export const HatsDataBase = [
   },
   {
     Name: "Wizard's Hat",
-    Image: require("../../assets/Items/Hats/Wizard's_Hat.png"),
+    //Image: require("../../assets/Items/Hats/Wizard's_Hat.png"),
     Type: Types.Hat,
     ID: "IHT4",
     Price: 100,
@@ -75,7 +75,7 @@ export const HatsDataBase = [
   },
   {
     Name: "Leather Cap",
-    Image: require("../../assets/Items/Hats/Leather_Cap.png"),
+    //Image: require("../../assets/Items/Hats/Leather_Cap.png"),
     Type: Types.Hat,
     ID: "IHT4",
     Price: 100,

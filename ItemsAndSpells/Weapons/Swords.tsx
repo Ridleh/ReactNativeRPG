@@ -3,7 +3,7 @@ import {Types} from '../ItemTypes/Types'
 export const swordDatabase = [
     {
         Name: 'Broadsword',
-        Image: require('../../assets/Items/Swords/Broadsword.png'),
+        //Image: require('../../assets/Items/Swords/Broadsword.png'),
         ID: "WSRD1",
         Type: Types.Sword,
         Price: 100,
@@ -21,7 +21,7 @@ export const swordDatabase = [
     },
     {
         Name: 'Galbadian Blade',
-        Image: require('../../assets/Items/Swords/Galbadian_Blade.png'),
+        //Image: require('../../assets/Items/Swords/Galbadian_Blade.png'),
         ID: "WSRD2",
         Type: Types.Sword,
         Price: 100,
@@ -39,7 +39,7 @@ export const swordDatabase = [
     },
     {
         Name: 'Iron Sword',
-        Image: require('../../assets/Items/Swords/Iron_Sword.png'),
+        //Image: require('../../assets/Items/Swords/Iron_Sword.png'),
         ID: "WSRD3",
         Type: Types.Sword,
         Price: 100,
@@ -57,7 +57,7 @@ export const swordDatabase = [
     },
     {
         Name: 'Longsword',
-        Image: require('../../assets/Items/Swords/Longsword.png'),
+        //Image: require('../../assets/Items/Swords/Longsword.png'),
         ID: "WSRD4",
         Type: Types.Sword,
         Price: 100,
@@ -75,7 +75,7 @@ export const swordDatabase = [
     },
     {
         Name: 'Zwill Blade',
-        Image: require('../../assets/Items/Swords/Zwill_Blade.png'),
+        //Image: require('../../assets/Items/Swords/Zwill_Blade.png'),
         ID: "WSRD5",
         Type: Types.Sword,
         Price: 100,

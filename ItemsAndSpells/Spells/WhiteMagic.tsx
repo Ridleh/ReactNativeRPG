@@ -3,7 +3,7 @@ import {Types } from '../ItemTypes/Types';
 export const WhiteMagicDataBase = [
     {
         Name: 'Cure',
-        Image: require('../../assets/Spells/White_Magic/Cure.png'),
+        //Image: require('../../assets/Spells/White_Magic/Cure.png'),
         ID: "SWM1",
         Type: Types.WhiteMagic,
         Price: 100,

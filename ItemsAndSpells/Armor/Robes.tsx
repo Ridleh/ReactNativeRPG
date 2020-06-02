@@ -3,7 +3,7 @@ import { Types } from "../ItemTypes/Types";
 export const RobesDataBase = [
   {
     Name: "Mage Robe",
-    Image: require("../../assets/Items/Robes/Mage_Robe.png"),
+    //Image: require("../../assets/Items/Robes/Mage_Robe.png"),
     Type: Types.Robe,
     ID: "IRB1",
     Price: 100,
@@ -21,7 +21,7 @@ export const RobesDataBase = [
   },
   {
     Name: "Silk Robe",
-    Image: require("../../assets/Items/Robes/Silk_Robe.png"),
+    //Image: require("../../assets/Items/Robes/Silk_Robe.png"),
     Rarity: 1,
     Type: Types.Bracer,
     Attack: 0,
@@ -45,7 +45,7 @@ export const RobesDataBase = [
   },
   {
     Name: "Cotton Robe",
-    Image: require("../../assets/Items/Robes/Cotton_Robe.png"),
+    //Image: require("../../assets/Items/Robes/Cotton_Robe.png"),
     Type: Types.Bracer,
     ID: "IRB3",
     Price: 100,

@@ -178,7 +178,7 @@ class QuestScreen extends Component<any, any> {
         />
 
         <ImageBackground
-          source={require("../assets/Backgrounds/SampleBackgroundQuests.png")}
+          source={require("../Assets/Backgrounds/SampleBackgroundQuests.png")}
           style={{ paddingTop: 30, height: "100%", width: "100%" }}
         >
           <this.renderQuestCategories />

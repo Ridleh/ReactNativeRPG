@@ -103,7 +103,7 @@ class PartyScreen extends Component<any, any> {
     return (
       <View style={{ paddingTop: 24 }}>
         <ImageBackground
-          source={require("../assets/Backgrounds/SampleBackgroundQuests.png")}
+          source={require("../Assets/Backgrounds/SampleBackgroundQuests.png")}
           style={{ height: height - 24, width: width }}
         >
           <Header

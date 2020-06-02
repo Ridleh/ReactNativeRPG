@@ -3,7 +3,7 @@ export default interface Action{
     Image: any, //??
     ID: string,
     Type: any, //enum
-    School: any
+    School: any 
     Price: number,
     Rank: number,
     Level: number,

@@ -3,7 +3,7 @@ import {Types} from '../ItemTypes/Types'
 export const blackMagicSpellsDatabase = [
     {
         Name: 'Blizzard',
-        Image: require('../../assets/Spells/Black_Magic/Blizzard.png'),
+        //Image: require('../../assets/Spells/Black_Magic/Blizzard.png'),
         ID: "SBM1",
         Type: Types.BlackMagic,
         Price: 100,
@@ -14,7 +14,7 @@ export const blackMagicSpellsDatabase = [
     },
     {
         Name: 'Fire',
-        Image: require('../../assets/Spells/Black_Magic/Fire.png'),
+        //Image: require('../../assets/Spells/Black_Magic/Fire.png'),
         ID: "SBM2",
         Type: Types.BlackMagic,
         Price: 100,
@@ -25,7 +25,7 @@ export const blackMagicSpellsDatabase = [
     },
     {
         Name: 'Thunder',
-        Image: require('../../assets/Spells/Black_Magic/Thunder.png'),
+        //Image: require('../../assets/Spells/Black_Magic/Thunder.png'),
         ID: "SBM3",
         Type: Types.BlackMagic,
         Price: 100,
@@ -36,7 +36,7 @@ export const blackMagicSpellsDatabase = [
     },
     {
         Name: 'Water',
-        Image: require('../../assets/Spells/Black_Magic/Water.png'),
+        //Image: require('../../assets/Spells/Black_Magic/Water.png'),
         ID: "SBM4",
         Type: Types.BlackMagic,
         Price: 100,

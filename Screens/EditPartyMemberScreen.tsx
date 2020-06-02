@@ -224,7 +224,7 @@ class EditPartyMemberScreen extends Component<any, any> {
     return (
       <View>
         <ImageBackground
-          source={require("../assets/Backgrounds/SampleBackgroundQuests.png")}
+          source={require("../Assets/Backgrounds/SampleBackgroundQuests.png")}
           style={{ height: height - 24, width: width }}
         >
           <Header

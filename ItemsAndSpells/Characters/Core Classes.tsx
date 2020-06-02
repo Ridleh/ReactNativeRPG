@@ -2,7 +2,7 @@ export const CoreClassDatabase = [
     {
         Name: "Bard",
         ID: "C1",
-        Image: require("../../assets/Characters/Bard.png"),
+        //////Image: require("../../assets/Characters/Bard.png"),
         Level: 1,
         Health: 96,
         CurrentHealth: 96,
@@ -24,7 +24,7 @@ export const CoreClassDatabase = [
     {
         Name: "Bezerker",
         ID: "C2",
-        Image: require("../../assets/Characters/Berzerker.png"),
+        //////Image: require("../../assets/Characters/Berzerker.png"),
         Level: 1,
         Health: 145,
         CurrentHealth: 145,
@@ -46,7 +46,7 @@ export const CoreClassDatabase = [
     {
         Name: "Black Mage",
         ID: "C3",
-        Image: require("../../assets/Characters/Black_Mage.png"),
+        //////Image: require("../../assets/Characters/Black_Mage.png"),
         Level: 1,
         Health: 84,
         CurrentHealth: 84,
@@ -69,7 +69,7 @@ export const CoreClassDatabase = [
         Name: "Dark Knight",
         ID: "C4",
         Level: 1,
-        Image: require("../../assets/Characters/Dark_Knight.png"),
+        //////Image: require("../../assets/Characters/Dark_Knight.png"),
         Health: 112,
         CurrentHealth: 112,
         Mana: 100,
@@ -90,7 +90,7 @@ export const CoreClassDatabase = [
     {
         Name: "Devout",
         ID: "C5",
-        Image: require("../../assets/Characters/Devout.png"),
+        //////Image: require("../../assets/Characters/Devout.png"),
         Level: 1,
         Health: 111,
         CurrentHealth: 111,
@@ -112,7 +112,7 @@ export const CoreClassDatabase = [
     {
         Name: "Dragoon",
         ID: "C6",
-        Image: require("../../assets/Characters/Dragoon.png"),
+        //////Image: require("../../assets/Characters/Dragoon.png"),
         Level: 1,
         Health: 120,
         CurrentHealth: 120,
@@ -134,7 +134,7 @@ export const CoreClassDatabase = [
     {
         Name: "Gladiator",
         ID: "C7",
-        Image: require("../../assets/Characters/Gladiator.png"),
+        //////Image: require("../../assets/Characters/Gladiator.png"),
         Level: 1,
         Health: 144,
         CurrentHealth: 144,
@@ -156,7 +156,7 @@ export const CoreClassDatabase = [
     {
         Name: "Knight",
         ID: "C8",
-        Image: require("../../assets/Characters/Knight.png"),
+        //////Image: require("../../assets/Characters/Knight.png"),
         Level: 1,
         Health: 122,
         CurrentHealth: 122,
@@ -178,7 +178,7 @@ export const CoreClassDatabase = [
     {
         Name: "Magus",
         ID: "C9",
-        Image: require("../../assets/Characters/Magus.png"),
+        ////Image: require("../../assets/Characters/Magus.png"),
         Level: 1,
         Health: 97,
         CurrentHealth: 97,
@@ -200,7 +200,7 @@ export const CoreClassDatabase = [
     {
         Name: "Monk",
         ID: "C10",
-        Image: require("../../assets/Characters/Monk.png"),
+        ////Image: require("../../assets/Characters/Monk.png"),
         Level: 1,
         Health: 132,
         CurrentHealth: 132,
@@ -222,7 +222,7 @@ export const CoreClassDatabase = [
     {
         Name: "Ninja",
         ID: "C11",
-        Image: require("../../assets/Characters/Ninja.png"),
+        ////Image: require("../../assets/Characters/Ninja.png"),
         Level: 1,
         Health: 118,
         CurrentHealth: 118,
@@ -244,7 +244,7 @@ export const CoreClassDatabase = [
     {
         Name: "Ranger",
         ID: "C12",
-        Image: require("../../assets/Characters/Ranger.png"),
+        ////Image: require("../../assets/Characters/Ranger.png"),
         Level: 1,
         Health: 108,
         CurrentHealth: 108,
@@ -266,7 +266,7 @@ export const CoreClassDatabase = [
     {
         Name: "Red Mage",
         ID: "C13",
-        Image: require("../../assets/Characters/Red_Mage.png"),
+        ////Image: require("../../assets/Characters/Red_Mage.png"),
         Level: 1,
         Health: 97,
         CurrentHealth: 97,
@@ -288,7 +288,7 @@ export const CoreClassDatabase = [
     {
         Name: "Samurai",
         ID: "C14",
-        Image: require("../../assets/Characters/Samurai.png"),
+        ////Image: require("../../assets/Characters/Samurai.png"),
         Level: 1,
         Health: 130,
         CurrentHealth: 130,
@@ -310,7 +310,7 @@ export const CoreClassDatabase = [
     {
         Name: "Spellblade",
         ID: "C15",
-        Image: require("../../assets/Characters/Spellblade.png"),
+        ////Image: require("../../assets/Characters/Spellblade.png"),
         Level: 1,
         Health: 108,
         CurrentHealth: 108,
@@ -332,7 +332,7 @@ export const CoreClassDatabase = [
     {
         Name: "Thief",
         ID: "C16",
-        Image: require("../../assets/Characters/Thief.png"),
+        ////Image: require("../../assets/Characters/Thief.png"),
         Level: 1,
         Health: 113,
         CurrentHealth: 113,
@@ -354,7 +354,7 @@ export const CoreClassDatabase = [
     {
         Name: "Viking",
         ID: "C17",
-        Image: require("../../assets/Characters/Viking.png"),
+        ////Image: require("../../assets/Characters/Viking.png"),
         Level: 1,
         Health: 144,
         CurrentHealth: 144,
@@ -376,7 +376,7 @@ export const CoreClassDatabase = [
     {
         Name: "Warrior",
         ID: "C18",
-        Image: require("../../assets/Characters/Warrior.png"),
+        ////Image: require("../../assets/Characters/Warrior.png"),
         Level: 1,
         Health: 144,
         CurrentHealth: 144,
@@ -399,7 +399,7 @@ export const CoreClassDatabase = [
         Name: "White Mage",
         ID: "C19",
         Level: 1,
-        Image: require("../../assets/Characters/White_Mage.png"),
+        ////Image: require("../../assets/Characters/White_Mage.png"),
         Health: 96,
         CurrentHealth: 96,
         Mana: 100,
@@ -420,7 +420,7 @@ export const CoreClassDatabase = [
     {
         Name: "Tyro",
         ID: "C20",
-        Image: require("../../assets/Characters/tyro.png"),
+        ////Image: require("../../assets/Characters/tyro.png"),
         Level: 1,
         Health: 120,
         CurrentHealth: 120,

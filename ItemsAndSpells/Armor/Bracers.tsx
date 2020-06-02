@@ -3,7 +3,7 @@ import { Types } from "../ItemTypes/Types";
 export const BracersDataBase = [
   {
     Name: "Bronze Bangle",
-    Image: require("../../assets/Items/Bracers/Bronze_Bangle.png"),
+    //Image: require("../../assets/Items/Bracers/Bronze_Bangle.png"),
     Type: Types.Bracer,
     ID: "IBRC1",
     Price: 100,
@@ -21,7 +21,7 @@ export const BracersDataBase = [
   },
   {
     Name: "Iron Bangle",
-    Image: require("../../assets/Items/Bracers/Iron_Bangle.png"),
+    //Image: require("../../assets/Items/Bracers/Iron_Bangle.png"),
     Type: Types.Bracer,
     ID: "IBRC2",
     Price: 100,

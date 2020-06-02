@@ -200,7 +200,7 @@ class BattleScreen extends Component<any, any> {
                 width: 50,
                 paddingBottom: 10,
               }}
-              source={require("../assets/Enemies/Giant_Rat.png")}
+              source={require("../Assets/Enemies/Giant_Rat.png")}
             />
           </View>
         </Row>
@@ -303,7 +303,7 @@ class BattleScreen extends Component<any, any> {
   render() {
     return (
       <ImageBackground
-        source={require("../assets/Backgrounds/GrassyPlains.png")}
+        source={require("../Assets/Backgrounds/GrassyPlains.png")}
         style={{ height: height, width: width }}
       >
         <View style={{ flex: 1 }}>

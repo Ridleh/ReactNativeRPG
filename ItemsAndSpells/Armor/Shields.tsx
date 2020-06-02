@@ -3,7 +3,7 @@ import { Types } from "../ItemTypes/Types";
 export const ShieldDataBase = [
   {
     Name: "Round Shield",
-    Image: require("../../assets/Items/Shields/Round_Shield.png"),
+    //Image: require("../../assets/Items/Shields/Round_Shield.png"),
     Type: Types.Shield,
     ID: "ISHLD1",
     Price: 100,
@@ -21,7 +21,7 @@ export const ShieldDataBase = [
   },
   {
     Name: "Bronze Shield",
-    Image: require("../../assets/Items/Shields/Bronze_Shield.png"),
+    //Image: require("../../assets/Items/Shields/Bronze_Shield.png"),
     Type: Types.Shield,
     ID: "ISHLD2",
     Price: 100,
@@ -39,7 +39,7 @@ export const ShieldDataBase = [
   },
   {
     Name: "Buckler",
-    Image: require("../../assets/Items/Shields/Buckler.png"),
+   //Image: require("../../assets/Items/Shields/Buckler.png"),
     Type: Types.Shield,
     ID: "ISHLD3",
     Price: 100,
@@ -57,7 +57,7 @@ export const ShieldDataBase = [
   },
   {
     Name: "Leather Shield",
-    Image: require("../../assets/Items/Shields/Leather_Shield.png"),
+    //Image: require("../../assets/Items/Shields/Leather_Shield.png"),
     Rarity: 1,
     Type: Types.Shield,
     Attack: 0,

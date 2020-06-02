@@ -3,7 +3,7 @@ import { Types } from "../ItemTypes/Types";
 export const LightArmorsDataBase = [
   {
     Name: "Copper Cuirass",
-    Image: require("../../assets/Items/Light_Armors/Copper_Cuirass.png"),
+    //Image: require("../../assets/Items/Light_Armors/Copper_Cuirass.png"),
     Type: Types.LightArmor,
     ID: "ILTA1",
     Price: 100,
@@ -21,7 +21,7 @@ export const LightArmorsDataBase = [
   },
   {
     Name: "Leather Clothing",
-    Image: require("../../assets/Items/Light_Armors/Leather_Clothing.png"),
+    //Image: require("../../assets/Items/Light_Armors/Leather_Clothing.png"),
     Type: Types.LightArmor,
     ID: "ILTA2",
     Price: 100,
@@ -39,7 +39,7 @@ export const LightArmorsDataBase = [
   },
   {
     Name: "Prison Garb",
-    Image: require("../../assets/Items/Light_Armors/Prison_Garb.png"),
+    //Image: require("../../assets/Items/Light_Armors/Prison_Garb.png"),
     Type: Types.LightArmor,
     ID: "ILTA3",
     Price: 100,
@@ -57,7 +57,7 @@ export const LightArmorsDataBase = [
   },
   {
     Name: "Vest",
-    Image: require("../../assets/Items/Light_Armors/Vest.png"),
+    //Image: require("../../assets/Items/Light_Armors/Vest.png"),
     Type: Types.LightArmor,
     ID: "ILTA4",
     Price: 100,
