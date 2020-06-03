@@ -19,7 +19,12 @@ const Drawer = createDrawerNavigator();
 export function Navigation() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Navigator 
+      initialRouteName="Home"
+      drawerStyle={{
+        backgroundColor: '#4A3531'
+      }}
+      >
         <Drawer.Screen
           name="Home"
           component={HomeScreen}

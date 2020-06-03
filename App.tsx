@@ -5,7 +5,6 @@ if(!__DEV__){
 }
 
 import { AppLoading } from "expo";
-import { Asset } from "expo-asset";
 import * as Font from "expo-font";
 import "react-native-gesture-handler";
 import React, { useState } from "react";
@@ -76,5 +75,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    paddingTop: 25
   },
 });
