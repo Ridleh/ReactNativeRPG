@@ -6,24 +6,25 @@ import QuestScreen from "../Screens/QuestScreen";
 import ShopScreen from "../Screens/ShopScreen";
 import BattleScreen from "../Screens/BattleScreen";
 import RecruitScreen from "../Screens/RecruitScreen";
+import CharacterScreen from "../Screens/CharacterScreen";
 
 import PartyStack from "./PartyStack/PartyStack";
 import QuestStack from "./QuestStack/QuestStack";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import {getPartyState} from '../Redux/Actions';
+import { getPartyState } from "../Redux/Actions";
 
 const Drawer = createDrawerNavigator();
 
 export function Navigation() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator 
-      initialRouteName="Home"
-      drawerStyle={{
-        backgroundColor: '#4A3531'
-      }}
+      <Drawer.Navigator
+        initialRouteName="Home"
+        drawerStyle={{
+          backgroundColor: "#4A3531",
+        }}
       >
         <Drawer.Screen
           name="Home"
@@ -31,28 +32,8 @@ export function Navigation() {
           options={{ unmountOnBlur: true }}
         />
         <Drawer.Screen
-          name="Shop"
-          component={ShopScreen}
-          options={{ unmountOnBlur: true }}
-        />
-        <Drawer.Screen
-          name="Inventory"
-          component={InventoryScreen}
-          options={{ unmountOnBlur: true }}
-        />
-        <Drawer.Screen
-          name="Recruit"
-          component={RecruitScreen}
-          options={{ unmountOnBlur: true }}
-        />
-        <Drawer.Screen
-          name="Party"
-          component={PartyStack}
-          options={{ unmountOnBlur: true }}
-        />
-        <Drawer.Screen
-          name="Quest"
-          component={QuestStack}
+          name="Character"
+          component={CharacterScreen}
           options={{ unmountOnBlur: true }}
         />
       </Drawer.Navigator>

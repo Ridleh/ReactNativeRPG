@@ -42,7 +42,7 @@ export default class HomeScreen extends Component<any, any> {
   render() {
     const injectedJs = `window.postMessage(window.location.href);`;
     return (
-      <View style={{ flex: 1, backgroundColor: "black", paddingTop: 25 }}>
+      <View style={{ flex: 1, backgroundColor: "black" }}>
         <ImageBackground
           source={require("../Assets/GUI_Parts_Free/bar_ready.png")}
           style={{ width: "100%", height: "100%", overflow: "hidden" }}
