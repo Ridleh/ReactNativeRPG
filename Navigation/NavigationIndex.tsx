@@ -36,6 +36,11 @@ export function Navigation() {
           component={CharacterScreen}
           options={{ unmountOnBlur: true }}
         />
+        <Drawer.Screen
+          name="Inventory"
+          component={InventoryScreen}
+          options={{ unmountOnBlur: true }}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );
