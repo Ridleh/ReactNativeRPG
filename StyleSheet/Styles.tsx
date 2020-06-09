@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
         overflow: "hidden" 
     },
     rootContainerPadding: {
-        padding: 10
+        padding: 10,
+        flex: 1
     }
 })
 

@@ -4,6 +4,8 @@ import { Header, Button } from "react-native-elements";
 import { DeleteState } from "../Redux/Store";
 import { WebView } from "react-native-webview";
 import { TouchableOpacity, FlatList } from "react-native-gesture-handler";
+import styles from '../StyleSheet/Styles';
+import {BackgroundContainer} from './Components/ComponentIndex';
 
 const { height, width } = Dimensions.get("window");
 const imageHeight = Math.round((width * 18.5) / 9);
@@ -61,13 +63,9 @@ export default class InventoryScreen extends Component<any, any> {
 
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: "black" }}>
-        <ImageBackground
-          source={require("../Assets/GUI_Parts_Free/bar_ready.png")}
-          style={{ width: "100%", height: "100%", overflow: "hidden" }}
-          resizeMode="stretch"
-        >
-          <View style={{ flex: 1, padding: 10, flexDirection: "column" }}>
+      <View style={styles.rootContainer}>
+        <BackgroundContainer>
+          <View style={{ flex: 1, flexDirection: "column" }}>
             <View style={{ width: "100%", height: "67%" }}>
               <View style={{ flex: 1, flexDirection: "column" }}>
                 <View style={{ flex: 1 }}>
@@ -167,7 +165,7 @@ export default class InventoryScreen extends Component<any, any> {
               </View>
             </View>
           </View>
-        </ImageBackground>
+          </BackgroundContainer>
       </View>
     );
   }
