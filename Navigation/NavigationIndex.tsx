@@ -7,9 +7,7 @@ import ShopScreen from "../Screens/ShopScreen";
 import BattleScreen from "../Screens/BattleScreen";
 import RecruitScreen from "../Screens/RecruitScreen";
 import CharacterScreen from "../Screens/CharacterScreen";
-
-import PartyStack from "./PartyStack/PartyStack";
-import QuestStack from "./QuestStack/QuestStack";
+import CharacterStack from "./CharacterStack";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -33,13 +31,13 @@ export function Navigation() {
         />
         <Drawer.Screen
           name="Character"
-          component={CharacterScreen}
+          component={CharacterStack}
           options={{ unmountOnBlur: true }}
         />
         <Drawer.Screen
-          name="Inventory"
-          component={InventoryScreen}
-          options={{ unmountOnBlur: true }}
+        name='Shop'
+        component={ShopScreen}
+        options={{unmountOnBlur: true}}
         />
       </Drawer.Navigator>
     </NavigationContainer>

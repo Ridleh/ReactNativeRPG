@@ -2,13 +2,7 @@ import React, { Component } from "react";
 import { View, ImageBackground } from "react-native";
 import styles from "../../StyleSheet/Styles";
 
-export default class BackgroundContainer extends Component<any, any> {
-  constructor(props: any) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
+export default function BackgroundContainer(props: any){
     return (
       <View style={styles.rootContainer}>
         <ImageBackground
@@ -16,9 +10,8 @@ export default class BackgroundContainer extends Component<any, any> {
           style={ styles.imageBackgroundFull }
           resizeMode="stretch"
         >
-          <View style={styles.rootContainerPadding}>{this.props.children}</View>
+          <View style={styles.rootContainerPadding}>{props.children}</View>
         </ImageBackground>
       </View>
     );
-  }
 }

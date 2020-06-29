@@ -1,4 +1,4 @@
-if(!__DEV__){
+if (!__DEV__) {
   console.log = () => {};
   console.warn = () => {};
   console.error = () => {};
@@ -13,7 +13,8 @@ import { Platform, StatusBar, StyleSheet, View } from "react-native";
 import * as NavigationIndex from "./Navigation/NavigationIndex";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Provider } from "react-redux";
-import store, {LoadState} from "./Redux/Store";
+import store, { LoadState } from "./Redux/Store";
+import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App(props: any) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -28,11 +29,13 @@ export default function App(props: any) {
     );
   } else {
     return (
-      <Provider store={store}>
-        <View style={styles.container}>
-          <NavigationIndex.Navigation />
-        </View>
-      </Provider>
+      <SafeAreaProvider>
+        <Provider store={store}>
+          <SafeAreaView style={styles.container}>
+            <NavigationIndex.Navigation />
+          </SafeAreaView>
+        </Provider>
+      </SafeAreaProvider>
     );
   }
 }
@@ -53,11 +56,14 @@ async function loadResourcesAsync() {
   ]);
   LoadState().then((persistedState) => {
     //save myself an import and use dispatch directly
-    if(persistedState !== undefined){
-      store.dispatch({type: "updateStateFromLocalStorage", state: persistedState});
-    //console.log("Successfully loaded state");
+    if (persistedState !== undefined) {
+      store.dispatch({
+        type: "updateStateFromLocalStorage",
+        state: persistedState,
+      });
+      //console.log("Successfully loaded state");
     }
-  })
+  });
 }
 
 function handleLoadingError(error: any) {
@@ -76,6 +82,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingTop: 25
+    paddingTop: 25,
   },
 });
