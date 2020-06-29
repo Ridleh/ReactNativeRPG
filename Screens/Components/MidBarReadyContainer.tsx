@@ -10,7 +10,7 @@ export default function MidBarReady(props: any) {
         style={styles.imageBackgroundFull}
         resizeMode="stretch"
       >
-        <View style={styles.rootContainerPadding}>{props.children}</View>
+        <View style={styles.flexFull}>{props.children}</View>
       </ImageBackground>
     </View>
   );

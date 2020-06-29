@@ -1,20 +1,5 @@
 import React, { Component } from "react";
-import {
-  Text,
-  View,
-  Dimensions,
-  ImageBackground,
-  Image,
-  StyleSheet,
-} from "react-native";
-import { Header, Button } from "react-native-elements";
-import { DeleteState } from "../Redux/Store";
-import { WebView } from "react-native-webview";
-import {
-  TouchableOpacity,
-  TouchableHighlight,
-} from "react-native-gesture-handler";
-
+import { View, ImageBackground } from "react-native";
 import {
   BackgroundContainer,
   Readybutton,
@@ -22,9 +7,6 @@ import {
   ThreeItemContainer,
 } from "./Components/ComponentIndex";
 import styles from "../StyleSheet/Styles";
-import ThreeItemLayout from "./Components/ThreeItemLayout";
-
-const { height, width } = Dimensions.get("window");
 
 export default class CharacterScreen extends Component<any, any> {
   constructor(props: any) {
@@ -32,7 +14,7 @@ export default class CharacterScreen extends Component<any, any> {
     this.state = {};
   }
 
-  handelPress = () => {
+  handlePress = () => {
     console.log("From parent");
   };
 
@@ -65,7 +47,7 @@ export default class CharacterScreen extends Component<any, any> {
                 />
                 <Readybutton
                   label={"Here I am"}
-                  handlePress={this.handelPress}
+                  handlePress={this.handlePress}
                 />
               </View>
             </MidBarReadyContainer>

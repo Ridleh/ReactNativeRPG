@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
   },
+  flexFullColumn: {
+    flex: 1,
+    flexDirection: 'column',
+  },
   imageBackgroundFull: {
     width: "100%",
     height: "100%",
@@ -26,6 +30,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  centerRow: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: 'row'
+  },
   item: {
     backgroundColor: "transparent",
     alignItems: "center",
@@ -34,6 +44,10 @@ const styles = StyleSheet.create({
     margin: 1 / 5,
     height: Dimensions.get("window").width / 4, // approximate a square
     width: Dimensions.get("window").width / 4,
+  },
+  listPadding: {
+    paddingHorizontal: 10,
+    paddingVertical: 20
   }
 });
 

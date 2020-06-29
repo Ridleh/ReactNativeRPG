@@ -1,14 +1,13 @@
-import React, { Component, useState } from "react";
+import React, { Component} from "react";
 import { Text, View, Dimensions, ImageBackground, Image } from "react-native";
-import { Header, Button } from "react-native-elements";
-import { DeleteState } from "../Redux/Store";
-import { WebView } from "react-native-webview";
-import { TouchableOpacity, FlatList } from "react-native-gesture-handler";
-import styles from '../StyleSheet/Styles';
-import {BackgroundContainer} from './Components/ComponentIndex';
-
-const { height, width } = Dimensions.get("window");
-const imageHeight = Math.round((width * 18.5) / 9);
+import {FlatList } from "react-native-gesture-handler";
+import styles from "../StyleSheet/Styles";
+import {
+  BackgroundContainer,
+  MidBarReadyContainer,
+  HeaderWithButton,
+} from "./Components/ComponentIndex";
+import MidBarReady from "./Components/MidBarReadyContainer";
 
 export default class InventoryScreen extends Component<any, any> {
   constructor(props: any) {
@@ -24,6 +23,10 @@ export default class InventoryScreen extends Component<any, any> {
     }
     this.setState({ data: array });
   }
+
+  navigateToPreviousScreen = () => {
+    this.props.navigation.pop();
+  };
 
   renderList() {
     return (
@@ -63,110 +66,28 @@ export default class InventoryScreen extends Component<any, any> {
 
   render() {
     return (
-      <View style={styles.rootContainer}>
-        <BackgroundContainer>
-          <View style={{ flex: 1, flexDirection: "column" }}>
-            <View style={{ width: "100%", height: "67%" }}>
-              <View style={{ flex: 1, flexDirection: "column" }}>
-                <View style={{ flex: 1 }}>
-                  <ImageBackground
-                    source={require("../Assets/GUI_Parts_Free/name_bar2.png")}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      overflow: "hidden",
-                    }}
-                    resizeMode="stretch"
-                  >
-                    <View
-                      style={{
-                        flex: 1,
-                        justifyContent: "center",
-                        alignItems: "center",
-                        flexDirection: "row",
-                      }}
-                    >
-                      <View style={{ width: "35%", height: "100%" }}>
-                        <TouchableOpacity
-                        onPress={() => this.props.navigation.navigate('Character')}>
-                        <ImageBackground
-                          source={require("../Assets/GUI_Parts_Free/button2_ready_on.png")}
-                          style={{ height: "100%", width: "100%" }}
-                          resizeMode="stretch"
-                        >
-                          <View
-                            style={{
-                              justifyContent: "center",
-                              alignItems: "center",
-                              height: "100%",
-                              width: "100%",
-                            }}
-                          >
-                            <Text
-                              style={{
-                                color: "gold",
-                              }}
-                            >
-                              Go Back
-                            </Text>
-                          </View>
-                        </ImageBackground>
-                        </TouchableOpacity>
-                      </View>
-                      <View
-                        style={{
-                          justifyContent: "center",
-                          alignItems: "center",
-                          height: "100%",
-                          width: "65%",
-                        }}
-                      >
-                        <Text
-                          style={{
-                            color: "gold",
-                          }}
-                        >
-                          Inventory
-                        </Text>
-                      </View>
-                    </View>
-                  </ImageBackground>
-                </View>
-                <View style={{ flex: 9 }}>
-                  <ImageBackground
-                    source={require("../Assets/GUI_Parts_Free/barmid_ready.png")}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      overflow: "hidden",
-                    }}
-                    resizeMode="stretch"
-                  >
-                    <View
-                      style={{ paddingHorizontal: 10, paddingVertical: 20 }}
-                    >
-                      <FlatList
-                        numColumns={5}
-                        data={this.state.data}
-                        renderItem={({ item }) => this.renderList()}
-                      />
-                    </View>
-                  </ImageBackground>
-                </View>
-              </View>
-            </View>
-            <View style={{ width: "100%", height: "33%" }}>
-              <View style={{ flex: 1 }}>
-                <ImageBackground
-                  source={require("../Assets/GUI_Parts_Free/barmid_ready.png")}
-                  style={{ width: "100%", height: "100%", overflow: "hidden" }}
-                  resizeMode="stretch"
-                ></ImageBackground>
-              </View>
-            </View>
+      <BackgroundContainer>
+        <View style={styles.flexFullColumn}>
+          <View style={{ width: "100%", height: "7%" }}>
+            <HeaderWithButton
+              handlePress={this.navigateToPreviousScreen}
+              buttonLabel={"Go Back"}
+              header={"Inventory"}
+            />
           </View>
-          </BackgroundContainer>
-      </View>
+          <MidBarReady>
+            <View style={styles.listPadding}>
+              <FlatList
+                indicatorStyle="white"
+                numColumns={5}
+                data={this.state.data}
+                renderItem={({ item }) => this.renderList()}
+              />
+            </View>
+          </MidBarReady>
+          <MidBarReadyContainer></MidBarReadyContainer>
+        </View>
+      </BackgroundContainer>
     );
   }
 }
