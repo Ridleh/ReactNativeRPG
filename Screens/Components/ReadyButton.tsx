@@ -2,6 +2,7 @@ import React from "react";
 import { View, ImageBackground, Text } from "react-native";
 import styles from "../../StyleSheet/Styles";
 import { TouchableHighlight } from "react-native-gesture-handler";
+import {getImage} from '../../AssetIndex/GUIPartsIndex';
 
 export default function ReadyButton(props: any) {
   return (
@@ -11,7 +12,7 @@ export default function ReadyButton(props: any) {
         underlayColor="transparent"
       >
         <ImageBackground
-          source={require("../../Assets/GUI_Parts_Free/button_ready_on.png")}
+          source={getImage('buttonReadyOn')}
           style={styles.imageBackgroundFull}
           resizeMode="center"
         >

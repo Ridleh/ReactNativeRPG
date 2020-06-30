@@ -1,7 +1,5 @@
 import React from "react";
-import { View, ImageBackground, Text, Image } from "react-native";
-import styles from "../../StyleSheet/Styles";
-import { TouchableHighlight } from "react-native-gesture-handler";
+import { View } from "react-native";
 import ItemContainer from "./ItemContainer";
 
 /*

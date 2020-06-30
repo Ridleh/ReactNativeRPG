@@ -1,15 +1,14 @@
 import React from "react";
-import { View, ImageBackground, Text, Image } from "react-native";
+import { View, ImageBackground, Text} from "react-native";
 import styles from "../../StyleSheet/Styles";
-import { TouchableHighlight } from "react-native-gesture-handler";
 import ReadyButtonSmall from './ReadyButtonSmall'
-import {Header} from 'react-native-elements'
+import {getImage} from '../../AssetIndex/GUIPartsIndex';
 
 export default function HeaderWithButton(props: any) {
   return (
     <View style={styles.flexFull}>
     <ImageBackground
-      source={require("../../Assets/GUI_Parts_Free/name_bar2.png")}
+      source={getImage('nameBar2')}
       style={{
         width: "100%",
         height: "100%",
@@ -21,10 +20,13 @@ export default function HeaderWithButton(props: any) {
         style={styles.centerRow}
       >
         <View style={{ width: "35%", height: "100%" }}>
+          <View style={styles.flexFull}>
+          </View>
           <ReadyButtonSmall
           handlePress={props.handlePress}
           label={props.buttonLabel}
           />
+          
         </View>
         <View
           style={{

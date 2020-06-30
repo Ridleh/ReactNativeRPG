@@ -18,7 +18,7 @@ export default class InventoryScreen extends Component<any, any> {
   }
   componentDidMount() {
     var array: string[] = [];
-    for (var i = 0; i < 50; i++) {
+    for (var i = 0; i < 11; i++) {
       array.push(i.toString());
     }
     this.setState({ data: array });
@@ -35,7 +35,6 @@ export default class InventoryScreen extends Component<any, any> {
           backgroundColor: "black",
           alignItems: "center",
           justifyContent: "center",
-          flex: 1,
           margin: 1 / 5,
           height: Dimensions.get("window").width / 5, // approximate a square
           width: Dimensions.get("window").width / 5,
@@ -51,13 +50,11 @@ export default class InventoryScreen extends Component<any, any> {
             source={require("../Assets/GUI_Parts_Free/Mini_frame0.png")}
             resizeMode="stretch"
           >
-            <View>
               <Image
                 source={require("../Assets/Icons_Free/stoune_icon.png")}
                 style={{ width: "100%", height: "100%" }}
                 resizeMode="center"
               />
-            </View>
           </ImageBackground>
         </ImageBackground>
       </View>

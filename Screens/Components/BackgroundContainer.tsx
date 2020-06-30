@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, ImageBackground } from "react-native";
 import styles from "../../StyleSheet/Styles";
+import {getImage} from '../../AssetIndex/GUIPartsIndex';
 
 export default class BackgroundContainer extends Component<any, any> {
   constructor(props: any) {
@@ -12,7 +13,7 @@ export default class BackgroundContainer extends Component<any, any> {
     return (
       <View style={styles.rootContainer}>
         <ImageBackground
-          source={require("../../Assets/GUI_Parts_Free/bar_ready.png")}
+          source={getImage('barReady')}
           style={ styles.imageBackgroundFull }
           resizeMode="stretch"
         >

@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { View, ImageBackground } from "react-native";
 import styles from "../../StyleSheet/Styles";
+import {getImage} from '../../AssetIndex/GUIPartsIndex';
 
 export default function MidBarReady(props: any) {
   return (
     <View style={styles.rootContainer}>
       <ImageBackground
-        source={require("../../Assets/GUI_Parts_Free/barmid_ready.png")}
+        source={getImage('barMidReady')}
         style={styles.imageBackgroundFull}
         resizeMode="stretch"
       >

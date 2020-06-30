@@ -15,7 +15,10 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { Provider } from "react-redux";
 import store, { LoadState } from "./Redux/Store";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
-
+import styles from "./StyleSheet/Styles";
+// Before rendering any navigation stack
+import { enableScreens } from "react-native-screens";
+enableScreens();
 export default function App(props: any) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
@@ -31,7 +34,7 @@ export default function App(props: any) {
     return (
       <SafeAreaProvider>
         <Provider store={store}>
-          <SafeAreaView style={styles.container}>
+          <SafeAreaView style={styles.flexFull}>
             <NavigationIndex.Navigation />
           </SafeAreaView>
         </Provider>
@@ -77,11 +80,3 @@ function handleFinishLoading(
 ) {
   setLoadingComplete(true);
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    paddingTop: 25,
-  },
-});

@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   imageBackgroundFull: {
     width: "100%",
     height: "100%",
-    overflow: "hidden",
+    overflow: "hidden"
   },
   rootContainerPadding: {
     padding: 10,
