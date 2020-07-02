@@ -7,6 +7,7 @@ import {
   ThreeItemContainer,
 } from "./Components/ComponentIndex";
 import styles from "../StyleSheet/Styles";
+import {getImage} from '../AssetIndex/GUIPartsIndex';
 
 export default class CharacterScreen extends Component<any, any> {
   constructor(props: any) {
@@ -14,8 +15,8 @@ export default class CharacterScreen extends Component<any, any> {
     this.state = {};
   }
 
-  handlePress = () => {
-    console.log("From parent");
+  navigateToAbilitiesScreen = () => {
+    this.props.navigation.push("Abilities");
   };
 
   navigateToInventoryScreen = () => {
@@ -28,7 +29,7 @@ export default class CharacterScreen extends Component<any, any> {
         <View style={styles.flexFull}>
           <View style={{ flex: 3, flexDirection: "row" }}>
             <ImageBackground
-              source={require("../Assets/GUI_Parts_Free/warrior_silhouette_man.png")}
+              source={getImage('warriorSilhouetteWoman')}
               style={{ width: "100%", height: "100%", overflow: "hidden" }}
               resizeMode="contain"
             >
@@ -46,8 +47,8 @@ export default class CharacterScreen extends Component<any, any> {
                   handlePress={this.navigateToInventoryScreen}
                 />
                 <Readybutton
-                  label={"Here I am"}
-                  handlePress={this.handlePress}
+                  label={"View Abilities"}
+                  handlePress={this.navigateToAbilitiesScreen}
                 />
               </View>
             </MidBarReadyContainer>

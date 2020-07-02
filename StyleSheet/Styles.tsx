@@ -48,6 +48,10 @@ const styles = StyleSheet.create({
   listPadding: {
     paddingHorizontal: 10,
     paddingVertical: 20
+  },
+  header: {
+    width: "100%", 
+    height: "8%" 
   }
 });
 

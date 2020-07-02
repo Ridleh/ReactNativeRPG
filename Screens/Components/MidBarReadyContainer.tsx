@@ -5,7 +5,7 @@ import {getImage} from '../../AssetIndex/GUIPartsIndex';
 
 export default function MidBarReady(props: any) {
   return (
-    <View style={styles.rootContainer}>
+    <View style={styles.flexFull}>
       <ImageBackground
         source={getImage('barMidReady')}
         style={styles.imageBackgroundFull}

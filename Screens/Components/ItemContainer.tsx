@@ -13,7 +13,7 @@ export default function ItemContainer(props: any) {
       >
         <ImageBackground
           style={{ height: "100%", width: "95%" }}
-          source={getImage('miniFrame0')}
+          source={getImage('miniFrame2')}
           resizeMode="center"
         >
           <Image

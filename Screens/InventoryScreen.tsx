@@ -18,7 +18,7 @@ export default class InventoryScreen extends Component<any, any> {
   }
   componentDidMount() {
     var array: string[] = [];
-    for (var i = 0; i < 11; i++) {
+    for (var i = 0; i < 49; i++) {
       array.push(i.toString());
     }
     this.setState({ data: array });
@@ -36,6 +36,7 @@ export default class InventoryScreen extends Component<any, any> {
           alignItems: "center",
           justifyContent: "center",
           margin: 1 / 5,
+          flex: 1,
           height: Dimensions.get("window").width / 5, // approximate a square
           width: Dimensions.get("window").width / 5,
         }}
@@ -51,7 +52,7 @@ export default class InventoryScreen extends Component<any, any> {
             resizeMode="stretch"
           >
               <Image
-                source={require("../Assets/Icons_Free/stoune_icon.png")}
+                source={require("../Assets/Abilities/Bard/Rank_2/Lullaby.png")}
                 style={{ width: "100%", height: "100%" }}
                 resizeMode="center"
               />
@@ -65,7 +66,7 @@ export default class InventoryScreen extends Component<any, any> {
     return (
       <BackgroundContainer>
         <View style={styles.flexFullColumn}>
-          <View style={{ width: "100%", height: "7%" }}>
+          <View style={styles.header}>
             <HeaderWithButton
               handlePress={this.navigateToPreviousScreen}
               buttonLabel={"Go Back"}

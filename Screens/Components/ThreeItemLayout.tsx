@@ -2,6 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import ItemContainer from "./ItemContainer";
 
+
 /*
 required props:
     alignment: parameter for alignItems style
@@ -18,7 +19,7 @@ export default function ThreeItemLayout(props: any) {
     >
      <ItemContainer/>
      <ItemContainer/>
-     <ItemContainer/> 
+     <ItemContainer/>
     </View>
   );
 }
