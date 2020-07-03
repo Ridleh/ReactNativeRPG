@@ -39,9 +39,12 @@ export function Navigation() {
         component={ShopScreen}
         options={{unmountOnBlur: true}}
         />
+        <Drawer.Screen
+        name='Quests'
+        component={QuestScreen}
+        options={{unmountOnBlur: true}}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );
 }
-
-export { HomeScreen, InventoryScreen, PartyScreen, QuestScreen, ShopScreen };

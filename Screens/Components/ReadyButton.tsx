@@ -1,10 +1,11 @@
 import React from "react";
-import { View, ImageBackground, Text } from "react-native";
+import { View, ImageBackground, Text, TouchableHighlight } from "react-native";
 import styles from "../../StyleSheet/Styles";
-import { TouchableHighlight } from "react-native-gesture-handler";
+import {  } from "react-native-gesture-handler";
 import {getImage} from '../../AssetIndex/GUIPartsIndex';
 
 export default function ReadyButton(props: any) {
+
   return (
     <View style={styles.flexFull}>
       <TouchableHighlight
