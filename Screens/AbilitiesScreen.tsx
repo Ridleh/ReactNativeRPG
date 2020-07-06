@@ -6,7 +6,7 @@ import {
 } from "./Components/ComponentIndex";
 import { View, ImageBackground, Text } from "react-native";
 import styles from "../StyleSheet/Styles";
-import { getImage } from "../AssetIndex/GUIPartsIndex";
+import { getImage } from "../AssetMaps/GUIPartsIndex";
 
 export default class HomeScreen extends Component<any, any> {
   constructor(props: any) {

@@ -16,6 +16,8 @@
     "splash": {
       "image": "./Assets/splash.png",
       "backgroundColor": "#000000"
-    }
+    },
+    "description": "work in progress ",
+    "githubUrl": "https://github.com/Ridleh/ReactNativeRPG"
   }
 }

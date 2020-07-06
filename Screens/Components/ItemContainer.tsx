@@ -1,27 +1,22 @@
 import React from "react";
 import { View, ImageBackground, Image } from "react-native";
 import styles from "../../StyleSheet/Styles";
-import {getImage} from '../../AssetIndex/GUIPartsIndex';
+import { getImage } from "../../AssetMaps/GUIPartsIndex";
+import { getImageFromCRPG } from "../../AssetMaps/ClassicRPGUIMap";
 
 export default function ItemContainer(props: any) {
   return (
     <View style={styles.item}>
       <ImageBackground
-        style={{ height: "100%", width: "95%" }}
-        source={getImage("miniBackground")}
+        style={{ height: "100%", width: "100%" }}
+        source={props.image}
         resizeMode="center"
       >
-        <ImageBackground
-          style={{ height: "100%", width: "95%" }}
-          source={getImage('miniFrame2')}
+        <Image
+          style={{ height: "100%", width: "100%" }}
+          source={getImageFromCRPG("inventoryFrame")}
           resizeMode="center"
-        >
-          <Image
-            source={require("../../Assets/Icons_Free/armor_icon.png")}
-            style={{ width: "91%", height: "100%" }}
-            resizeMode="center"
-          />
-        </ImageBackground>
+        ></Image>
       </ImageBackground>
     </View>
   );

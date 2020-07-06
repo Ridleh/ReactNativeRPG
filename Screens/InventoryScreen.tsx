@@ -52,7 +52,7 @@ export default class InventoryScreen extends Component<any, any> {
             resizeMode="stretch"
           >
               <Image
-                source={require("../Assets/Abilities/Bard/Rank_2/Lullaby.png")}
+                source={require("../Assets/Icons_Free/skill_icon_01.png")}
                 style={{ width: "100%", height: "100%" }}
                 resizeMode="center"
               />

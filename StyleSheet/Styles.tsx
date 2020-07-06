@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1,
     margin: 1 / 5,
-    height: Dimensions.get("window").width / 4, // approximate a square
-    width: Dimensions.get("window").width / 4,
+    height: Dimensions.get("window").width / 5, // approximate a square
+    width: Dimensions.get("window").width / 5,
   },
   listPadding: {
     paddingHorizontal: 10,

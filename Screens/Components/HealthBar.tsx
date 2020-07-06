@@ -29,6 +29,7 @@ class HealthBar extends Component<any, any> {
       });
 
       Animated.timing(this.currentHealth, {
+        useNativeDriver: false,
         duration: 1500,
         toValue: this.props.currentHealth,
       }).start();

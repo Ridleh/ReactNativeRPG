@@ -8,7 +8,14 @@ export default class HomeScreen extends Component<any, any> {
     this.state = {};
   }
 
+  openDrawer = () => {
+    this.props.navigation.openDrawer();
+  };
+
   render() {
-    return <BackgroundContainer></BackgroundContainer>;
+    return (
+      <BackgroundContainer>
+      </BackgroundContainer>
+    );
   }
 }

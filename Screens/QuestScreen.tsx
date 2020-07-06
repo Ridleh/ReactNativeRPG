@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import {
-  Dimensions,
   Text,
   View,
-  StyleSheet,
   ImageBackground,
-  Image,
   SectionList,
 } from "react-native";
 
@@ -16,7 +13,7 @@ import {
 } from "./Components/ComponentIndex";
 import styles from "../StyleSheet/Styles";
 import { ListItem, Overlay } from "react-native-elements";
-import { getImage } from "../AssetIndex/GUIPartsIndex";
+import { getImage } from "../AssetMaps/GUIPartsIndex";
 
 export default class ShopScreen extends Component<any, any> {
   constructor(props: any) {
@@ -44,18 +41,33 @@ export default class ShopScreen extends Component<any, any> {
     };
   }
 
-  navigateToPreviousScreen = () => {
-    this.props.navigation.navigate('Home');
-  };
-
   toggleOverlay = () => {
+    console.log('here');
     this.setState((prevState: { showOverlay: boolean }) => ({
       showOverlay: !prevState.showOverlay,
     }));
   };
 
-  buttonTest = () => {
-    console.log('weird');
+  openDrawer = () => {
+    this.props.navigation.openDrawer();
+  };
+
+  beginQuest = () => {
+    console.log('quest begin');
+    /*
+    showOverlay needs to be set to false before navigating away
+    from this screen otherwise every list item will be
+    unresponsive
+    */
+    this.setState((prevState: { showOverlay: boolean }) => ({
+      showOverlay: !prevState.showOverlay,
+    }), () => {
+      this.props.navigation.push('Battle')
+    });
+  }
+
+  cancelQuest = () => {
+    this.toggleOverlay
   }
 
   renderItem = (item: any) => {
@@ -80,16 +92,12 @@ export default class ShopScreen extends Component<any, any> {
       <BackgroundContainer>
         <View style={styles.header}>
           <HeaderWithButton
-            handlePress={this.navigateToPreviousScreen}
-            buttonLabel={"Go Home"}
+            handlePress={this.openDrawer}
+            buttonLabel={"Menu"}
             header={"Quests"}
           />
         </View>
         <View style={styles.flexFull}>
-        <Readybutton
-            label={'Begin'}
-            handlePress={this.buttonTest}
-            />
           <SectionList
             sections={this.state.data}
             keyExtractor={(item: any, index: number) => item + index}
@@ -146,7 +154,7 @@ export default class ShopScreen extends Component<any, any> {
             }}>
             <Readybutton
             label={'Begin'}
-            handlePress={this.toggleOverlay}
+            handlePress={this.beginQuest}
             />
             <Readybutton
             label={'Cancel'}

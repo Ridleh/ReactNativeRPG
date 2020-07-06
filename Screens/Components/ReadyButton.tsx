@@ -2,7 +2,7 @@ import React from "react";
 import { View, ImageBackground, Text, TouchableHighlight } from "react-native";
 import styles from "../../StyleSheet/Styles";
 import {  } from "react-native-gesture-handler";
-import {getImage} from '../../AssetIndex/GUIPartsIndex';
+import {getImage} from '../../AssetMaps/GUIPartsIndex';
 
 export default function ReadyButton(props: any) {
 

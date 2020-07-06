@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, ImageBackground } from "react-native";
 import styles from "../../StyleSheet/Styles";
-import {getImage} from '../../AssetIndex/GUIPartsIndex';
+import {getImage} from '../../AssetMaps/GUIPartsIndex';
 
 export default class BackgroundContainer extends Component<any, any> {
   constructor(props: any) {
