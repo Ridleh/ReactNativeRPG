@@ -2,13 +2,13 @@ import React from "react";
 import { View, ImageBackground, Text } from "react-native";
 import styles from "../../StyleSheet/Styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import {getImage} from '../../AssetMaps/GUIPartsIndex';
+import {getImageFromUIMap} from '../../AssetMaps/UIMap';
 
 export default function ReadyButtonSmall(props: any) {
   return (
       <TouchableOpacity onPress={props.handlePress}>
         <ImageBackground
-          source={getImage('button2ReadyOn')}
+          source={getImageFromUIMap('button2_ready_on.png')}
           style={{ height: "100%", width: "100%" }}
           resizeMode="stretch"
         >

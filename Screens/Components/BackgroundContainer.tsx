@@ -1,25 +1,19 @@
 import React, { Component } from "react";
 import { View, ImageBackground } from "react-native";
 import styles from "../../StyleSheet/Styles";
-import {getImage} from '../../AssetMaps/GUIPartsIndex';
+import {getImageFromUIMap} from '../../AssetMaps/UIMap';
 
-export default class BackgroundContainer extends Component<any, any> {
-  constructor(props: any) {
-    super(props);
-    this.state = {};
-  }
+export default function BackgroundContainer(props: any){
 
-  render() {
     return (
       <View style={styles.rootContainer}>
         <ImageBackground
-          source={getImage('barReady')}
+          source={getImageFromUIMap('bar_ready.png')}
           style={ styles.imageBackgroundFull }
           resizeMode="stretch"
         >
-          <View style={styles.rootContainerPadding}>{this.props.children}</View>
+          <View style={styles.rootContainerPadding}>{props.children}</View>
         </ImageBackground>
       </View>
     );
-  }
 }

@@ -14,7 +14,7 @@ export default function QuestStack() {
       initialRouteName={'Quest'}
     >
       <Stack.Screen name="Quest" component={QuestScreen} />
-      <Stack.Screen name="Battle" component={BattleScreen} />
+      <Stack.Screen name="Battle" component={BattleScreen} options={{gestureEnabled: false}}/>
     </Stack.Navigator>
   );
 }

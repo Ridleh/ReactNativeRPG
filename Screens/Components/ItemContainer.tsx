@@ -1,23 +1,24 @@
 import React from "react";
-import { View, ImageBackground, Image } from "react-native";
+import { View, ImageBackground, Image, TouchableHighlight } from "react-native";
 import styles from "../../StyleSheet/Styles";
-import { getImage } from "../../AssetMaps/GUIPartsIndex";
-import { getImageFromCRPG } from "../../AssetMaps/ClassicRPGUIMap";
+import { getImageFromUIMap } from "../../AssetMaps/UIMap";
 
 export default function ItemContainer(props: any) {
   return (
-    <View style={styles.item}>
-      <ImageBackground
-        style={{ height: "100%", width: "100%" }}
-        source={props.image}
-        resizeMode="center"
-      >
-        <Image
+    <TouchableHighlight underlayColor={ 'transparent'} style={{ flex: 1 }} onPress={() => console.log("tapp")}>
+      <View style={styles.item}>
+        <ImageBackground
           style={{ height: "100%", width: "100%" }}
-          source={getImageFromCRPG("inventoryFrame")}
+          source={props.image}
           resizeMode="center"
-        ></Image>
-      </ImageBackground>
-    </View>
+        >
+          <Image
+            style={{ height: "100%", width: "100%" }}
+            source={getImageFromUIMap("inventory_frame.png")}
+            resizeMode="center"
+          />
+        </ImageBackground>
+      </View>
+    </TouchableHighlight>
   );
 }

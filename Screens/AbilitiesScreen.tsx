@@ -6,7 +6,7 @@ import {
 } from "./Components/ComponentIndex";
 import { View, ImageBackground, Text } from "react-native";
 import styles from "../StyleSheet/Styles";
-import { getImage } from "../AssetMaps/GUIPartsIndex";
+import { getImageFromUIMap } from "../AssetMaps/UIMap";
 
 export default class HomeScreen extends Component<any, any> {
   constructor(props: any) {
@@ -30,7 +30,7 @@ export default class HomeScreen extends Component<any, any> {
         </View>
         <View style={{ width: "100%", height: "6%" }}>
           <ImageBackground
-            source={getImage("nameBar3")}
+            source={getImageFromUIMap("name_bar3.png")}
             style={{ width: "100%", height: "100%", overflow: "hidden" }}
             resizeMode="stretch"
           >

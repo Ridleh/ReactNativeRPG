@@ -13,7 +13,7 @@ import {
 } from "./Components/ComponentIndex";
 import styles from "../StyleSheet/Styles";
 import { ListItem, Overlay } from "react-native-elements";
-import { getImage } from "../AssetMaps/GUIPartsIndex";
+import { getImageFromUIMap } from "../AssetMaps/UIMap";
 
 export default class ShopScreen extends Component<any, any> {
   constructor(props: any) {
@@ -128,7 +128,7 @@ export default class ShopScreen extends Component<any, any> {
           <BackgroundContainer>
             <View style={styles.header}>
               <ImageBackground
-                source={getImage("nameBar3")}
+                source={getImageFromUIMap("name_bar3.png")}
                 style={{ width: "100%", height: "100%", overflow: "hidden" }}
                 resizeMode="stretch"
               >

@@ -5,6 +5,11 @@ import styles from "../StyleSheet/Styles";
 import { HeaderWithButton } from "./Components/ComponentIndex";
 import HealthBar from "./Components/HealthBar";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { getImageFromUIMap } from "../AssetMaps/UIMap";
+import { getImageFromCharactersMap } from "../AssetMaps/CharactersMap";
+import { getImageFromIconsFreeMap } from "../AssetMaps/IconsFreeMap";
+import { getImageFromBackgroundsMap } from "../AssetMaps/BackgroundsMap";
+import SkillBarComponent from "./Components/SkillBarComponent";
 
 export default class HomeScreen extends Component<any, any> {
   constructor(props: any) {
@@ -16,7 +21,7 @@ export default class HomeScreen extends Component<any, any> {
           name: "Player",
           health: 100,
           mana: 75,
-          image: require("../Assets/Characters/Core_Classes/Bard.png"),
+          image: getImageFromCharactersMap("tyro.png"),
         },
       ],
       opponents: [
@@ -25,7 +30,7 @@ export default class HomeScreen extends Component<any, any> {
           name: "enemy",
           health: 100,
           mana: 75,
-          image: require("../Assets/Characters/Core_Classes/tyro.png"),
+          image: getImageFromCharactersMap("tyro.png"),
         },
       ],
       showOverlay: false
@@ -93,7 +98,7 @@ export default class HomeScreen extends Component<any, any> {
     return (
       <View style={styles.flexFull}>
         <ImageBackground
-          source={require("../Assets/Backgrounds/GrassyPlains.png")}
+          source={getImageFromBackgroundsMap("img_10088_01_02.png")}
           style={styles.imageBackgroundFull}
           resizeMode="stretch"
         >
@@ -141,17 +146,8 @@ export default class HomeScreen extends Component<any, any> {
                 </View>
               </View>
             </View>
-            <View style={{ flex: 2, backgroundColor: "red" }}>
-            <TouchableOpacity onPress={this.handleAbilityCast}>
-            <Image
-            style={{
-              height: 75,
-              width: 75,
-              paddingBottom: 10,
-            }}
-            source={require('../Assets/Icons_Free/skill_icon_02.png')}
-          />
-          </TouchableOpacity>
+            <View style={{ flex: 2 }}>
+                  <SkillBarComponent/>
             </View>
             <View></View>
           </View>

@@ -8,6 +8,7 @@ import {
   HeaderWithButton,
 } from "./Components/ComponentIndex";
 import MidBarReady from "./Components/MidBarReadyContainer";
+import { getImageFromUIMap } from "../AssetMaps/UIMap";
 
 export default class InventoryScreen extends Component<any, any> {
   constructor(props: any) {
@@ -17,11 +18,6 @@ export default class InventoryScreen extends Component<any, any> {
     };
   }
   componentDidMount() {
-    var array: string[] = [];
-    for (var i = 0; i < 49; i++) {
-      array.push(i.toString());
-    }
-    this.setState({ data: array });
   }
 
   navigateToPreviousScreen = () => {
@@ -41,23 +37,6 @@ export default class InventoryScreen extends Component<any, any> {
           width: Dimensions.get("window").width / 5,
         }}
       >
-        <ImageBackground
-          style={{ height: "100%", width: "100%" }}
-          source={require("../Assets/GUI_Parts_Free/Mini_background.png")}
-          resizeMode="center"
-        >
-          <ImageBackground
-            style={{ height: "100%", width: "100%" }}
-            source={require("../Assets/GUI_Parts_Free/Mini_frame0.png")}
-            resizeMode="stretch"
-          >
-              <Image
-                source={require("../Assets/Icons_Free/skill_icon_01.png")}
-                style={{ width: "100%", height: "100%" }}
-                resizeMode="center"
-              />
-          </ImageBackground>
-        </ImageBackground>
       </View>
     );
   }

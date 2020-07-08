@@ -1,17 +1,12 @@
 import React, { Component } from "react";
-import { Text, View, ImageBackground, Dimensions } from "react-native";
+import { Text, View, ImageBackground} from "react-native";
 import {
-  BackgroundContainer,
-  Readybutton,
-  MidBarReadyContainer,
-  ThreeItemContainer,
-  HeaderWithButton,
+  FourItemContainer, StatsContainer,
 } from "./Components/ComponentIndex";
 import styles from "../StyleSheet/Styles";
-import { getImage } from "../AssetMaps/GUIPartsIndex";
-import { getImageFromCRPG } from "../AssetMaps/ClassicRPGUIMap";
+import { getImageFromUIMap } from "../AssetMaps/UIMap";
 import ReadyButton from "./Components/ReadyButton";
-const { height, width } = Dimensions.get("window");
+import { getImageFromSilhouetteMap } from "../AssetMaps/SilhouetteMap";
 
 export default class CharacterScreen extends Component<any, any> {
   constructor(props: any) {
@@ -37,7 +32,7 @@ export default class CharacterScreen extends Component<any, any> {
         <View style={styles.flexFullColumn}>
           <View style={{ flex: 1, backgroundColor: "#291100" }}>
             <ImageBackground
-              source={getImageFromCRPG("lilBar")}
+              source={getImageFromUIMap("lil_bar.png")}
               style={styles.imageBackgroundFull}
               resizeMode="center"
             >
@@ -49,12 +44,12 @@ export default class CharacterScreen extends Component<any, any> {
           </View>
           <View style={{ flex: 6 }}>
             <ImageBackground
-              source={getImageFromCRPG("inventoryBar")}
+              source={getImageFromUIMap("Inventory_bar.png")}
               style={styles.imageBackgroundFull}
               resizeMode="stretch"
             >
               <ImageBackground
-                source={getImage("warriorSilhouetteWoman")}
+                source={getImageFromSilhouetteMap("warrior_silhouette_woman.png")}
                 style={styles.imageBackgroundFull}
                 resizeMode="center"
               >
@@ -65,7 +60,7 @@ export default class CharacterScreen extends Component<any, any> {
                       width: "20%",
                     }}
                   >
-                    <ThreeItemContainer leftSide={true} />
+                    <FourItemContainer leftSide={true} />
                   </View>
                   <View style={{ height: "100%", width: "60%" }}></View>
                   <View
@@ -74,7 +69,7 @@ export default class CharacterScreen extends Component<any, any> {
                       width: "20%",
                     }}
                   >
-                    <ThreeItemContainer leftSide={false} />
+                    <FourItemContainer leftSide={false} />
                   </View>
                 </View>
               </ImageBackground>
@@ -82,55 +77,18 @@ export default class CharacterScreen extends Component<any, any> {
           </View>
           <View style={{ flex: 2 }}>
             <ImageBackground
-              source={getImage("barMidReady")}
+              source={getImageFromUIMap("mid_bar.png")}
               style={styles.imageBackgroundFull}
               resizeMode="stretch"
             >
               <View style={{ flexDirection: "row", padding: 10 }}>
                 <View style={{ flex: 1 }}>
                   <ImageBackground
-                    source={getImageFromCRPG("inventoryButton2")}
+                    source={getImageFromUIMap("inventory_button2.png")}
                     style={styles.imageBackgroundFull}
                     resizeMode="stretch"
                   >
-                    <View style={styles.flexFullColumn}>
-                      <View
-                        style={{
-                          justifyContent: "center",
-                          alignItems: "center",
-                          flex: 1,
-                          padding: 10,
-                        }}
-                      >
-                        <Text style={{ color: "gold" }}>Characteristics:</Text>
-                      </View>
-                      <View style={{ flex: 5, flexDirection: "row" }}>
-                        <View
-                          style={{
-                            justifyContent: "space-evenly",
-                            alignItems: "center",
-                            flex: 1,
-                            flexDirection: "column",
-                          }}
-                        >
-                          <Text style={{ color: "white" }}>Health: 0</Text>
-                          <Text style={{ color: "white" }}>Mana: 0</Text>
-                          <Text style={{ color: "white" }}>Resist: 0</Text>
-                        </View>
-                        <View
-                          style={{
-                            justifyContent: "space-evenly",
-                            alignItems: "center",
-                            flex: 1,
-                            flexDirection: "column",
-                          }}
-                        >
-                          <Text style={{ color: "white" }}>Armor: 0</Text>
-                          <Text style={{ color: "white" }}>Attack: 0</Text>
-                          <Text style={{ color: "white" }}>Crit: 0%</Text>
-                        </View>
-                      </View>
-                    </View>
+                    <StatsContainer/>
                   </ImageBackground>
                 </View>
                 <View style={{ flex: 1 }}>

@@ -2,9 +2,11 @@ import BackgroundContainer from './BackgroundContainer';
 import Readybutton from './ReadyButton';
 import MidBarReadyContainer from './MidBarReadyContainer';
 import ItemContainer from './ItemContainer';
-import ThreeItemContainer from './ThreeItemLayout';
+import FourItemContainer from './FourItemLayout';
 import ReadyButtonSmall from './ReadyButton';
 import HeaderWithButton from './HeaderWithButton';
+import StatsContainer from './StatsContainer';
+import SkillBarcomponent from './SkillBarComponent';
 
 
 //When creating a component, DO NOT import another component
@@ -15,7 +17,9 @@ export {
     Readybutton,
     MidBarReadyContainer,
     ItemContainer,
-    ThreeItemContainer,
+    FourItemContainer,
     ReadyButtonSmall,
-    HeaderWithButton
+    HeaderWithButton,
+    StatsContainer,
+    SkillBarcomponent
 }

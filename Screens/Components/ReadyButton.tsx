@@ -1,8 +1,7 @@
 import React from "react";
 import { View, ImageBackground, Text, TouchableHighlight } from "react-native";
 import styles from "../../StyleSheet/Styles";
-import {  } from "react-native-gesture-handler";
-import {getImage} from '../../AssetMaps/GUIPartsIndex';
+import {getImageFromUIMap} from '../../AssetMaps/UIMap';
 
 export default function ReadyButton(props: any) {
 
@@ -13,7 +12,7 @@ export default function ReadyButton(props: any) {
         underlayColor="transparent"
       >
         <ImageBackground
-          source={getImage('buttonReadyOn')}
+          source={getImageFromUIMap('button_ready_on.png')}
           style={styles.imageBackgroundFull}
           resizeMode="center"
         >

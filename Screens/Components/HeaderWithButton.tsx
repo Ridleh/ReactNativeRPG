@@ -2,13 +2,13 @@ import React from "react";
 import { View, ImageBackground, Text} from "react-native";
 import styles from "../../StyleSheet/Styles";
 import ReadyButtonSmall from './ReadyButtonSmall'
-import {getImage} from '../../AssetMaps/GUIPartsIndex';
+import {getImageFromUIMap} from '../../AssetMaps/UIMap';
 
 export default function HeaderWithButton(props: any) {
   return (
     <View style={styles.flexFull}>
     <ImageBackground
-      source={getImage('nameBar2')}
+      source={getImageFromUIMap('name_bar2.png')}
       style={{
         width: "100%",
         height: "100%",
