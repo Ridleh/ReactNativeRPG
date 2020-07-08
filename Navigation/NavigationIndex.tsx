@@ -11,7 +11,7 @@ import CharacterStack from "./CharacterStack";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { getPartyState } from "../Redux/Actions";
+import QuestStack from "./QuestStack";
 
 const Drawer = createDrawerNavigator();
 
@@ -39,9 +39,12 @@ export function Navigation() {
         component={ShopScreen}
         options={{unmountOnBlur: true}}
         />
+        <Drawer.Screen
+        name='Quests'
+        component={QuestStack}
+        options={{unmountOnBlur: true}}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );
 }
-
-export { HomeScreen, InventoryScreen, PartyScreen, QuestScreen, ShopScreen };

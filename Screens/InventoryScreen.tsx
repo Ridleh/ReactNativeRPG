@@ -6,8 +6,9 @@ import {
   BackgroundContainer,
   MidBarReadyContainer,
   HeaderWithButton,
-} from "./Components/ComponentIndex";
-import MidBarReady from "./Components/MidBarReadyContainer";
+} from "../Components/ComponentIndex";
+import MidBarReady from "../Components/MidBarReadyContainer";
+import { getImageFromUIMap } from "../AssetMaps/UIMap";
 
 export default class InventoryScreen extends Component<any, any> {
   constructor(props: any) {
@@ -17,11 +18,6 @@ export default class InventoryScreen extends Component<any, any> {
     };
   }
   componentDidMount() {
-    var array: string[] = [];
-    for (var i = 0; i < 11; i++) {
-      array.push(i.toString());
-    }
-    this.setState({ data: array });
   }
 
   navigateToPreviousScreen = () => {
@@ -36,27 +32,11 @@ export default class InventoryScreen extends Component<any, any> {
           alignItems: "center",
           justifyContent: "center",
           margin: 1 / 5,
+          flex: 1,
           height: Dimensions.get("window").width / 5, // approximate a square
           width: Dimensions.get("window").width / 5,
         }}
       >
-        <ImageBackground
-          style={{ height: "100%", width: "100%" }}
-          source={require("../Assets/GUI_Parts_Free/Mini_background.png")}
-          resizeMode="center"
-        >
-          <ImageBackground
-            style={{ height: "100%", width: "100%" }}
-            source={require("../Assets/GUI_Parts_Free/Mini_frame0.png")}
-            resizeMode="stretch"
-          >
-              <Image
-                source={require("../Assets/Icons_Free/stoune_icon.png")}
-                style={{ width: "100%", height: "100%" }}
-                resizeMode="center"
-              />
-          </ImageBackground>
-        </ImageBackground>
       </View>
     );
   }
@@ -65,7 +45,7 @@ export default class InventoryScreen extends Component<any, any> {
     return (
       <BackgroundContainer>
         <View style={styles.flexFullColumn}>
-          <View style={{ width: "100%", height: "7%" }}>
+          <View style={styles.header}>
             <HeaderWithButton
               handlePress={this.navigateToPreviousScreen}
               buttonLabel={"Go Back"}
