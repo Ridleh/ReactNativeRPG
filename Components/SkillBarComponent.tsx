@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { View, ImageBackground } from "react-native";
-import styles from "../../StyleSheet/Styles";
-import { getImageFromUIMap } from "../../AssetMaps/UIMap";
+import styles from "../StyleSheet/Styles";
+import { getImageFromUIMap } from "../AssetMaps/UIMap";
 import {ItemContainer} from './ComponentIndex';
-import { getImageFromFrameBackgroundsMap } from "../../AssetMaps/FrameBackgroundsMap";
+import { getImageFromFrameBackgroundsMap } from "../AssetMaps/FrameBackgroundsMap";
 
 export default function (props: any) {
   return (

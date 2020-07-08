@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Text, View, ImageBackground} from "react-native";
 import {
   FourItemContainer, StatsContainer,
-} from "./Components/ComponentIndex";
+} from "../Components/ComponentIndex";
 import styles from "../StyleSheet/Styles";
 import { getImageFromUIMap } from "../AssetMaps/UIMap";
-import ReadyButton from "./Components/ReadyButton";
+import ReadyButton from "../Components/ReadyButton";
 import { getImageFromSilhouetteMap } from "../AssetMaps/SilhouetteMap";
 
 export default class CharacterScreen extends Component<any, any> {

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ImageBackground } from "react-native";
-import styles from "../../StyleSheet/Styles";
-import { getImageFromUIMap } from "../../AssetMaps/UIMap";
+import styles from "../StyleSheet/Styles";
+import { getImageFromUIMap } from "../AssetMaps/UIMap";
 
 export default function FourItemLayout(props: any) {
   return (

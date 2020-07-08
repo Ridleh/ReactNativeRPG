@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import ItemContainer from "./ItemContainer";
-import { getImageFromFrameBackgroundsMap } from "../../AssetMaps/FrameBackgroundsMap";
+import { getImageFromFrameBackgroundsMap } from "../AssetMaps/FrameBackgroundsMap";
 
 /*
 required props:

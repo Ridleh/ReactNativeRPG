@@ -10,7 +10,7 @@ import {
   HeaderWithButton,
   BackgroundContainer,
   Readybutton
-} from "./Components/ComponentIndex";
+} from "../Components/ComponentIndex";
 import styles from "../StyleSheet/Styles";
 import { ListItem, Overlay } from "react-native-elements";
 import { getImageFromUIMap } from "../AssetMaps/UIMap";

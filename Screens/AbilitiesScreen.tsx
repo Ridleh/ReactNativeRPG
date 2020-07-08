@@ -3,7 +3,7 @@ import {
   HeaderWithButton,
   BackgroundContainer,
   MidBarReadyContainer,
-} from "./Components/ComponentIndex";
+} from "../Components/ComponentIndex";
 import { View, ImageBackground, Text } from "react-native";
 import styles from "../StyleSheet/Styles";
 import { getImageFromUIMap } from "../AssetMaps/UIMap";

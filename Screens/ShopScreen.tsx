@@ -18,7 +18,7 @@ import * as StatHandler from "../Systems/StatHandler";
 import { ItemTypes } from "../ItemsAndSpells/ItemsAndSpellsDatabase";
 import { Types } from "../ItemsAndSpells/ItemTypes/Types";
 
-import {BackgroundContainer} from './Components/ComponentIndex';
+import {BackgroundContainer} from '../Components/ComponentIndex';
 
 const { height, width } = Dimensions.get("window");
 

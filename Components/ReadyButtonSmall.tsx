@@ -1,8 +1,8 @@
 import React from "react";
 import { View, ImageBackground, Text } from "react-native";
-import styles from "../../StyleSheet/Styles";
+import styles from "../StyleSheet/Styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import {getImageFromUIMap} from '../../AssetMaps/UIMap';
+import {getImageFromUIMap} from '../AssetMaps/UIMap';
 
 export default function ReadyButtonSmall(props: any) {
   return (

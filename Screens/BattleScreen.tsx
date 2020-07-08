@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import BackgroundContainer from "./Components/BackgroundContainer";
+import BackgroundContainer from "../Components/BackgroundContainer";
 import { View, ImageBackground, Image, FlatList } from "react-native";
 import styles from "../StyleSheet/Styles";
-import { HeaderWithButton } from "./Components/ComponentIndex";
-import HealthBar from "./Components/HealthBar";
+import { HeaderWithButton } from "../Components/ComponentIndex";
+import HealthBar from "../Components/HealthBar";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { getImageFromUIMap } from "../AssetMaps/UIMap";
 import { getImageFromCharactersMap } from "../AssetMaps/CharactersMap";
 import { getImageFromIconsFreeMap } from "../AssetMaps/IconsFreeMap";
 import { getImageFromBackgroundsMap } from "../AssetMaps/BackgroundsMap";
-import SkillBarComponent from "./Components/SkillBarComponent";
+import SkillBarComponent from "../Components/SkillBarComponent";
 
 export default class HomeScreen extends Component<any, any> {
   constructor(props: any) {

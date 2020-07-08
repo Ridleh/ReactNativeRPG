@@ -6,8 +6,8 @@ import {
   BackgroundContainer,
   MidBarReadyContainer,
   HeaderWithButton,
-} from "./Components/ComponentIndex";
-import MidBarReady from "./Components/MidBarReadyContainer";
+} from "../Components/ComponentIndex";
+import MidBarReady from "../Components/MidBarReadyContainer";
 import { getImageFromUIMap } from "../AssetMaps/UIMap";
 
 export default class InventoryScreen extends Component<any, any> {
