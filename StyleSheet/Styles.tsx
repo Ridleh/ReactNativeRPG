@@ -36,6 +36,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: 'row'
   },
+  centerColumn: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: 'column'
+  },
   item: {
     backgroundColor: "transparent",
     alignItems: "center",
@@ -51,7 +57,7 @@ const styles = StyleSheet.create({
   },
   header: {
     width: "100%", 
-    height: "8%" 
+    height: "10%" 
   }
 });
 

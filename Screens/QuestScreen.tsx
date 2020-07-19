@@ -42,7 +42,6 @@ export default class ShopScreen extends Component<any, any> {
   }
 
   toggleOverlay = () => {
-    console.log('here');
     this.setState((prevState: { showOverlay: boolean }) => ({
       showOverlay: !prevState.showOverlay,
     }));
@@ -125,13 +124,12 @@ export default class ShopScreen extends Component<any, any> {
           onBackdropPress={this.toggleOverlay}
           animationType="fade"
         >
-          <BackgroundContainer>
+          <ImageBackground
+          source={getImageFromUIMap('Paper_01.png')}
+          style={ styles.imageBackgroundFull }
+          resizeMode="stretch"
+        >
             <View style={styles.header}>
-              <ImageBackground
-                source={getImageFromUIMap("name_bar3.png")}
-                style={{ width: "100%", height: "100%", overflow: "hidden" }}
-                resizeMode="stretch"
-              >
                 <View style={styles.center}>
                   <Text
                     style={{
@@ -141,7 +139,6 @@ export default class ShopScreen extends Component<any, any> {
                     Description
                   </Text>
                 </View>
-              </ImageBackground>
             </View>
             <View
             style={styles.flexFullColumn}>
@@ -161,7 +158,7 @@ export default class ShopScreen extends Component<any, any> {
             handlePress={this.toggleOverlay}
             />
             </View>
-          </BackgroundContainer>
+            </ImageBackground>
         </Overlay>
       </BackgroundContainer>
     );

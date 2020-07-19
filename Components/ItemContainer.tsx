@@ -5,7 +5,11 @@ import { getImageFromUIMap } from "../AssetMaps/UIMap";
 
 export default function ItemContainer(props: any) {
   return (
-    <TouchableHighlight underlayColor={ 'transparent'} style={{ flex: 1 }} onPress={() => console.log("tapp")}>
+    <TouchableHighlight
+      underlayColor={"transparent"}
+      style={{ flex: 1 }}
+      onPress={() => props.handlePress && props.handlePress.navigate('EquipItems')}
+    >
       <View style={styles.item}>
         <ImageBackground
           style={{ height: "100%", width: "100%" }}

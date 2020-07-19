@@ -26,6 +26,10 @@ export default class CharacterScreen extends Component<any, any> {
     this.props.navigation.openDrawer();
   };
 
+  showCharacteristicsOverlay(){
+    console.log('yes');
+  }
+
   render() {
     return (
       <View style={styles.rootContainer}>
@@ -88,7 +92,8 @@ export default class CharacterScreen extends Component<any, any> {
                     style={styles.imageBackgroundFull}
                     resizeMode="stretch"
                   >
-                    <StatsContainer/>
+                    <StatsContainer
+                    handlePress={this.showCharacteristicsOverlay}/>
                   </ImageBackground>
                 </View>
                 <View style={{ flex: 1 }}>

@@ -7,6 +7,7 @@ import ReadyButtonSmall from './ReadyButton';
 import HeaderWithButton from './HeaderWithButton';
 import StatsContainer from './StatsContainer';
 import SkillBarcomponent from './SkillBarComponent';
+import Header from './HeaderComponent';
 
 
 //When creating a component, DO NOT import another component
@@ -21,5 +22,6 @@ export {
     ReadyButtonSmall,
     HeaderWithButton,
     StatsContainer,
-    SkillBarcomponent
+    SkillBarcomponent,
+    Header
 }
