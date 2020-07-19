@@ -1,22 +1,25 @@
 import React from "react";
-import { View, Text, ImageBackground } from "react-native";
+import { View, Text, ImageBackground, TouchableHighlight } from "react-native";
 import styles from "../StyleSheet/Styles";
 import { getImageFromUIMap } from "../AssetMaps/UIMap";
 
 export default function FourItemLayout(props: any) {
   return (
+    <TouchableHighlight
+    onPress={props.handlePress}
+    style={styles.flexFullColumn}>
         <View style={styles.flexFullColumn}>
           <View
             style={{
               justifyContent: "center",
               alignItems: "center",
               flex: 1,
-              padding: 10,
+              paddingTop:10
             }}
           >
             <Text style={{ color: "gold" }}>Characteristics:</Text>
           </View>
-          <View style={{ flex: 5, flexDirection: "row" }}>
+          <View style={{ flex: 5, flexDirection: "row", paddingBottom:10 }}>
             <View
               style={{
                 justifyContent: "space-evenly",
@@ -43,5 +46,6 @@ export default function FourItemLayout(props: any) {
             </View>
           </View>
         </View>
+        </TouchableHighlight>
   );
 }
