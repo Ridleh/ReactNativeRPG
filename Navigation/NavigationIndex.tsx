@@ -10,7 +10,7 @@ import CharacterScreen from "../Screens/CharacterScreen";
 import CharacterStack from "./CharacterStack";
 
 import { Image } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import QuestStack from "./QuestStack";
 import { getImageFromIconsMap } from "../AssetMaps/IconsMap";
@@ -19,7 +19,7 @@ const Drawer = createBottomTabNavigator();
 
 export function Navigation() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={DarkTheme}>
       <Drawer.Navigator
         initialRouteName="Home"
         tabBarOptions={{activeBackgroundColor:'orange'}}
