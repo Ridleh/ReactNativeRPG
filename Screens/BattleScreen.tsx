@@ -33,7 +33,7 @@ export default class HomeScreen extends Component<any, any> {
           image: getImageFromCharactersMap("tyro.png"),
         },
       ],
-      showOverlay: false
+      showOverlay: false,
     };
   }
 
@@ -42,17 +42,32 @@ export default class HomeScreen extends Component<any, any> {
   };
 
   handleAbilityCast = () => {
-    const damage: number = Math.floor(Math.random() * 80)
+    console.log("player's attack");
+    const damage: number = Math.floor(Math.random() * 80);
     var enemy: any = this.state.opponents[0];
-    enemy.health-= damage;
+    enemy.health -= damage;
     var newOpponents: any[] = [];
     newOpponents.push(enemy);
-    this.setState({opponents : newOpponents})
-    if(enemy.health <= 0){
-      console.log('enemy is defeated. game over');
+    this.setState({ opponents: newOpponents });
+    if (enemy.health <= 0) {
+      console.log("enemy is defeated. game over");
       this.props.navigation.pop();
+    } else {
+      setTimeout(() => {
+        console.log("enemy's attack");
+        const damage2: number = Math.floor(Math.random() * 80);
+        var player: any = this.state.playableCharacters[0];
+        player.health -= damage2;
+        var newPlayers: any[] = [];
+        newPlayers.push(player);
+        this.setState({ playableCharacters: newPlayers });
+        if (player.health <= 0) {
+          console.log("player is defeated. game over");
+          this.props.navigation.pop();
+        }
+      }, 2000);
     }
-  }
+  };
 
   renderPlayer = (player: any) => {
     return (
@@ -111,17 +126,20 @@ export default class HomeScreen extends Component<any, any> {
                 backgroundColor: "green",
               }}
             >
-              <View style={{ flex: 1, backgroundColor: "gray" }}>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flex: 1,
+                  backgroundColor: "gray",
+                }}
+              >
                 <View
                   style={{
                     flex: 1,
                   }}
                 >
                   <FlatList
-                    contentContainerStyle={{
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
                     data={this.state.opponents}
                     renderItem={(player) => this.renderPlayer(player)}
                     keyExtractor={(player: any) => player.id.toString()}
@@ -147,7 +165,7 @@ export default class HomeScreen extends Component<any, any> {
               </View>
             </View>
             <View style={{ flex: 2 }}>
-                  <SkillBarComponent/>
+              <SkillBarComponent handlePress={this.handleAbilityCast} />
             </View>
             <View></View>
           </View>
