@@ -32,13 +32,9 @@ export default function App(props: any) {
     );
   } else {
     return (
-      <SafeAreaProvider>
         <Provider store={store}>
-          <SafeAreaView style={styles.flexFull}>
             <NavigationIndex.Navigation />
-          </SafeAreaView>
         </Provider>
-      </SafeAreaProvider>
     );
   }
 }

@@ -24,7 +24,7 @@ class HealthBar extends Component<any, any> {
     if (prevProps.currentHealth !== this.props.currentHealth) {
       this.currentHealth.addListener((progress) => {
         this.setState({
-          currentHealth: progress.value,
+          currentHealth: Math.floor(progress.value),
         });
       });
 
@@ -34,6 +34,7 @@ class HealthBar extends Component<any, any> {
         toValue: this.props.currentHealth,
       }).start();
     }
+    //this.currentHealth.removeAllListeners();
   }
 
   render() {
@@ -74,7 +75,7 @@ class HealthBar extends Component<any, any> {
     return {
       width: animated_width,
       height: 8, // height of the health bar
-      backgroundColor: color_animation,
+      backgroundColor: color_animation
     };
   };
 }
