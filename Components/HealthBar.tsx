@@ -17,6 +17,10 @@ class HealthBar extends Component<any, any> {
     this.currentHealth = new Animated.Value(this.props.currentHealth);
   }
 
+  componentWillUnmount = () => {
+    this.currentHealth.removeAllListeners();
+  }
+
   componentDidUpdate(
     prevProps: { currentHealth: Animated.Value },
     prevState: any
@@ -34,7 +38,6 @@ class HealthBar extends Component<any, any> {
         toValue: this.props.currentHealth,
       }).start();
     }
-    //this.currentHealth.removeAllListeners();
   }
 
   render() {

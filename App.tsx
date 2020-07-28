@@ -16,6 +16,8 @@ import store, { LoadState } from "./Redux/Store";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 // Before rendering any navigation stack
 import { enableScreens } from "react-native-screens";
+import { View, StatusBar, Platform } from "react-native";
+import styles from "./StyleSheet/Styles";
 enableScreens();
 export default function App(props: any) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -29,10 +31,15 @@ export default function App(props: any) {
       />
     );
   } else {
+    console.log(StatusBar.currentHeight);
     return (
+      <SafeAreaProvider>
         <Provider store={store}>
+          <SafeAreaView style={styles.flexFull}>
             <NavigationIndex.Navigation />
+          </SafeAreaView>
         </Provider>
+      </SafeAreaProvider>
     );
   }
 }

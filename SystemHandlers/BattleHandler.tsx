@@ -26,11 +26,6 @@ export default class BattleHandler {
           },
         ],
       };
-      /*
-      type: string;
-  target: string;
-  duration: number;
-      */
     } else if (skillNum === 2) {
       return {
         target: "enemy",
@@ -98,26 +93,19 @@ export default class BattleHandler {
   };
 
   handlePlayerAction = (skillNum: number): any[] => {
-    //console.log("player's attack", skillNum);
     const ability: ability = this.getAbility(skillNum);
     var damage: number;
-    //const playerArray: Player[] = this.players;
-    //const enemyArray: Enemy[] = this.enemies;
     var player: Player = this.players[0];
     var enemy: Enemy = this.enemies[0];
 
     if (ability.damageType === "physical") {
-      //console.log("physical attack");
       const attack: number = player.attack * ability.ratio;
       damage = Math.pow(attack, 1.8) / Math.pow(enemy.defense, 0.5);
       damage = Math.round(damage);
-      //console.log("player deals physcial:", damage);
     } else {
-      //console.log("magical attack");
       const attack: number = player.magic * ability.ratio;
       damage = Math.pow(attack, 1.65) / Math.pow(enemy.resistance, 0.5);
       damage = Math.round(damage);
-      //console.log("player deals magical: ", damage);
     }
     enemy.health -= damage;
     if (ability.bonusActions.length >= 1) {
@@ -129,7 +117,6 @@ export default class BattleHandler {
         } else if (action.damageSource === "none") {
           actionDamage = 0;
         } else {
-          //console.log("wrong branch!!!");
           actionDamage = 100;
         }
         if (action.target === "self") {
@@ -139,8 +126,6 @@ export default class BattleHandler {
             player.health -= actionDamage;
           }
         } else {
-          //console.log("wrong target branch!!!");
-          //'add this branch later'
         }
 
         if (action.statusEffect.length >= 1) {
@@ -151,46 +136,35 @@ export default class BattleHandler {
         }
       }
     }
-    //its not any
     return [this.enemies, this.players];
   };
 
   handleEnemyAction = (): any[] => {
-    //const playerArray: Player[] = this.players;
-    //const enemyArray: Enemy[] = this.enemies;
     var player: Player = this.players[0];
     var enemy: Enemy = this.enemies[0];
 
-    //console.log("enemy's attack");
     const enemyAttack: number = enemy.attack * 1.5;
     var enemyDamage = Math.pow(enemyAttack, 2) / Math.pow(player.defense, 0.84);
     enemyDamage = Math.round(enemyDamage);
-    //console.log(" enemy deals damage: ", enemyDamage);
     player.health -= enemyDamage;
 
-    //its not any
     return [this.enemies, this.players];
   };
 
   handleStatusEffect = (status: StatusEffect): void => {
-    //const playerArray: Player[] = this.players;
-    //const enemyArray: Enemy[] = this.enemies;
     var player: Player = this.players[0];
     var enemy: Enemy = this.enemies[0];
 
     if (status.type === "resistanceDownMinor") {
-      //console.log("resistance");
       if (status.target === "enemy") {
         enemy.resistance = Math.round(enemy.resistance * 0.75);
-        //console.log("enemy res:", enemy.resistance);
       } else {
         player.resistance = Math.round(player.resistance * 0.75);
-        //console.log("player res:", player.resistance);
       }
     } else if (status.type === "doom") {
-      //console.log("doom");
-      if (!!0.12 && Math.random() <= 0.12) {
-        //console.log("doom hit");
+      const chance: number = Math.random();
+      console.log(chance);
+      if (chance <= 0.12) {
         if (status.target === "enemy") {
           enemy.health = 0;
         } else {
@@ -198,19 +172,11 @@ export default class BattleHandler {
         }
       }
     } else if (status.type === "armorUpMinor") {
-      //console.log("armor up");
       if (status.target === "enemy") {
         enemy.defense = Math.round(enemy.defense * 1.15);
-        //console.log("enemy def:", enemy.defense);
       } else {
         player.defense = Math.round(player.defense * 1.15);
-        //console.log("player def:", player.defense);
       }
     }
   };
-  /*
-  type: string;
-  target: string;
-  duration: number;
-  */
 }
