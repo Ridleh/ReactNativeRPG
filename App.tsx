@@ -60,13 +60,16 @@ async function loadResourcesAsync() {
   ]);
   LoadState().then((persistedState) => {
     //save myself an import and use dispatch directly
+    /*
     if (persistedState !== undefined) {
       store.dispatch({
         type: "updateStateFromLocalStorage",
         state: persistedState,
       });
+      
       //console.log("Successfully loaded state");
     }
+    */
   });
 }
 

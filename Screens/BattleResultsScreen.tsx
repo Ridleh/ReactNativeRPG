@@ -27,7 +27,6 @@ export default class HomeScreen extends Component<any, any> {
   };
 
   navigateToQuestScreen = (): void => {
-    console.log(this.props.navigation);
     this.props.navigation.navigate("Quests");
   };
 

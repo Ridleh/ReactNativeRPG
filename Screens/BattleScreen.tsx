@@ -21,7 +21,7 @@ import { getImageFromIconsMap } from "../AssetMaps/IconsMap";
 import { TouchableHighlight } from "react-native-gesture-handler";
 
 var battleHandler: BattleHandler;
-export default class HomeScreen extends Component<any, any> {
+export default class BattleScreen extends Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -48,19 +48,7 @@ export default class HomeScreen extends Component<any, any> {
         image: getImageFromCharactersMap("tyro.png"),
       },
     ];
-    const enemies: Enemy[] = [
-      {
-        id: 2,
-        name: "enemy",
-        health: 21712,
-        attack: 200,
-        defense: 450,
-        magic: 496,
-        resistance: 300,
-        mana: 75,
-        image: getImageFromCharactersMap("tyro.png"),
-      },
-    ];
+    const enemies: Enemy[] = [...this.props.route.params.enemies];
 
     battleHandler = new BattleHandler(enemies, players);
     this.setState({

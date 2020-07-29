@@ -45,3 +45,12 @@ interface ability {
   canCrit: boolean;
   bonusActions: BonusAction[];
 }
+
+interface Quest {
+  title: string;
+  enemies: Enemy[];
+  background: any;
+  EXPReward: number;
+  giveLoot: number;
+  description: string;
+}
