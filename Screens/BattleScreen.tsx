@@ -1,130 +1,171 @@
 import React, { Component } from "react";
-import BackgroundContainer from "../Components/BackgroundContainer";
-import { View, ImageBackground, Image, FlatList } from "react-native";
+import {
+  View,
+  ImageBackground,
+  FlatList,
+  Text,
+  ActivityIndicator,
+  Image
+} from "react-native";
 import styles from "../StyleSheet/Styles";
-import { HeaderWithButton } from "../Components/ComponentIndex";
-import HealthBar from "../Components/HealthBar";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { getImageFromUIMap } from "../AssetMaps/UIMap";
 import { getImageFromCharactersMap } from "../AssetMaps/CharactersMap";
-import { getImageFromIconsFreeMap } from "../AssetMaps/IconsFreeMap";
 import { getImageFromBackgroundsMap } from "../AssetMaps/BackgroundsMap";
-import SkillBarComponent from "../Components/SkillBarComponent";
+import BattleHandler from "../SystemHandlers/BattleHandler";
+import {
+  SkillBarComponent,
+  PlayerComponent,
+  EnemyComponent,
+} from "../Components/ComponentIndex";
+import { getImageFromUIMap } from "../AssetMaps/UIMap";
+import { getImageFromIconsMap } from "../AssetMaps/IconsMap";
+import { TouchableHighlight } from "react-native-gesture-handler";
 
-export default class HomeScreen extends Component<any, any> {
+var battleHandler: BattleHandler;
+export default class BattleScreen extends Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      playableCharacters: [
-        {
-          id: 1,
-          name: "Player",
-          health: 100,
-          mana: 75,
-          image: getImageFromCharactersMap("tyro.png"),
-        },
-      ],
-      opponents: [
-        {
-          id: 2,
-          name: "enemy",
-          health: 100,
-          mana: 75,
-          image: getImageFromCharactersMap("tyro.png"),
-        },
-      ],
-      showOverlay: false
+      playableCharacters: [],
+      opponents: [],
+      showOverlay: false,
+      refreshList: false,
+      showSkillBar: true,
+      pageReady: false,
     };
   }
 
-  openDrawer = () => {
-    this.props.navigation.openDrawer();
+  componentDidMount = () => {
+    const players: Player[] = [
+      {
+        id: 1,
+        name: "Player",
+        health: 7150,
+        mana: 75,
+        attack: 227,
+        defense: 170,
+        magic: 300,
+        resistance: 141,
+        image: getImageFromCharactersMap("tyro.png"),
+      },
+    ];
+    const enemies: Enemy[] = [...this.props.route.params.enemies];
+
+    battleHandler = new BattleHandler(enemies, players);
+    this.setState({
+      playableCharacters: players,
+      opponents: enemies,
+    });
+  }
+
+  onLoad = (): void => {
+    this.setState((prevState: { pageReady: boolean }) => ({
+      pageReady: !prevState.pageReady,
+    }));
   };
 
-  handleAbilityCast = () => {
-    const damage: number = Math.floor(Math.random() * 80)
-    var enemy: any = this.state.opponents[0];
-    enemy.health-= damage;
-    var newOpponents: any[] = [];
-    newOpponents.push(enemy);
-    this.setState({opponents : newOpponents})
-    if(enemy.health <= 0){
-      console.log('enemy is defeated. game over');
-      this.props.navigation.pop();
+  handleAbilityCast = (skillNum: number): void => {
+    let returnState = battleHandler.handlePlayerAction(skillNum);
+    let enemyArray: Enemy[] = returnState[0];
+    let playerArray: Player[] = returnState[1];
+    this.setState((prevState: { showSkillBar: boolean }) => ({
+      showSkillBar: !prevState.showSkillBar,
+      opponents: enemyArray,
+      playableCharacters: playerArray,
+    }));
+    if (enemyArray[0].health <= 0) {
+      this.handleGameOver(true);
+    } else {
+      setTimeout(() => {
+        let returnState = battleHandler.handleEnemyAction();
+        let enemyArray: Enemy[] = returnState[0];
+        let playerArray: Player[] = returnState[1];
+
+        this.setState((prevState: { showSkillBar: boolean }) => ({
+          showSkillBar: !prevState.showSkillBar,
+          opponents: enemyArray,
+          playableCharacters: playerArray,
+        }));
+        if (playerArray[0].health <= 0) {
+          this.handleGameOver(false);
+        }
+      }, 2000);
     }
-  }
-
-  renderPlayer = (player: any) => {
-    return (
-      <View>
-        <HealthBar
-          currentHealth={player.item.health}
-          totalHealth={100}
-          label={player.item.name}
-        />
-        <Image
-          style={{
-            height: 100,
-            width: 100,
-            paddingBottom: 10,
-          }}
-          source={player.item.image}
-        />
-      </View>
-    );
   };
 
-  renderEnemy(enemy: any) {
-    return (
-      <View>
-        <HealthBar
-          currentHealth={enemy.item.health}
-          totalHealth={100}
-          label={enemy.item.name}
-        />
-        <Image
-          style={{
-            height: 100,
-            width: 100,
-            paddingBottom: 10,
-          }}
-          source={enemy.item.image}
-        />
-      </View>
-    );
+  handleGameOver = (playerWon: boolean): void => {
+    setTimeout(() => {
+      this.props.navigation.navigate('Battle Results', {playerWon});
+    }, 1500);
+  };
+
+  toggleOverlay = () => {
+    this.setState((prevState: { showOverlay: boolean }) => ({
+      showOverlay: !prevState.showOverlay,
+    }));
+  };
+
+  surrender = (): void => {
+    this.handleGameOver(false);
   }
 
-  render() {
+  render = () => {
     return (
       <View style={styles.flexFull}>
+        {this.state.pageready ? null : (
+          <View style={styles.center}>
+            <ActivityIndicator size="large" />
+            <Text style={{ color: "white" }}>Loading...</Text>
+          </View>
+        )}
         <ImageBackground
-          source={getImageFromBackgroundsMap("img_10088_01_02.png")}
+          onLoadEnd={this.onLoad}
+          source={getImageFromBackgroundsMap("img_10277_01_02.png")}
           style={styles.imageBackgroundFull}
           resizeMode="stretch"
         >
           <View style={styles.flexFullColumn}>
-            <View style={{ flex: 1, backgroundColor: "blue" }}></View>
+            <View style={{ flex: 1 }}>
+              <ImageBackground
+                source={getImageFromUIMap("lil_bar.png")}
+                style={[styles.imageBackgroundFull,styles.flexFullRow]}
+                resizeMode="stretch"
+              >
+                <View style={[styles.center,{flex: 8}]}>
+                  <Text style={{color:'white'}}>Battle Agaisnt A True Hero</Text>
+                </View>
+                <View style={{alignItems:'center', flex: 2,justifyContent:'center'}}>
+                    <TouchableHighlight
+                    style={{flex:1}}
+                    onPress={this.surrender}>
+                    <Image
+                    style={{height:70, width:70}}
+                    source={getImageFromIconsMap('Honor.png')}/>
+                    </TouchableHighlight>
+                </View>
+              </ImageBackground>
+            </View>
             <View
               style={{
                 flexDirection: "row",
                 flex: 7,
-                backgroundColor: "green",
               }}
             >
-              <View style={{ flex: 1, backgroundColor: "gray" }}>
+              <View style={{ flex: 1 }}>
                 <View
                   style={{
                     flex: 1,
                   }}
                 >
                   <FlatList
+                    extraData={this.state.refreshList}
                     contentContainerStyle={{
-                      alignItems: "center",
                       justifyContent: "center",
+                      alignItems: "center",
+                      flex: 1,
                     }}
                     data={this.state.opponents}
-                    renderItem={(player) => this.renderPlayer(player)}
-                    keyExtractor={(player: any) => player.id.toString()}
+                    renderItem={({ item }) => <EnemyComponent enemy={item} />}
+                    keyExtractor={(enemy: Enemy) => enemy.id.toString()}
                   />
                 </View>
               </View>
@@ -135,19 +176,24 @@ export default class HomeScreen extends Component<any, any> {
                   }}
                 >
                   <FlatList
+                    extraData={this.state.refreshList}
                     contentContainerStyle={{
-                      alignItems: "center",
                       justifyContent: "center",
+                      alignItems: "center",
+                      flex: 1,
                     }}
                     data={this.state.playableCharacters}
-                    renderItem={(player) => this.renderPlayer(player)}
-                    keyExtractor={(player: any) => player.id.toString()}
+                    renderItem={({ item }) => <PlayerComponent player={item} />}
+                    keyExtractor={(player: Player) => player.id.toString()}
                   />
                 </View>
               </View>
             </View>
             <View style={{ flex: 2 }}>
-                  <SkillBarComponent/>
+              <SkillBarComponent
+                showSkillBar={this.state.showSkillBar}
+                handlePress={this.handleAbilityCast}
+              />
             </View>
             <View></View>
           </View>

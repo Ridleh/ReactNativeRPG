@@ -9,15 +9,15 @@ import { Asset } from "expo-asset";
 import * as Font from "expo-font";
 import "react-native-gesture-handler";
 import React, { useState } from "react";
-import { Platform, StatusBar, StyleSheet, View } from "react-native";
 import * as NavigationIndex from "./Navigation/NavigationIndex";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Provider } from "react-redux";
 import store, { LoadState } from "./Redux/Store";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
-import styles from "./StyleSheet/Styles";
 // Before rendering any navigation stack
 import { enableScreens } from "react-native-screens";
+import { View, StatusBar, Platform } from "react-native";
+import styles from "./StyleSheet/Styles";
 enableScreens();
 export default function App(props: any) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -31,6 +31,7 @@ export default function App(props: any) {
       />
     );
   } else {
+    console.log(StatusBar.currentHeight);
     return (
       <SafeAreaProvider>
         <Provider store={store}>
@@ -59,13 +60,16 @@ async function loadResourcesAsync() {
   ]);
   LoadState().then((persistedState) => {
     //save myself an import and use dispatch directly
+    /*
     if (persistedState !== undefined) {
       store.dispatch({
         type: "updateStateFromLocalStorage",
         state: persistedState,
       });
+      
       //console.log("Successfully loaded state");
     }
+    */
   });
 }
 

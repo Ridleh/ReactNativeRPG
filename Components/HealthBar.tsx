@@ -17,6 +17,10 @@ class HealthBar extends Component<any, any> {
     this.currentHealth = new Animated.Value(this.props.currentHealth);
   }
 
+  componentWillUnmount = () => {
+    this.currentHealth.removeAllListeners();
+  }
+
   componentDidUpdate(
     prevProps: { currentHealth: Animated.Value },
     prevState: any
@@ -24,7 +28,7 @@ class HealthBar extends Component<any, any> {
     if (prevProps.currentHealth !== this.props.currentHealth) {
       this.currentHealth.addListener((progress) => {
         this.setState({
-          currentHealth: progress.value,
+          currentHealth: Math.floor(progress.value),
         });
       });
 
@@ -74,7 +78,7 @@ class HealthBar extends Component<any, any> {
     return {
       width: animated_width,
       height: 8, // height of the health bar
-      backgroundColor: color_animation,
+      backgroundColor: color_animation
     };
   };
 }

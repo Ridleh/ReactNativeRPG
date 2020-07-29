@@ -6,8 +6,10 @@ import FourItemContainer from './FourItemLayout';
 import ReadyButtonSmall from './ReadyButton';
 import HeaderWithButton from './HeaderWithButton';
 import StatsContainer from './StatsContainer';
-import SkillBarcomponent from './SkillBarComponent';
+import SkillBarComponent from './SkillBarComponent';
 import Header from './HeaderComponent';
+import PlayerComponent from './PlayerComponent';
+import EnemyComponent from './EnemyComponent';
 
 
 //When creating a component, DO NOT import another component
@@ -22,6 +24,8 @@ export {
     ReadyButtonSmall,
     HeaderWithButton,
     StatsContainer,
-    SkillBarcomponent,
-    Header
+    SkillBarComponent,
+    Header,
+    PlayerComponent,
+    EnemyComponent
 }

@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     overflow: "hidden"
   },
   rootContainerPadding: {
-    padding: 10,
+    paddingTop: 10,
     flex: 1,
   },
   center: {
