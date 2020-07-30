@@ -8,7 +8,13 @@ export default function ItemContainer(props: any) {
     <TouchableHighlight
       underlayColor={"transparent"}
       style={{ flex: 1 }}
-      onPress={() => props.handlePress && props.handlePress.navigate('EquipItems')}
+      onPress={() =>
+        props.handlePress &&
+        props.handlePress.navigate("EquipItems", {
+          index: props.index,
+          leftSide: props.leftSide,
+        })
+      }
     >
       <View style={styles.item}>
         <ImageBackground
