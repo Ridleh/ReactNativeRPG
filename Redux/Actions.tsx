@@ -1,11 +1,22 @@
 import react from "react";
 import Store from "./Store";
-import * as Interfaces from "../Interfaces/InterfaceIndex";
 
 //honestly the existance of these methods are questionable
 //why not import Store and use dispatch directly?
 let Dispatch = Store.dispatch;
 
+export const getState = () => {
+  return Store.getState();
+}
+
+export const getCharacterState = () => {
+  return Store.getState().Character;
+}
+
+export const getInventoryState = () => {
+  return Store.getState().Inventory;
+}
+/*
 export const updatePartyMember = (
   partyMember: Interfaces.PartyMemberInterface
 ) => {
@@ -94,3 +105,4 @@ export const removeWhiteMagicSpell = (spell: Interfaces.SpellInterface) => {
 export const updateWhiteMagicSpell = (spell: Interfaces.SpellInterface) => {
   Dispatch({ type: "updateWhiteMagicSpell", spell: spell });
 };
+*/

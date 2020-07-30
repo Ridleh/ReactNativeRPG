@@ -20,7 +20,7 @@ export default class EquipItemsScreen extends Component<any, any> {
   }
 
   componentDidMount = (): void => {
-    let items: any[] = [];
+    let items: Item[] = [];
     for(let i = 0; i < 70; i++){
       let item: any = {
         Health: Math.round(Math.random()*400),
@@ -33,6 +33,7 @@ export default class EquipItemsScreen extends Component<any, any> {
         EvasionChance: Math.round(Math.random()*100),
         Speed: Math.round(Math.random()*100),
         id: i.toString(),
+        type: 'armor',
         image: getImageFromIconsFreeMap('armor_icon.png')
       }
       items.push(item);
@@ -44,15 +45,14 @@ export default class EquipItemsScreen extends Component<any, any> {
     this.props.navigation.pop();
   }
 
-  itemPressed = (item: any): void => {
+  itemPressed = (item: Item): void => {
     console.log('pressed');
     this.setState({selectedItem: item});
     
   }
 
-  renderItem(item: any) {
+  renderItem(item: Item) {
     return (
-      
       <View
         style={{
           backgroundColor: "black",
@@ -131,7 +131,7 @@ export default class EquipItemsScreen extends Component<any, any> {
                 extraData={this.state.items}
                 data={this.state.items}
                 renderItem={({ item }) => this.renderItem(item)}
-                keyExtractor={(item: any) => item.id}
+                keyExtractor={(item: Item) => item.id.toString()}
               />
             </View>
           </MidBarReady>

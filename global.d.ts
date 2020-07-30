@@ -54,3 +54,18 @@ interface Quest {
   giveLoot: number;
   description: string;
 }
+
+interface Item {
+  Health: number;
+  Attack: number;
+  Defence: number;
+  Magic: number;
+  Resistance: number;
+  Mind: number;
+  CritChance: number;
+  EvasionChance: number;
+  Speed: number;
+  id: number;
+  image: any;
+  type: string;
+}
