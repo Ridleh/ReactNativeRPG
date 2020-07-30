@@ -31,7 +31,6 @@ export default function App(props: any) {
       />
     );
   } else {
-    console.log(StatusBar.currentHeight);
     return (
       <SafeAreaProvider>
         <Provider store={store}>

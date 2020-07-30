@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Text, View, ImageBackground} from "react-native";
+import { Text, View, ImageBackground } from "react-native";
 import {
-  FourItemContainer, StatsContainer,
+  FourItemContainer,
+  StatsContainer,
+  Header,
 } from "../Components/ComponentIndex";
 import styles from "../StyleSheet/Styles";
 import { getImageFromUIMap } from "../AssetMaps/UIMap";
@@ -26,25 +28,16 @@ export default class CharacterScreen extends Component<any, any> {
     this.props.navigation.openDrawer();
   };
 
-  showCharacteristicsOverlay(){
-    console.log('yes');
+  showCharacteristicsOverlay() {
+    console.log("yes");
   }
 
   render() {
     return (
       <View style={styles.rootContainer}>
         <View style={styles.flexFullColumn}>
-          <View style={{ flex: 1, backgroundColor: "#291100" }}>
-            <ImageBackground
-              source={getImageFromUIMap("lil_bar.png")}
-              style={styles.imageBackgroundFull}
-              resizeMode="center"
-            >
-              <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-              <Text style={{color:'yellow'}} >Name</Text>
-              <Text style={{color:'yellow'}} >Level,Title</Text>
-              </View>
-            </ImageBackground>
+          <View style={styles.header}>
+            <Header title={'Player'} subtitle={'Level, Class'} />
           </View>
           <View style={{ flex: 6 }}>
             <ImageBackground
@@ -53,7 +46,9 @@ export default class CharacterScreen extends Component<any, any> {
               resizeMode="stretch"
             >
               <ImageBackground
-                source={getImageFromSilhouetteMap("warrior_silhouette_woman.png")}
+                source={getImageFromSilhouetteMap(
+                  "warrior_silhouette_woman.png"
+                )}
                 style={styles.imageBackgroundFull}
                 resizeMode="center"
               >
@@ -93,7 +88,8 @@ export default class CharacterScreen extends Component<any, any> {
                     resizeMode="stretch"
                   >
                     <StatsContainer
-                    handlePress={this.showCharacteristicsOverlay}/>
+                      handlePress={this.showCharacteristicsOverlay}
+                    />
                   </ImageBackground>
                 </View>
                 <View style={{ flex: 1 }}>
