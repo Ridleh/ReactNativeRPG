@@ -1,6 +1,17 @@
 import { getImageFromFrameBackgroundsMap } from "../../AssetMaps/FrameBackgroundsMap";
+import { Action } from "redux";
 
 const updateStateFromLocalStorage: string = "updateStateFromLocalStorage";
+const equipHelmet: string = "equipHelmet";
+const equipShoulder: string = "equipShoulder";
+const equipChest: string = "equipChest";
+const equipPant: string = "equipPant";
+const equipBoot: string = "equipBoot";
+const equipNecklace: string = "equipNecklace";
+const equipCape: string = "equipCape";
+const equipBracer: string = "equipBracer";
+const equipGlove: string = "equipGlove";
+const equipWeapon: string = "equipWeapon";
 // ^ import instead?
 
 interface Character {
@@ -18,6 +29,11 @@ interface Character {
   equippedBracer: Item;
   equippedGlove: Item;
   equippedWeapon: Item;
+}
+
+interface action {
+  type: string;
+  item: Item;
 }
 
 const characterState = {
@@ -180,9 +196,59 @@ const characterState = {
 //TODO: Refactor
 export default function inventoryReducer(
   state: Character = characterState,
-  action: any
+  action: action
 ) {
   switch (action.type) {
+    case equipHelmet:
+      return {
+        ...state,
+        equippedHelmet: action.item,
+      };
+    case equipShoulder:
+      return {
+        ...state,
+        equippedShoulder: action.item,
+      };
+    case equipChest:
+      return {
+        ...state,
+        equippedChest: action.item,
+      };
+    case equipPant:
+      return {
+        ...state,
+        equippedPant: action.item,
+      };
+    case equipBoot:
+      return {
+        ...state,
+        equippedBoot: action.item,
+      };
+    case equipNecklace:
+      return {
+        ...state,
+        equippedNecklace: action.item,
+      };
+    case equipCape:
+      return {
+        ...state,
+        equippedCape: action.item,
+      };
+    case equipBracer:
+      return {
+        ...state,
+        equippedBracer: action.item,
+      };
+    case equipGlove:
+      return {
+        ...state,
+        equippedGlove: action.item,
+      };
+    case equipWeapon:
+      return {
+        ...state,
+        equippedWeapon: action.item,
+      };
     default:
       return state;
   }
