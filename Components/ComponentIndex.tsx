@@ -10,6 +10,9 @@ import SkillBarComponent from './SkillBarComponent';
 import Header from './HeaderComponent';
 import PlayerComponent from './PlayerComponent';
 import EnemyComponent from './EnemyComponent';
+import RenderItemsComponent from './RenderItemsComponent';
+import StatsContainerMid from './StatsContainerMidComponent';
+import ButtonWide from './ButtonWideComponent';
 
 
 //When creating a component, DO NOT import another component
@@ -27,5 +30,8 @@ export {
     SkillBarComponent,
     Header,
     PlayerComponent,
-    EnemyComponent
+    EnemyComponent,
+    RenderItemsComponent,
+    StatsContainerMid,
+    ButtonWide
 }
