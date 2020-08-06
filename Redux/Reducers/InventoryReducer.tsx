@@ -1,39 +1,39 @@
-import * as Interfaces from "../../Interfaces/InterfaceIndex";
-
-const addWeapon: string = 'addWeapon';
-const removeWeapon: string = 'removeWeapon';
-const updateWeapon: string = 'updateWeapon';
-const addArmor: string = 'addArmor';
-const removeArmor: string = 'removeArmor';
-const updateArmor: string = 'updateArmor';
-const addBlackMagicSpell: string = 'addBlackMagicSpell';
-const removeBlackMagicSpell: string = 'removeBlackMagicSpell';
-const updateBlackMagicSpell: string = 'updateBlackMagicSpell';
-const addWhiteMagicSpell: string = 'addWhiteMagicSpell';
-const removeWhiteMagicSpell: string = 'removeWhiteMagicSpell';
-const updateWhiteMagicSpell: string = 'updateWhiteMagicSpell';
-
 const updateStateFromLocalStorage: string = "updateStateFromLocalStorage";
 // ^ import instead?
 
 interface Inventory {
-  Weapons: Interfaces.ItemInterface[];
-  Armors: Interfaces.ItemInterface[];
-  BlackMagicSpells: Interfaces.SpellInterface[];
-  WhiteMagicSpells: Interfaces.SpellInterface[];
-
+  Helmets: Item[];
+  Shoulders: Item[];
+  Chests: Item[];
+  Pants: Item[];
+  Boots: Item[];
+  Necklaces: Item[];
+  Capes: Item[];
+  Bracers: Item[];
+  Gloves: Item[];
+  Weapons: Item[];
 }
 
 const inventoryState = {
+  Helmets: [],
+  Shoulders: [],
+  Chests: [],
+  Pants: [],
+  Boots: [],
+  Necklaces: [],
+  Capes: [],
+  Bracers: [],
+  Gloves: [],
   Weapons: [],
-  Armors: [],
-  BlackMagicSpells: [],
-  WhiteMagicSpells: []
 };
 
 //TODO: Refactor
-function inventoryReducer(state: Inventory = inventoryState, action: any) {
+export default function inventoryReducer(state: Inventory = inventoryState, action: any) {
   switch (action.type) {
+    default:
+      return state;
+  }
+  /*
     case updateStateFromLocalStorage:
       return Object.assign({}, state, {
         Weapons: action.state.Inventory.Weapons,
@@ -145,9 +145,5 @@ function inventoryReducer(state: Inventory = inventoryState, action: any) {
                     };
                   }),
                 };
-    default:
-      return state;
-  }
+                */
 }
-
-export default inventoryReducer;

@@ -1,6 +1,7 @@
 import { createStore, combineReducers } from "redux";
 import InventoryReducer from "./Reducers/InventoryReducer";
-import PartyReducer from "./Reducers/PartyReducer";
+import ChracterReducer from "./Reducers/ChracterReducer";
+//import PartyReducer from "./Reducers/PartyReducer";
 import throttle from "lodash.throttle";
 import { AsyncStorage } from "react-native";
 
@@ -47,7 +48,7 @@ export const DeleteState = async() => {
 
 const rootReducer = combineReducers({
   Inventory: InventoryReducer,
-  Party: PartyReducer,
+  Character: ChracterReducer,
 });
 
 //Ideally we load in the persistedState and use it to create the store

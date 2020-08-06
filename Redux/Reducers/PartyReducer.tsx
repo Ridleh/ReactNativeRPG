@@ -1,5 +1,3 @@
-import * as Interfaces from "../../Interfaces/InterfaceIndex";
-
 const increaseGold: string = "increaseGold";
 const decreaseGold: string = "decreaseGold";
 const increaseStamina: string = "increaseStamina";

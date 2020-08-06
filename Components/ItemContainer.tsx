@@ -10,10 +10,7 @@ export default function ItemContainer(props: any) {
       style={{ flex: 1 }}
       onPress={() =>
         props.handlePress &&
-        props.handlePress.navigate("EquipItems", {
-          index: props.index,
-          leftSide: props.leftSide,
-        })
+        props.handlePress.navigate("EquipItems",{extraProps: props.extraProps})
       }
     >
       <View style={styles.item}>
