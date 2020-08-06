@@ -102,6 +102,7 @@ class EquipItemsScreen extends Component<any, any> {
       default:
         console.warn("Warning: Item has incorrect type");
     }
+    this.props.updateCharacterStats();
     this.props.navigation.pop();
   };
 
@@ -279,6 +280,8 @@ function mapDispatchToProps(dispatch: any) {
     unequipBracer: () => dispatch({ type: "unequipBracer" }),
     unequipGlove: () => dispatch({ type: "unequipGlove" }),
     unequipWeapon: () => dispatch({ type: "unequipWeapon" }),
+
+    updateCharacterStats: () => dispatch({type: 'updateCharacterStats'})
   };
 }
 

@@ -2,6 +2,8 @@ import { getImageFromFrameBackgroundsMap } from "../../AssetMaps/FrameBackground
 import { Action } from "redux";
 
 const updateStateFromLocalStorage: string = "updateStateFromLocalStorage";
+const updateCharacterStats: string = "updateCharacterStats";
+
 const equipHelmet: string = "equipHelmet";
 const equipShoulder: string = "equipShoulder";
 const equipChest: string = "equipChest";
@@ -210,6 +212,76 @@ export default function inventoryReducer(
   action: action
 ) {
   switch (action.type) {
+    case updateCharacterStats:
+      return {
+        ...state,
+        character: {
+          id: state.character.id,
+          name: state.character.name,
+          health:
+            state.character.health +
+            state.equippedBoot.Health +
+            state.equippedBracer.Health +
+            state.equippedCape.Health +
+            state.equippedChest.Health +
+            state.equippedGlove.Health +
+            state.equippedHelmet.Health +
+            state.equippedNecklace.Health +
+            state.equippedPant.Health +
+            state.equippedShoulder.Health +
+            state.equippedWeapon.Health,
+          mana: state.character.mana,
+          attack:
+            state.character.attack +
+            state.equippedBoot.Attack +
+            state.equippedBracer.Attack +
+            state.equippedCape.Attack +
+            state.equippedChest.Attack +
+            state.equippedGlove.Attack +
+            state.equippedHelmet.Attack +
+            state.equippedNecklace.Attack +
+            state.equippedPant.Attack +
+            state.equippedShoulder.Attack +
+            state.equippedWeapon.Attack,
+          defense:
+            state.character.defense +
+            state.equippedBoot.Defence +
+            state.equippedBracer.Defence +
+            state.equippedCape.Defence +
+            state.equippedChest.Defence +
+            state.equippedGlove.Defence +
+            state.equippedHelmet.Defence +
+            state.equippedNecklace.Defence +
+            state.equippedPant.Defence +
+            state.equippedShoulder.Defence +
+            state.equippedWeapon.Defence,
+          magic:
+            state.character.magic +
+            state.equippedBoot.Magic +
+            state.equippedBracer.Magic +
+            state.equippedCape.Magic +
+            state.equippedChest.Magic +
+            state.equippedGlove.Magic +
+            state.equippedHelmet.Magic +
+            state.equippedNecklace.Magic +
+            state.equippedPant.Magic +
+            state.equippedShoulder.Magic +
+            state.equippedWeapon.Magic,
+          resistance:
+            state.character.resistance +
+            state.equippedBoot.Resistance +
+            state.equippedBracer.Resistance +
+            state.equippedCape.Resistance +
+            state.equippedChest.Resistance +
+            state.equippedGlove.Resistance +
+            state.equippedHelmet.Resistance +
+            state.equippedNecklace.Resistance +
+            state.equippedPant.Resistance +
+            state.equippedShoulder.Resistance +
+            state.equippedWeapon.Resistance,
+          image: state.character.image,
+        },
+      };
     case equipHelmet:
       return {
         ...state,
@@ -276,7 +348,7 @@ export default function inventoryReducer(
           id: 0,
           image: getImageFromFrameBackgroundsMap("helm_background.png"),
           type: "Helmet",
-        }
+        },
       };
     case unequipShoulder:
       return {
