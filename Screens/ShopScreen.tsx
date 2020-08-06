@@ -14,6 +14,7 @@ import {
   BackgroundContainer,
   Header,
   MidBarReadyContainer,
+  RenderItemsComponent,
 } from "../Components/ComponentIndex";
 import styles from "../StyleSheet/Styles";
 import { getImageFromUIMap } from "../AssetMaps/UIMap";
@@ -137,26 +138,22 @@ export default class ShopScreen extends Component<any, any> {
     return (
       <BackgroundContainer>
         <View style={styles.header}>
-          <Header handlePress={this.openDrawer} />
+          <Header
+          title={'Shop'}
+          subtitle={'Tap and hold an item for more details'} />
         </View>
-        <View style={styles.flexFullColumn}>
+        <View style={[styles.flexFullColumn,{padding: 15}]}>
           <View>
             <ButtonGroup
               onPress={this.updateIndex.bind(this)}
               selectedIndex={selectedIndex}
               buttons={buttons}
-              containerStyle={{ height: 75 }}
+              containerStyle={{ height: 35 }}
             />
           </View>
           <View style={{ flex: 2 }}>
-            <MidBarReadyContainer>
-              <FlatList
-                numColumns={5}
-                data={this.getData()}
-                renderItem={({ item }) => this.renderItems(item)}
-                keyExtractor={(item) => item.id}
-              />
-            </MidBarReadyContainer>
+            <RenderItemsComponent
+            items={this.getData()}/>
           </View>
         </View>
         <Overlay
