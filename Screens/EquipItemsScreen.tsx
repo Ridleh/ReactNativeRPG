@@ -15,13 +15,26 @@ class EquipItemsScreen extends Component<any, any> {
     this.state = {
       items: [],
       selectedItem: {},
+      extraData: {},
     };
   }
 
   componentDidMount = (): void => {
+    const options: string[] = [
+      "helmet",
+      "shoulder",
+      "chest",
+      "pant",
+      "boot",
+      "necklace",
+      "cape",
+      "bracer",
+      "glove",
+      "weapon",
+    ];
     let items: Item[] = [];
     for (let i = 0; i < 70; i++) {
-      let item: any = {
+      let item: Item = {
         Health: Math.round(Math.random() * 400),
         Attack: Math.round(Math.random() * 400),
         Defence: Math.round(Math.random() * 400),
@@ -31,14 +44,15 @@ class EquipItemsScreen extends Component<any, any> {
         CritChance: Math.round(Math.random() * 100),
         EvasionChance: Math.round(Math.random() * 100),
         Speed: Math.round(Math.random() * 100),
-        id: i.toString(),
-        type: "chest",
+        id: i,
+        type: options[i % 10],
         image: getImageFromIconsFreeMap("armor_icon.png"),
       };
       items.push(item);
     }
     this.setState({
-      items
+      items,
+      extraData: this.props.route.params.extraProps,
     });
   };
 
@@ -46,33 +60,43 @@ class EquipItemsScreen extends Component<any, any> {
     const item = this.state.selectedItem;
     switch (this.state.selectedItem.type) {
       case "helmet":
+        //this.props.unequipHelmet();
         this.props.equipHelmet(item);
         break;
       case "shoulder":
+        //this.props.unequipShoulder();
         this.props.equipShoulder(item);
         break;
       case "chest":
+        //this.props.unequipChest();
         this.props.equipChest(item);
         break;
       case "pant":
+        //this.props.equipChest();
         this.props.equipChest(item);
         break;
       case "boot":
+        //this.props.unequipBoot();
         this.props.equipBoot(item);
         break;
       case "necklace":
+        //this.props.unequipNecklace();
         this.props.equipNecklace(item);
         break;
       case "cape":
+        //this.props.unequipCape();
         this.props.equipCape(item);
         break;
       case "bracer":
+        //this.props.equipBracer();
         this.props.equipBracer(item);
         break;
       case "glove":
+       //this.props.equipGlove();
         this.props.equipGlove(item);
         break;
       case "weapon":
+        //this.props.equipWeapon();
         this.props.equipWeapon(item);
         break;
       default:
@@ -82,7 +106,7 @@ class EquipItemsScreen extends Component<any, any> {
   };
 
   itemPressed = (item: Item): void => {
-    console.log("pressed");
+    console.log(item.type);
     this.setState({ selectedItem: item });
   };
 
@@ -226,12 +250,11 @@ class EquipItemsScreen extends Component<any, any> {
 
 function mapStateToProps(state: any) {
   return {
-    character: state.Character
+    character: state.Character,
   };
 }
 
 function mapDispatchToProps(dispatch: any) {
-  
   return {
     equipHelmet: (item: Item) => dispatch({ type: "equipHelmet", item: item }),
     equipShoulder: (item: Item) =>
@@ -245,6 +268,17 @@ function mapDispatchToProps(dispatch: any) {
     equipBracer: (item: Item) => dispatch({ type: "equipBracer", item: item }),
     equipGlove: (item: Item) => dispatch({ type: "equipGlove", item: item }),
     equipWeapon: (item: Item) => dispatch({ type: "equipWeapon", item: item }),
+
+    unequipHelmet: () => dispatch({ type: "unequipHelmet" }),
+    unequipShoulder: () => dispatch({ type: "unequipShoulder" }),
+    unequipChest: () => dispatch({ type: "unequipChest" }),
+    unequipPant: () => dispatch({ type: "unequipPant" }),
+    unequipBoot: () => dispatch({ type: "unequipBoot" }),
+    unequipNecklace: () => dispatch({ type: "unequipNecklace" }),
+    unequipCape: () => dispatch({ type: "unequipCape" }),
+    unequipBracer: () => dispatch({ type: "unequipBracer" }),
+    unequipGlove: () => dispatch({ type: "unequipGlove" }),
+    unequipWeapon: () => dispatch({ type: "unequipWeapon" }),
   };
 }
 

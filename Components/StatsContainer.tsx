@@ -28,9 +28,9 @@ export default function FourItemLayout(props: any) {
                 flexDirection: "column",
               }}
             >
-              <Text style={{ color: "white" }}>Health: 0</Text>
-              <Text style={{ color: "white" }}>Mana: 0</Text>
-              <Text style={{ color: "white" }}>Resist: 0</Text>
+              <Text style={{ color: "white" }}>Health: {props.character.health}</Text>
+            <Text style={{ color: "white" }}>Mana: {props.character.mana}</Text>
+              <Text style={{ color: "white" }}>Resist: {props.character.resistance}</Text>
             </View>
             <View
               style={{
@@ -40,8 +40,8 @@ export default function FourItemLayout(props: any) {
                 flexDirection: "column",
               }}
             >
-              <Text style={{ color: "white" }}>Armor: 0</Text>
-              <Text style={{ color: "white" }}>Attack: 0</Text>
+              <Text style={{ color: "white" }}>Armor: {props.character.defense}</Text>
+              <Text style={{ color: "white" }}>Attack: {props.character.attack}</Text>
               <Text style={{ color: "white" }}>Crit: 0%</Text>
             </View>
           </View>

@@ -16,22 +16,27 @@ export default function FourItemLayout(props: any) {
     >
       <ItemContainer
         handlePress={navigation}
+        extraProps={{leftSide: props.leftSide, index: 0}}
         image={getImage(props.character, props.leftSide, 0)}
       />
       <ItemContainer
         handlePress={navigation}
+        extraProps={{leftSide: props.leftSide, index: 1}}
         image={getImage(props.character, props.leftSide, 1)}
       />
       <ItemContainer
         handlePress={navigation}
+        extraProps={{leftSide: props.leftSide, index: 2}}
         image={getImage(props.character, props.leftSide, 2)}
       />
       <ItemContainer
         handlePress={navigation}
+        extraProps={{leftSide: props.leftSide, index: 3}}
         image={getImage(props.character, props.leftSide, 3)}
       />
       <ItemContainer
         handlePress={navigation}
+        extraProps={{leftSide: props.leftSide, index: 4}}
         image={getImage(props.character, props.leftSide, 4)}
       />
     </View>

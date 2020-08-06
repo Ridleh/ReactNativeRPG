@@ -12,6 +12,17 @@ const equipCape: string = "equipCape";
 const equipBracer: string = "equipBracer";
 const equipGlove: string = "equipGlove";
 const equipWeapon: string = "equipWeapon";
+
+const unequipHelmet: string = "unequipHelmet";
+const unequipShoulder: string = "unequipShoulder";
+const unequipChest: string = "unequipChest";
+const unequipPant: string = "unequipPant";
+const unequipBoot: string = "unequipBoot";
+const unequipNecklace: string = "unequipNecklace";
+const unequipCape: string = "unequipCape";
+const unequipBracer: string = "unequipBracer";
+const unequipGlove: string = "unequipGlove";
+const unequipWeapon: string = "unequipWeapon";
 // ^ import instead?
 
 interface Character {
@@ -41,14 +52,14 @@ const characterState = {
   gold: 0,
   experience: 0,
   character: {
-    id: -1,
+    id: 1, //do i need?
     name: "",
-    health: 250,
+    health: 120,
     mana: 50,
-    attack: 30,
-    defense: 10,
-    magic: 30,
-    resistance: 10,
+    attack: 8,
+    defense: 7,
+    magic: 7,
+    resistance: 7,
     image: null,
   },
   equippedHelmet: {
@@ -193,7 +204,7 @@ const characterState = {
   },
 };
 
-//TODO: Refactor
+//Pain. Just pain.
 export default function inventoryReducer(
   state: Character = characterState,
   action: action
@@ -248,6 +259,186 @@ export default function inventoryReducer(
       return {
         ...state,
         equippedWeapon: action.item,
+      };
+    case unequipHelmet:
+      return {
+        ...state,
+        equippedHelmet: {
+          Health: 0,
+          Attack: 0,
+          Defence: 0,
+          Magic: 0,
+          Resistance: 0,
+          Mind: 0,
+          CritChance: 0,
+          EvasionChance: 0,
+          Speed: 0,
+          id: 0,
+          image: getImageFromFrameBackgroundsMap("helm_background.png"),
+          type: "Helmet",
+        }
+      };
+    case unequipShoulder:
+      return {
+        ...state,
+        equippedShoulder: {
+          Health: 0,
+          Attack: 0,
+          Defence: 0,
+          Magic: 0,
+          Resistance: 0,
+          Mind: 0,
+          CritChance: 0,
+          EvasionChance: 0,
+          Speed: 0,
+          id: 0,
+          image: getImageFromFrameBackgroundsMap("shoulder_background.png"),
+          type: "Shoulder",
+        },
+      };
+    case unequipChest:
+      return {
+        ...state,
+        equippedChest: {
+          Health: 0,
+          Attack: 0,
+          Defence: 0,
+          Magic: 0,
+          Resistance: 0,
+          Mind: 0,
+          CritChance: 0,
+          EvasionChance: 0,
+          Speed: 0,
+          id: 0,
+          image: getImageFromFrameBackgroundsMap("chest_background.png"),
+          type: "Chest",
+        },
+      };
+    case unequipPant:
+      return {
+        ...state,
+        equippedPant: {
+          Health: 0,
+          Attack: 0,
+          Defence: 0,
+          Magic: 0,
+          Resistance: 0,
+          Mind: 0,
+          CritChance: 0,
+          EvasionChance: 0,
+          Speed: 0,
+          id: 0,
+          image: getImageFromFrameBackgroundsMap("pants_background.png"),
+          type: "Pant",
+        },
+      };
+    case unequipBoot:
+      return {
+        ...state,
+        equippedBoot: {
+          Health: 0,
+          Attack: 0,
+          Defence: 0,
+          Magic: 0,
+          Resistance: 0,
+          Mind: 0,
+          CritChance: 0,
+          EvasionChance: 0,
+          Speed: 0,
+          id: 0,
+          image: getImageFromFrameBackgroundsMap("boots_background.png"),
+          type: "Boot",
+        },
+      };
+    case unequipNecklace:
+      return {
+        ...state,
+        equippedNecklace: {
+          Health: 0,
+          Attack: 0,
+          Defence: 0,
+          Magic: 0,
+          Resistance: 0,
+          Mind: 0,
+          CritChance: 0,
+          EvasionChance: 0,
+          Speed: 0,
+          id: 0,
+          image: getImageFromFrameBackgroundsMap("neck_background.png"),
+          type: "Necklace",
+        },
+      };
+    case unequipCape:
+      return {
+        ...state,
+        equippedCape: {
+          Health: 0,
+          Attack: 0,
+          Defence: 0,
+          Magic: 0,
+          Resistance: 0,
+          Mind: 0,
+          CritChance: 0,
+          EvasionChance: 0,
+          Speed: 0,
+          id: 0,
+          image: getImageFromFrameBackgroundsMap("back_background.png"),
+          type: "Cape",
+        },
+      };
+    case unequipBracer:
+      return {
+        ...state,
+        equippedBracer: {
+          Health: 0,
+          Attack: 0,
+          Defence: 0,
+          Magic: 0,
+          Resistance: 0,
+          Mind: 0,
+          CritChance: 0,
+          EvasionChance: 0,
+          Speed: 0,
+          id: 0,
+          image: getImageFromFrameBackgroundsMap("bracers_background.png"),
+          type: "Bracer",
+        },
+      };
+    case unequipGlove:
+      return {
+        ...state,
+        equippedGlove: {
+          Health: 0,
+          Attack: 0,
+          Defence: 0,
+          Magic: 0,
+          Resistance: 0,
+          Mind: 0,
+          CritChance: 0,
+          EvasionChance: 0,
+          Speed: 0,
+          id: 0,
+          image: getImageFromFrameBackgroundsMap("gloves_background.png"),
+          type: "Glove",
+        },
+      };
+    case unequipWeapon:
+      return {
+        ...state,
+        equippedWeapon: {
+          Health: 0,
+          Attack: 0,
+          Defence: 0,
+          Magic: 0,
+          Resistance: 0,
+          Mind: 0,
+          CritChance: 0,
+          EvasionChance: 0,
+          Speed: 0,
+          id: 0,
+          image: getImageFromFrameBackgroundsMap("trinket_background.png"),
+          type: "Weapon",
+        },
       };
     default:
       return state;

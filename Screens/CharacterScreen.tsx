@@ -89,6 +89,7 @@ class CharacterScreen extends Component<any, any> {
                     resizeMode="stretch"
                   >
                     <StatsContainer
+                    character={this.props.character.character}
                       handlePress={this.showCharacteristicsOverlay}
                     />
                   </ImageBackground>
