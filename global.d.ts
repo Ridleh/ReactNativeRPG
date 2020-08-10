@@ -69,3 +69,8 @@ interface Item {
   image: any;
   type: string;
 }
+
+interface ImageMapData{
+  name: string;
+  src: any
+}

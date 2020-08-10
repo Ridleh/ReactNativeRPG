@@ -1,72 +1,74 @@
 import React, { Component } from "react";
-import {
-  Dimensions,
-  Text,
-  View,
-  StyleSheet,
-  FlatList,
-  ImageBackground,
-  Image,
-  TouchableHighlight,
-} from "react-native";
+import { Text, View } from "react-native";
 
 import {
   BackgroundContainer,
   Header,
-  MidBarReadyContainer,
   RenderItemsComponent,
+  StatsContainerMid,
+  ButtonWide,
 } from "../Components/ComponentIndex";
 import styles from "../StyleSheet/Styles";
-import { getImageFromUIMap } from "../AssetMaps/UIMap";
-import { getImageFromIconsMap } from "../AssetMaps/IconsMap";
-import { Icon, ButtonGroup, Overlay } from "react-native-elements";
-import { getImageFromIconsFreeMap } from "../AssetMaps/IconsFreeMap";
-const { height, width } = Dimensions.get("window");
+import { ButtonGroup, Overlay } from "react-native-elements";
+import { getArmorsMapArray } from "../AssetMaps/ArmorsMap";
+import { getWeaponMapArray } from "../AssetMaps/WeaponsMap";
 
 export default class ShopScreen extends Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      items: [],
       weapons: [],
       armors: [],
-      runes: [],
       selectedIndex: 0,
+      selectedItem: {},
       showOverlay: false,
     };
   }
 
   componentDidMount() {
-    const images: any[] = [
-      getImageFromIconsFreeMap("armor_icon.png"),
-      getImageFromIconsFreeMap("stoune_icon.png"),
-      getImageFromIconsFreeMap("weapon_icon.png"),
-    ];
-    var items: any[] = [];
-    var weapons: any[] = [];
-    var armors: any[] = [];
-    var runes: any[] = [];
-    for (let i = 0; i < 30; i++) {
-      var img: number = Math.floor(Math.random() * 3);
-      var dummyData = {
-        name: "item",
-        image: images[img],
-        id: i.toLocaleString(),
+    const weaponsList: ImageMapData[] = getArmorsMapArray();
+    const armorsList: ImageMapData[] = getWeaponMapArray();
+    var weapons: Item[] = [];
+    var armors: Item[] = [];
+    for (var i = 0; i < 50; i++) {
+      let item: Item = {
+        Health: Math.round(Math.random() * 400),
+        Attack: Math.round(Math.random() * 400),
+        Defence: Math.round(Math.random() * 400),
+        Magic: Math.round(Math.random() * 400),
+        Resistance: Math.round(Math.random() * 400),
+        Mind: Math.round(Math.random() * 400),
+        CritChance: Math.round(Math.random() * 100),
+        EvasionChance: Math.round(Math.random() * 100),
+        Speed: Math.round(Math.random() * 100),
+        id: i,
+        type: "glove",
+        image: armorsList[Math.round(Math.random() * 499)].src,
       };
-      if (img === 1) {
-        armors.push(dummyData);
-      } else if (img === 2) {
-        runes.push(dummyData);
-      } else {
-        weapons.push(dummyData);
-      }
-      items.push(dummyData);
+      armors.push(item);
     }
+
+    for (var i = 0; i < 50; i++) {
+      let item: Item = {
+        Health: Math.round(Math.random() * 400),
+        Attack: Math.round(Math.random() * 400),
+        Defence: Math.round(Math.random() * 400),
+        Magic: Math.round(Math.random() * 400),
+        Resistance: Math.round(Math.random() * 400),
+        Mind: Math.round(Math.random() * 400),
+        CritChance: Math.round(Math.random() * 100),
+        EvasionChance: Math.round(Math.random() * 100),
+        Speed: Math.round(Math.random() * 100),
+        id: i,
+        type: "weapon",
+        image: weaponsList[Math.round(Math.random() * 499)].src,
+      };
+      weapons.push(item);
+    }
+
     this.setState({
-      items: items,
       weapons: weapons,
       armors: armors,
-      runes: runes,
     });
   }
 
@@ -79,15 +81,9 @@ export default class ShopScreen extends Component<any, any> {
   }
 
   getData() {
-    if (this.state.selectedIndex === 0) {
-      return this.state.items;
-    } else if (this.state.selectedIndex === 1) {
-      return this.state.weapons;
-    } else if (this.state.selectedIndex === 2) {
-      return this.state.armors;
-    } else {
-      return this.state.runes;
-    }
+    return this.state.selectedIndex === 0
+      ? this.state.weapons
+      : this.state.armors;
   }
 
   toggleOverlay = () => {
@@ -96,53 +92,27 @@ export default class ShopScreen extends Component<any, any> {
     }));
   };
 
-  renderItems = (item: any) => {
-    return (
-      <TouchableHighlight style={{ flex: 1 }} onPress={this.toggleOverlay}>
-        <View
-          style={{
-            backgroundColor: "transparent",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: 1 / 5,
-            flex: 1,
-            height: Dimensions.get("window").width / 5, // approximate a square
-            width: Dimensions.get("window").width / 5,
-          }}
-        >
-          <ImageBackground
-            style={{ height: "100%", width: "100%" }}
-            source={getImageFromUIMap("little_background_frame.png")}
-            resizeMode="center"
-          >
-            <ImageBackground
-              style={{ height: "100%", width: "100%" }}
-              source={getImageFromUIMap("inventory_frame_little.png")}
-              resizeMode="stretch"
-            >
-              <Image
-                source={item.image}
-                style={{ width: "95%", height: "95%" }}
-              />
-            </ImageBackground>
-          </ImageBackground>
-        </View>
-      </TouchableHighlight>
-    );
+  itemSelected = (item: Item): void => {
+    this.setState({ selectedItem: item });
+  };
+
+  buyItem = (): void => {
+    console.log("pressed");
   };
 
   render() {
-    const buttons = ["All", "Weapons", "Armor", "Runes"];
+    const buttons = ["Weapons", "Armor"];
     const { selectedIndex } = this.state;
 
     return (
       <BackgroundContainer>
         <View style={styles.header}>
           <Header
-          title={'Shop'}
-          subtitle={'Tap and hold an item for more details'} />
+            title={"Shop"}
+            subtitle={"Tap and hold an item for more details"}
+          />
         </View>
-        <View style={[styles.flexFullColumn,{padding: 15}]}>
+        <View style={[styles.flexFullColumn, { padding: 15 }]}>
           <View>
             <ButtonGroup
               onPress={this.updateIndex.bind(this)}
@@ -151,9 +121,19 @@ export default class ShopScreen extends Component<any, any> {
               containerStyle={{ height: 35 }}
             />
           </View>
-          <View style={{ flex: 2 }}>
+          <View style={{ flex: 1 }}>
+            <StatsContainerMid selectedItem={this.state.selectedItem} />
+          </View>
+          <View style={{ flex: 4 }}>
+            <View style={{flex: 6}}>
             <RenderItemsComponent
-            items={this.getData()}/>
+              items={this.getData()}
+              handlePress={this.itemSelected}
+            />
+            </View>
+            <View style={{flex:1}}>
+            <ButtonWide title={"Equip Item"} handlePress={this.buyItem} />
+            </View>
           </View>
         </View>
         <Overlay
