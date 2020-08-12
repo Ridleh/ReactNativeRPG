@@ -10,10 +10,13 @@ import {
 } from "../Components/ComponentIndex";
 import styles from "../StyleSheet/Styles";
 import { ButtonGroup, Overlay } from "react-native-elements";
-import { getArmorsMapArray } from "../AssetMaps/ArmorsMap";
-import { getWeaponMapArray } from "../AssetMaps/WeaponsMap";
+import {
+  generateRandomArmors,
+  generateRandomWeapons,
+} from "../SystemHandlers/ItemHandler";
+import { connect } from "react-redux";
 
-export default class ShopScreen extends Component<any, any> {
+class ShopScreen extends Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -26,46 +29,8 @@ export default class ShopScreen extends Component<any, any> {
   }
 
   componentDidMount() {
-    const weaponsList: ImageMapData[] = getArmorsMapArray();
-    const armorsList: ImageMapData[] = getWeaponMapArray();
-    var weapons: Item[] = [];
-    var armors: Item[] = [];
-    for (var i = 0; i < 50; i++) {
-      let item: Item = {
-        Health: Math.round(Math.random() * 400),
-        Attack: Math.round(Math.random() * 400),
-        Defence: Math.round(Math.random() * 400),
-        Magic: Math.round(Math.random() * 400),
-        Resistance: Math.round(Math.random() * 400),
-        Mind: Math.round(Math.random() * 400),
-        CritChance: Math.round(Math.random() * 100),
-        EvasionChance: Math.round(Math.random() * 100),
-        Speed: Math.round(Math.random() * 100),
-        id: i,
-        type: "glove",
-        image: armorsList[Math.round(Math.random() * 499)].src,
-      };
-      armors.push(item);
-    }
-
-    for (var i = 0; i < 50; i++) {
-      let item: Item = {
-        Health: Math.round(Math.random() * 400),
-        Attack: Math.round(Math.random() * 400),
-        Defence: Math.round(Math.random() * 400),
-        Magic: Math.round(Math.random() * 400),
-        Resistance: Math.round(Math.random() * 400),
-        Mind: Math.round(Math.random() * 400),
-        CritChance: Math.round(Math.random() * 100),
-        EvasionChance: Math.round(Math.random() * 100),
-        Speed: Math.round(Math.random() * 100),
-        id: i,
-        type: "weapon",
-        image: weaponsList[Math.round(Math.random() * 499)].src,
-      };
-      weapons.push(item);
-    }
-
+    var weapons: Item[] = generateRandomWeapons(50);
+    var armors: Item[] = generateRandomArmors(50);
     this.setState({
       weapons: weapons,
       armors: armors,
@@ -93,11 +58,96 @@ export default class ShopScreen extends Component<any, any> {
   };
 
   itemSelected = (item: Item): void => {
+    console.log(item.type);
     this.setState({ selectedItem: item });
   };
 
   buyItem = (): void => {
-    console.log("pressed");
+    const item: Item = this.state.selectedItem;
+    console.log(item.type);
+    switch (item.type) {
+      case "helmet":
+        //this.props.unequipHelmet();
+        this.props.buyHelmet(item);
+        break;
+      case "shoulder":
+        //this.props.unequipShoulder();
+        this.props.buyShoulder(item);
+        break;
+      case "chest":
+        //this.props.unequipChest();
+        this.props.buyChest(item);
+        break;
+      case "pant":
+        //this.props.equipChest();
+        this.props.buyPant(item);
+        break;
+      case "boot":
+        //this.props.unequipBoot();
+        this.props.buyBoot(item);
+        break;
+      case "necklace":
+        //this.props.unequipNecklace();
+        this.props.buyNecklace(item);
+        break;
+      case "cape":
+        //this.props.unequipCape();
+        this.props.buyCape(item);
+        break;
+      case "bracer":
+        //this.props.equipBracer();
+        this.props.buyBracer(item);
+        break;
+      case "glove":
+        //this.props.equipGlove();
+        this.props.buyGlove(item);
+        break;
+      case "weapon":
+        //this.props.equipWeapon();
+        this.props.buyWeapon(item);
+        break;
+      case "arrow": //fix later
+        this.props.buyWeapon(item);
+        break;
+      case "axe":
+        this.props.buyWeapon(item);
+        break;
+      case "bolt": //fix later
+        this.props.buyWeapon(item);
+        break;
+      case "book":
+        this.props.buyWeapon(item);
+        break;
+      case "bow":
+        this.props.buyWeapon(item);
+        break;
+      case "crossbow":
+        this.props.buyWeapon(item);
+        break;
+      case "dagger":
+        this.props.buyWeapon(item);
+        break;
+      case "hammer":
+        this.props.buyWeapon(item);
+        break;
+      case "scythe":
+        this.props.buyWeapon(item);
+        break;
+      case "shield":
+        this.props.buyWeapon(item);
+        break;
+      case "spear":
+        this.props.buyWeapon(item);
+        break;
+      case "staff":
+        this.props.buyWeapon(item);
+        break;
+      case "sword":
+        this.props.buyWeapon(item);
+        break;
+      default:
+        console.warn("Warning: Item has incorrect type:", item.type);
+    }
   };
 
   render() {
@@ -125,14 +175,14 @@ export default class ShopScreen extends Component<any, any> {
             <StatsContainerMid selectedItem={this.state.selectedItem} />
           </View>
           <View style={{ flex: 4 }}>
-            <View style={{flex: 6}}>
-            <RenderItemsComponent
-              items={this.getData()}
-              handlePress={this.itemSelected}
-            />
+            <View style={{ flex: 6 }}>
+              <RenderItemsComponent
+                items={this.getData()}
+                handlePress={this.itemSelected}
+              />
             </View>
-            <View style={{flex:1}}>
-            <ButtonWide title={"Equip Item"} handlePress={this.buyItem} />
+            <View style={{ flex: 1 }}>
+              <ButtonWide title={"Buy Item"} handlePress={this.buyItem} />
             </View>
           </View>
         </View>
@@ -146,3 +196,26 @@ export default class ShopScreen extends Component<any, any> {
     );
   }
 }
+
+function mapStateToProps(state: any) {
+  return {
+    character: state.Character,
+  };
+}
+
+function mapDispatchToProps(dispatch: any) {
+  return {
+    buyHelmet: (item: Item) => dispatch({ type: "buyHelmet", item: item }),
+    buyShoulder: (item: Item) => dispatch({ type: "buyShoulder", item: item }),
+    buyChest: (item: Item) => dispatch({ type: "buyChest", item: item }),
+    buyPant: (item: Item) => dispatch({ type: "buyPant", item: item }),
+    buyBoot: (item: Item) => dispatch({ type: "buyBoot", item: item }),
+    buyNecklace: (item: Item) => dispatch({ type: "buyNecklace", item: item }),
+    buyCape: (item: Item) => dispatch({ type: "buyCape", item: item }),
+    buyBracer: (item: Item) => dispatch({ type: "buyBracer", item: item }),
+    buyGlove: (item: Item) => dispatch({ type: "buyGlove", item: item }),
+    buyWeapon: (item: Item) => dispatch({ type: "buyWeapon", item: item }),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShopScreen);

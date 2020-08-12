@@ -44,11 +44,6 @@ interface Character {
   equippedWeapon: Item;
 }
 
-interface action {
-  type: string;
-  item: Item;
-}
-
 const characterState = {
   level: 1,
   gold: 0,

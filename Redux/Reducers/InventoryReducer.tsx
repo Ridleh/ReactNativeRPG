@@ -1,18 +1,16 @@
+const buyHelmet: string = "buyHelmet";
+const buyShoulder: string = "buyShoulder";
+const buyChest: string = "buyChest";
+const buyPant: string = "buyPant";
+const buyBoot: string = "buyBoot";
+const buyNecklace: string = "buyNecklace";
+const buyCape: string = "buyCape";
+const buyBracer: string = "buyBracer";
+const buyGlove: string = "buyGlove";
+const buyWeapon: string = "buyWeapon";
+
 const updateStateFromLocalStorage: string = "updateStateFromLocalStorage";
 // ^ import instead?
-
-interface Inventory {
-  Helmets: Item[];
-  Shoulders: Item[];
-  Chests: Item[];
-  Pants: Item[];
-  Boots: Item[];
-  Necklaces: Item[];
-  Capes: Item[];
-  Bracers: Item[];
-  Gloves: Item[];
-  Weapons: Item[];
-}
 
 const inventoryState = {
   Helmets: [],
@@ -28,8 +26,91 @@ const inventoryState = {
 };
 
 //TODO: Refactor
-export default function inventoryReducer(state: Inventory = inventoryState, action: any) {
+export default function inventoryReducer(
+  state: Inventory = inventoryState,
+  action: action
+) {
   switch (action.type) {
+    case buyBoot:
+      console.log('boot');
+      let newBoots: Item[] = state.Boots.slice();
+      newBoots.splice(0, 0, action.item);
+      return {
+        ...state,
+        Boots: newBoots,
+      };
+    case buyBracer:
+      console.log('bracer');
+      let newBracers: Item[] = state.Bracers.slice();
+      newBracers.splice(0, 0, action.item);
+      return {
+        ...state,
+        Bracers: newBracers,
+      };
+    case buyCape:
+      console.log('cape');
+      let newCapes: Item[] = state.Capes.slice();
+      newCapes.splice(0, 0, action.item);
+      return {
+        ...state,
+        Capes: newCapes,
+      };
+    case buyChest:
+      console.log('chest');
+      let newChests: Item[] = state.Chests.slice();
+      newChests.splice(0, 0, action.item);
+      return {
+        ...state,
+        Chests: newChests,
+      };
+    case buyGlove:
+      console.log('glove');
+      let newGloves: Item[] = state.Gloves.slice();
+      newGloves.splice(0, 0, action.item);
+      return {
+        ...state,
+        Gloves: newGloves,
+      };
+    case buyHelmet:
+      console.log('helmet');
+      let newHelmets: Item[] = state.Helmets.slice();
+      newHelmets.splice(0, 0, action.item);
+      return {
+        ...state,
+        Helmets: newHelmets,
+      };
+    case buyNecklace:
+      console.log('neck');
+      let newNecklaces: Item[] = state.Necklaces.slice();
+      newNecklaces.splice(0, 0, action.item);
+      return {
+        ...state,
+        Necklaces: newNecklaces,
+      };
+    case buyPant:
+      console.log('pant');
+      let newPants: Item[] = state.Pants.slice();
+      newPants.splice(0, 0, action.item);
+      return {
+        ...state,
+        Pants: newPants,
+      };
+    case buyShoulder:
+      console.log('shoulder');
+      let newShoulders: Item[] = state.Shoulders.slice();
+      newShoulders.splice(0, 0, action.item);
+      return {
+        ...state,
+        Shoulders: newShoulders,
+      };
+    case buyWeapon:
+      console.log('weapon');
+      let newWeapons: Item[] = state.Weapons.slice();
+      newWeapons.splice(0, 0, action.item);
+      return {
+        ...state,
+        Weapons: newWeapons,
+      };
     default:
       return state;
   }
