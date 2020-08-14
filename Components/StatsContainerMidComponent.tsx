@@ -7,7 +7,7 @@ import {
 import styles from "../StyleSheet/Styles";
 import { getImageFromUIMap } from "../AssetMaps/UIMap";
 
-export default function StatsContainerMid(props: any) {
+export default function StatsContainerMid(props: {selectedItem: Item}) {
   return (
     <ImageBackground
       source={getImageFromUIMap("inventory_button2.png")}
@@ -37,7 +37,7 @@ export default function StatsContainerMid(props: any) {
           Crit Chance: {props.selectedItem.CritChance}
         </Text>
         <Text style={{ color: "gold" }}>
-          Evasion Chance: {props.selectedItem.Evasion}
+          Evasion Chance: {props.selectedItem.EvasionChance}
         </Text>
         <Text style={{ color: "gold" }}>Speed: {props.selectedItem.Speed}</Text>
       </View>

@@ -1,72 +1,39 @@
 import React, { Component } from "react";
-import {
-  Dimensions,
-  Text,
-  View,
-  StyleSheet,
-  FlatList,
-  ImageBackground,
-  Image,
-  TouchableHighlight,
-} from "react-native";
+import { Text, View } from "react-native";
 
 import {
   BackgroundContainer,
   Header,
-  MidBarReadyContainer,
   RenderItemsComponent,
+  StatsContainerMid,
+  ButtonWide,
 } from "../Components/ComponentIndex";
 import styles from "../StyleSheet/Styles";
-import { getImageFromUIMap } from "../AssetMaps/UIMap";
-import { getImageFromIconsMap } from "../AssetMaps/IconsMap";
-import { Icon, ButtonGroup, Overlay } from "react-native-elements";
-import { getImageFromIconsFreeMap } from "../AssetMaps/IconsFreeMap";
-const { height, width } = Dimensions.get("window");
+import { ButtonGroup, Overlay } from "react-native-elements";
+import {
+  generateRandomArmors,
+  generateRandomWeapons,
+} from "../SystemHandlers/ItemHandler";
+import { connect } from "react-redux";
 
-export default class ShopScreen extends Component<any, any> {
+class ShopScreen extends Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      items: [],
       weapons: [],
       armors: [],
-      runes: [],
       selectedIndex: 0,
+      selectedItem: {},
       showOverlay: false,
     };
   }
 
   componentDidMount() {
-    const images: any[] = [
-      getImageFromIconsFreeMap("armor_icon.png"),
-      getImageFromIconsFreeMap("stoune_icon.png"),
-      getImageFromIconsFreeMap("weapon_icon.png"),
-    ];
-    var items: any[] = [];
-    var weapons: any[] = [];
-    var armors: any[] = [];
-    var runes: any[] = [];
-    for (let i = 0; i < 30; i++) {
-      var img: number = Math.floor(Math.random() * 3);
-      var dummyData = {
-        name: "item",
-        image: images[img],
-        id: i.toLocaleString(),
-      };
-      if (img === 1) {
-        armors.push(dummyData);
-      } else if (img === 2) {
-        runes.push(dummyData);
-      } else {
-        weapons.push(dummyData);
-      }
-      items.push(dummyData);
-    }
+    var weapons: Item[] = generateRandomWeapons(50);
+    var armors: Item[] = generateRandomArmors(50);
     this.setState({
-      items: items,
       weapons: weapons,
       armors: armors,
-      runes: runes,
     });
   }
 
@@ -79,15 +46,9 @@ export default class ShopScreen extends Component<any, any> {
   }
 
   getData() {
-    if (this.state.selectedIndex === 0) {
-      return this.state.items;
-    } else if (this.state.selectedIndex === 1) {
-      return this.state.weapons;
-    } else if (this.state.selectedIndex === 2) {
-      return this.state.armors;
-    } else {
-      return this.state.runes;
-    }
+    return this.state.selectedIndex === 0
+      ? this.state.weapons
+      : this.state.armors;
   }
 
   toggleOverlay = () => {
@@ -96,53 +57,87 @@ export default class ShopScreen extends Component<any, any> {
     }));
   };
 
-  renderItems = (item: any) => {
-    return (
-      <TouchableHighlight style={{ flex: 1 }} onPress={this.toggleOverlay}>
-        <View
-          style={{
-            backgroundColor: "transparent",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: 1 / 5,
-            flex: 1,
-            height: Dimensions.get("window").width / 5, // approximate a square
-            width: Dimensions.get("window").width / 5,
-          }}
-        >
-          <ImageBackground
-            style={{ height: "100%", width: "100%" }}
-            source={getImageFromUIMap("little_background_frame.png")}
-            resizeMode="center"
-          >
-            <ImageBackground
-              style={{ height: "100%", width: "100%" }}
-              source={getImageFromUIMap("inventory_frame_little.png")}
-              resizeMode="stretch"
-            >
-              <Image
-                source={item.image}
-                style={{ width: "95%", height: "95%" }}
-              />
-            </ImageBackground>
-          </ImageBackground>
-        </View>
-      </TouchableHighlight>
-    );
+  itemSelected = (item: Item): void => {
+    console.log(item.type);
+    this.setState({ selectedItem: item });
+  };
+
+  buyItem = (): void => {
+    const item: Item = this.state.selectedItem;
+    const weaponTypes: string[] = [
+      "arrow",
+      "axe",
+      "bolt",
+      "book",
+      "bow",
+      "crossbow", //this wont reach because we check if "crossbow" includes "bow"
+      "dagger",
+      "hammer",
+      "scythe",
+      "shield",
+      "spear",
+      "staff",
+      "sword",
+    ];
+    if (weaponTypes.includes(item.type.toLowerCase())) {
+      this.props.buyWeapon(item);
+      return;
+    }
+    switch (item.type) {
+      case "helmet":
+        //this.props.unequipHelmet();
+        this.props.buyHelmet(item);
+        break;
+      case "shoulder":
+        //this.props.unequipShoulder();
+        this.props.buyShoulder(item);
+        break;
+      case "chest":
+        //this.props.unequipChest();
+        this.props.buyChest(item);
+        break;
+      case "pant":
+        //this.props.equipChest();
+        this.props.buyPant(item);
+        break;
+      case "boot":
+        //this.props.unequipBoot();
+        this.props.buyBoot(item);
+        break;
+      case "necklace":
+        //this.props.unequipNecklace();
+        this.props.buyNecklace(item);
+        break;
+      case "cape":
+        //this.props.unequipCape();
+        this.props.buyCape(item);
+        break;
+      case "bracer":
+        //this.props.equipBracer();
+        this.props.buyBracer(item);
+        break;
+      case "glove":
+        //this.props.equipGlove();
+        this.props.buyGlove(item);
+        break;
+      default:
+        console.warn("Warning: Item has incorrect type:", item.type);
+    }
   };
 
   render() {
-    const buttons = ["All", "Weapons", "Armor", "Runes"];
+    const buttons = ["Weapons", "Armor"];
     const { selectedIndex } = this.state;
 
     return (
       <BackgroundContainer>
         <View style={styles.header}>
           <Header
-          title={'Shop'}
-          subtitle={'Tap and hold an item for more details'} />
+            title={"Shop"}
+            subtitle={"Tap and hold an item for more details"}
+          />
         </View>
-        <View style={[styles.flexFullColumn,{padding: 15}]}>
+        <View style={[styles.flexFullColumn, { padding: 15 }]}>
           <View>
             <ButtonGroup
               onPress={this.updateIndex.bind(this)}
@@ -151,9 +146,19 @@ export default class ShopScreen extends Component<any, any> {
               containerStyle={{ height: 35 }}
             />
           </View>
-          <View style={{ flex: 2 }}>
-            <RenderItemsComponent
-            items={this.getData()}/>
+          <View style={{ flex: 1 }}>
+            <StatsContainerMid selectedItem={this.state.selectedItem} />
+          </View>
+          <View style={{ flex: 4 }}>
+            <View style={{ flex: 6 }}>
+              <RenderItemsComponent
+                items={this.getData()}
+                handlePress={this.itemSelected}
+              />
+            </View>
+            <View style={{ flex: 1 }}>
+              <ButtonWide title={"Buy Item"} handlePress={this.buyItem} />
+            </View>
           </View>
         </View>
         <Overlay
@@ -166,3 +171,26 @@ export default class ShopScreen extends Component<any, any> {
     );
   }
 }
+
+function mapStateToProps(state: any) {
+  return {
+    character: state.Character,
+  };
+}
+
+function mapDispatchToProps(dispatch: any) {
+  return {
+    buyHelmet: (item: Item) => dispatch({ type: "buyHelmet", item: item }),
+    buyShoulder: (item: Item) => dispatch({ type: "buyShoulder", item: item }),
+    buyChest: (item: Item) => dispatch({ type: "buyChest", item: item }),
+    buyPant: (item: Item) => dispatch({ type: "buyPant", item: item }),
+    buyBoot: (item: Item) => dispatch({ type: "buyBoot", item: item }),
+    buyNecklace: (item: Item) => dispatch({ type: "buyNecklace", item: item }),
+    buyCape: (item: Item) => dispatch({ type: "buyCape", item: item }),
+    buyBracer: (item: Item) => dispatch({ type: "buyBracer", item: item }),
+    buyGlove: (item: Item) => dispatch({ type: "buyGlove", item: item }),
+    buyWeapon: (item: Item) => dispatch({ type: "buyWeapon", item: item }),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShopScreen);

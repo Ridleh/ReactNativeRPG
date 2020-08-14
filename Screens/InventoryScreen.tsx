@@ -1,19 +1,16 @@
 import React, { Component } from "react";
-import { Text, View, Dimensions, ImageBackground, Image, TouchableHighlight } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
+import { Text, View} from "react-native";
 import styles from "../StyleSheet/Styles";
 import {
   BackgroundContainer,
-  MidBarReadyContainer,
   HeaderWithButton,
   RenderItemsComponent,
 } from "../Components/ComponentIndex";
-import MidBarReady from "../Components/MidBarReadyContainer";
-import { getImageFromUIMap } from "../AssetMaps/UIMap";
 import { ButtonGroup, Overlay } from "react-native-elements";
 import { getImageFromIconsFreeMap } from "../AssetMaps/IconsFreeMap";
+import { connect } from "react-redux";
 
-export default class InventoryScreen extends Component<any, any> {
+class InventoryScreen extends Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -25,26 +22,20 @@ export default class InventoryScreen extends Component<any, any> {
     };
   }
   componentDidMount() {
-    var weaponsArray: any[] = [];
-    for (var i = 0; i < 49; i++) {
-      const item: any = {
-        name: 'weapon ' + i.toString(),
-        image: getImageFromIconsFreeMap('weapon_icon.png'),
-        id: i.toString()
-      }
-      weaponsArray.push(item);
-    }
-
-    var armorArray: any[] = [];
-    for (var i = 0; i < 49; i++) {
-      const item: any = {
-        name: 'armor ' + i.toString(),
-        image: getImageFromIconsFreeMap('armor_icon.png'),
-        id: i.toString()
-      }
-      armorArray.push(item);
+    const inventory: Inventory = this.props.inventory;
+    var armorArray: Item[] = [
+      ...inventory.Boots,
+      ...inventory.Bracers,
+      ...inventory.Capes,
+      ...inventory.Chests,
+      ...inventory.Gloves,
+      ...inventory.Helmets,
+      ...inventory.Necklaces,
+      ...inventory.Pants,
+      ...inventory.Shoulders
+    ];
+    var weaponsArray: Item[] = inventory.Weapons;
       this.setState({weaponsArray,armorArray})
-    }
   }
 
   navigateToPreviousScreen = () => {
@@ -55,10 +46,10 @@ export default class InventoryScreen extends Component<any, any> {
     this.setState({ selectedIndex });
   }
 
-  getData(){
+  getData(): Item[]{
     const selectedIndex: number = this.state.selectedIndex;
-    const armors: any[] = this.state.armorArray;
-    const weapons: any[] = this.state.weaponsArray;
+    const armors: Item[] = this.state.armorArray;
+    const weapons: Item[] = this.state.weaponsArray;
     return selectedIndex === 0 ? weapons : armors 
   }
 
@@ -67,6 +58,10 @@ export default class InventoryScreen extends Component<any, any> {
       showOverlay: !prevState.showOverlay,
     }));
   };
+
+  handlePress = (): void => {
+
+  }
 
   render() {
     const buttons = ["Weapons", "Armor"];
@@ -94,9 +89,23 @@ export default class InventoryScreen extends Component<any, any> {
             containerStyle={{ height: 35 }}
           />
           <RenderItemsComponent
+            handlePress={this.handlePress}
             items={this.getData()}/>
         </View>
       </BackgroundContainer>
     );
   }
 }
+function mapStateToProps(state: any) {
+  return {
+    character: state.Character,
+    inventory: state.Inventory
+  };
+}
+
+function mapDispatchToProps(dispatch: any) {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryScreen);
+

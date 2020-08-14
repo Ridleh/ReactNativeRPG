@@ -8,7 +8,6 @@ import {
 } from "../Components/ComponentIndex";
 import { View } from "react-native";
 import styles from "../StyleSheet/Styles";
-import { getImageFromIconsFreeMap } from "../AssetMaps/IconsFreeMap";
 import { connect } from "react-redux";
 
 class EquipItemsScreen extends Component<any, any> {
@@ -17,50 +16,65 @@ class EquipItemsScreen extends Component<any, any> {
     this.state = {
       items: [],
       selectedItem: {},
-      extraData: {},
     };
   }
 
   componentDidMount = (): void => {
-    const options: string[] = [
-      "helmet",
-      "shoulder",
-      "chest",
-      "pant",
-      "boot",
-      "necklace",
-      "cape",
-      "bracer",
-      "glove",
-      "weapon",
-    ];
-    let items: Item[] = [];
-    for (let i = 0; i < 70; i++) {
-      let item: Item = {
-        Health: Math.round(Math.random() * 400),
-        Attack: Math.round(Math.random() * 400),
-        Defence: Math.round(Math.random() * 400),
-        Magic: Math.round(Math.random() * 400),
-        Resistance: Math.round(Math.random() * 400),
-        Mind: Math.round(Math.random() * 400),
-        CritChance: Math.round(Math.random() * 100),
-        EvasionChance: Math.round(Math.random() * 100),
-        Speed: Math.round(Math.random() * 100),
-        id: i,
-        type: options[i % 10],
-        image: getImageFromIconsFreeMap("armor_icon.png"),
-      };
-      items.push(item);
-    }
+    let items: Item[] = this.getItemsFromState();
     this.setState({
       items,
-      extraData: this.props.route.params.extraProps,
     });
   };
 
+  getItemsFromState = (): Item[] => {
+    const { leftSide, index } = this.props.route.params.extraProps;
+    const inventory: Inventory = this.props.inventory;
+    //console.log(this.props);
+    let returnItems: Item[] = [];
+    switch (index) {
+      case 0:
+        returnItems = leftSide ? inventory.Helmets : inventory.Necklaces;
+        break;
+      case 1:
+        returnItems = leftSide ? inventory.Shoulders : inventory.Capes;
+        break;
+      case 2:
+        returnItems = leftSide ? inventory.Chests : inventory.Bracers;
+        break;
+      case 3:
+        returnItems = leftSide ? inventory.Pants : inventory.Gloves;
+        break;
+      case 4:
+        returnItems = leftSide ? inventory.Boots : inventory.Weapons;
+        break;
+      default:
+        console.warn("Error: invalid index passed to EquipItemsScreen:", index);
+    }
+    return returnItems;
+  };
+
   equipItem = (): void => {
-    const item = this.state.selectedItem;
-    switch (this.state.selectedItem.type) {
+    const item: Item = this.state.selectedItem;
+    const weaponTypes: string[] = [
+      "arrow",
+      "axe",
+      "bolt",
+      "book",
+      "bow",
+      "crossbow", //this wont reach because we check if "crossbow" includes "bow"
+      "dagger",
+      "hammer",
+      "scythe",
+      "shield",
+      "spear",
+      "staff",
+      "sword",
+    ];
+    if (weaponTypes.includes(item.type.toLowerCase())) {
+      this.props.equipWeapon(item);
+      return;
+    }
+    switch (item.type) {
       case "helmet":
         //this.props.unequipHelmet();
         this.props.equipHelmet(item);
@@ -75,7 +89,7 @@ class EquipItemsScreen extends Component<any, any> {
         break;
       case "pant":
         //this.props.equipChest();
-        this.props.equipChest(item);
+        this.props.equipPant(item);
         break;
       case "boot":
         //this.props.unequipBoot();
@@ -101,6 +115,9 @@ class EquipItemsScreen extends Component<any, any> {
         //this.props.equipWeapon();
         this.props.equipWeapon(item);
         break;
+      case "arrow": //fix later
+        this.props.equipWeapon(item);
+        break;
       default:
         console.warn("Warning: Item has incorrect type");
     }
@@ -121,8 +138,7 @@ class EquipItemsScreen extends Component<any, any> {
         </View>
         <View style={[styles.flexFullColumn, { padding: 15 }]}>
           <View style={{ flex: 2 }}>
-            <StatsContainerMid
-            selectedItem={this.state.selectedItem}/>
+            <StatsContainerMid selectedItem={this.state.selectedItem} />
           </View>
           <View style={{ flex: 5 }}>
             <RenderItemsComponent
@@ -131,12 +147,10 @@ class EquipItemsScreen extends Component<any, any> {
             />
           </View>
           <View style={{ flex: 1 }}>
-            <ButtonWide
-            title={"Equip Item"}
-            handlePress={this.equipItem}/>
+            <ButtonWide title={"Equip Item"} handlePress={this.equipItem} />
           </View>
         </View>
-      </BackgroundContainer> 
+      </BackgroundContainer>
     );
   }
 }
@@ -144,6 +158,7 @@ class EquipItemsScreen extends Component<any, any> {
 function mapStateToProps(state: any) {
   return {
     character: state.Character,
+    inventory: state.Inventory,
   };
 }
 
@@ -172,6 +187,18 @@ function mapDispatchToProps(dispatch: any) {
     unequipBracer: () => dispatch({ type: "unequipBracer" }),
     unequipGlove: () => dispatch({ type: "unequipGlove" }),
     unequipWeapon: () => dispatch({ type: "unequipWeapon" }),
+
+    buyHelmet: (item: Item) => dispatch({ type: "buyHelmet", item: item }),
+    buyShoulder: (item: Item) => dispatch({ type: "buyShoulder", item: item }),
+    buyChest: (item: Item) => dispatch({ type: "buyChest", item: item }),
+    buyPant: (item: Item) => dispatch({ type: "buyPant", item: item }),
+    buyBoot: (item: Item) => dispatch({ type: "buyBoot", item: item }),
+    buyNecklace: (item: Item) => dispatch({ type: "buyNecklace", item: item }),
+    buyCape: (item: Item) => dispatch({ type: "buyCape", item: item }),
+    buyBracer: (item: Item) => dispatch({ type: "buyBracer", item: item }),
+    buyGlove: (item: Item) => dispatch({ type: "buyGlove", item: item }),
+    buyWeapon: (item: Item) => dispatch({ type: "buyWeapon", item: item }),
+  
 
     updateCharacterStats: () => dispatch({ type: "updateCharacterStats" }),
   };

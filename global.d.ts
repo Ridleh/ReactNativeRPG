@@ -69,3 +69,26 @@ interface Item {
   image: any;
   type: string;
 }
+
+interface ImageMapData{
+  name: string;
+  src: any
+}
+
+interface action {
+  type: string;
+  item: Item;
+}
+
+interface Inventory {
+  Helmets: Item[];
+  Shoulders: Item[];
+  Chests: Item[];
+  Pants: Item[];
+  Boots: Item[];
+  Necklaces: Item[];
+  Capes: Item[];
+  Bracers: Item[];
+  Gloves: Item[];
+  Weapons: Item[];
+}
