@@ -8,7 +8,6 @@ import {
 } from "../Components/ComponentIndex";
 import { View } from "react-native";
 import styles from "../StyleSheet/Styles";
-import { getImageFromIconsFreeMap } from "../AssetMaps/IconsFreeMap";
 import { connect } from "react-redux";
 
 class EquipItemsScreen extends Component<any, any> {
@@ -56,6 +55,25 @@ class EquipItemsScreen extends Component<any, any> {
 
   equipItem = (): void => {
     const item: Item = this.state.selectedItem;
+    const weaponTypes: string[] = [
+      "arrow",
+      "axe",
+      "bolt",
+      "book",
+      "bow",
+      "crossbow", //this wont reach because we check if "crossbow" includes "bow"
+      "dagger",
+      "hammer",
+      "scythe",
+      "shield",
+      "spear",
+      "staff",
+      "sword",
+    ];
+    if (weaponTypes.includes(item.type.toLowerCase())) {
+      this.props.equipWeapon(item);
+      return;
+    }
     switch (item.type) {
       case "helmet":
         //this.props.unequipHelmet();
@@ -98,42 +116,6 @@ class EquipItemsScreen extends Component<any, any> {
         this.props.equipWeapon(item);
         break;
       case "arrow": //fix later
-        this.props.equipWeapon(item);
-        break;
-      case "axe":
-        this.props.equipWeapon(item);
-        break;
-      case "bolt": //fix later
-        this.props.equipWeapon(item);
-        break;
-      case "book":
-        this.props.equipWeapon(item);
-        break;
-      case "bow":
-        this.props.equipWeapon(item);
-        break;
-      case "crossbow":
-        this.props.equipWeapon(item);
-        break;
-      case "dagger":
-        this.props.equipWeapon(item);
-        break;
-      case "hammer":
-        this.props.equipWeapon(item);
-        break;
-      case "scythe":
-        this.props.equipWeapon(item);
-        break;
-      case "shield":
-        this.props.equipWeapon(item);
-        break;
-      case "spear":
-        this.props.equipWeapon(item);
-        break;
-      case "staff":
-        this.props.equipWeapon(item);
-        break;
-      case "sword":
         this.props.equipWeapon(item);
         break;
       default:

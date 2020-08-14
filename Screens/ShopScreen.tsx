@@ -64,7 +64,25 @@ class ShopScreen extends Component<any, any> {
 
   buyItem = (): void => {
     const item: Item = this.state.selectedItem;
-    console.log(item.type);
+    const weaponTypes: string[] = [
+      "arrow",
+      "axe",
+      "bolt",
+      "book",
+      "bow",
+      "crossbow", //this wont reach because we check if "crossbow" includes "bow"
+      "dagger",
+      "hammer",
+      "scythe",
+      "shield",
+      "spear",
+      "staff",
+      "sword",
+    ];
+    if (weaponTypes.includes(item.type.toLowerCase())) {
+      this.props.buyWeapon(item);
+      return;
+    }
     switch (item.type) {
       case "helmet":
         //this.props.unequipHelmet();
@@ -101,49 +119,6 @@ class ShopScreen extends Component<any, any> {
       case "glove":
         //this.props.equipGlove();
         this.props.buyGlove(item);
-        break;
-      case "weapon":
-        //this.props.equipWeapon();
-        this.props.buyWeapon(item);
-        break;
-      case "arrow": //fix later
-        this.props.buyWeapon(item);
-        break;
-      case "axe":
-        this.props.buyWeapon(item);
-        break;
-      case "bolt": //fix later
-        this.props.buyWeapon(item);
-        break;
-      case "book":
-        this.props.buyWeapon(item);
-        break;
-      case "bow":
-        this.props.buyWeapon(item);
-        break;
-      case "crossbow":
-        this.props.buyWeapon(item);
-        break;
-      case "dagger":
-        this.props.buyWeapon(item);
-        break;
-      case "hammer":
-        this.props.buyWeapon(item);
-        break;
-      case "scythe":
-        this.props.buyWeapon(item);
-        break;
-      case "shield":
-        this.props.buyWeapon(item);
-        break;
-      case "spear":
-        this.props.buyWeapon(item);
-        break;
-      case "staff":
-        this.props.buyWeapon(item);
-        break;
-      case "sword":
-        this.props.buyWeapon(item);
         break;
       default:
         console.warn("Warning: Item has incorrect type:", item.type);

@@ -76,7 +76,7 @@ function determineItemType(itemName: string): string {
     "glove",
     "ring",
   ];
-  for (let i = 0, l = types.length; i < l; i++) {
+  for (let i = 0, l = types.length; i < l; i++) { //Array includes() method exists...
     if (itemName.toLowerCase().includes(types[i])) {
       switch (types[i]) {
         case "helm":
