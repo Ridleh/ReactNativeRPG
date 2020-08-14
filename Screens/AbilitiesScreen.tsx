@@ -4,18 +4,36 @@ import {
   BackgroundContainer,
   MidBarReadyContainer,
 } from "../Components/ComponentIndex";
-import { View, ImageBackground, Text } from "react-native";
+import { Text, View, Image, ImageBackground } from "react-native";
 import styles from "../StyleSheet/Styles";
 import { getImageFromUIMap } from "../AssetMaps/UIMap";
+import { TouchableHighlight } from "react-native-gesture-handler";
 
 export default class HomeScreen extends Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = {};
+    this.state = {
+      classes: ["Warrior", "Mage", "Paladin", "Archer"],
+      classSelectorIndex: 0,
+    };
   }
 
   navigateToPreviousScreen = () => {
     this.props.navigation.pop();
+  };
+
+  changeClass = (direction: number): void => {
+    if (this.state.classSelectorIndex + direction < 0) {
+      return;
+    } else if (
+      this.state.classSelectorIndex + direction >=
+      this.state.classes.length
+    ) {
+      return;
+    }
+    this.setState((prevState: { classSelectorIndex: number }) => ({
+      classSelectorIndex: prevState.classSelectorIndex + direction,
+    }));
   };
 
   render() {
@@ -28,27 +46,40 @@ export default class HomeScreen extends Component<any, any> {
             header={"Abilities"}
           />
         </View>
-        <View style={{ width: "100%", height: "6%" }}>
-          <ImageBackground
-            source={getImageFromUIMap("name_bar3.png")}
-            style={{ width: "100%", height: "100%", overflow: "hidden" }}
-            resizeMode="stretch"
-          >
-            <View style={styles.center}>
-              <Text
-                style={{
-                  color: "gold",
-                }}
-              >
-                Equipped Abilities
-              </Text>
+        <View style={styles.header}>
+          <View style={styles.flexFullRow}>
+            <View style={{ flex: 1 }}>
+              <TouchableHighlight onPress={() => this.changeClass(-1)}>
+                <Image
+                  resizeMode="stretch"
+                  style={styles.imageBackgroundFull}
+                  source={getImageFromUIMap("Mini_arrow_left2.png")}
+                />
+              </TouchableHighlight>
             </View>
-          </ImageBackground>
-        </View>
-        <View style={{ width: "100%", height: "15%" }}>
-          <MidBarReadyContainer>
-              
-          </MidBarReadyContainer>
+            <View style={{ flex: 4 }}>
+              <ImageBackground
+                resizeMode="stretch"
+                style={styles.imageBackgroundFull}
+                source={getImageFromUIMap("basic_bar.png")}
+              >
+                <View style={styles.center}>
+                  <Text style={{ color: "gold" }}>
+                    {this.state.classes[this.state.classSelectorIndex]}
+                  </Text>
+                </View>
+              </ImageBackground>
+            </View>
+            <View style={{ flex: 1 }}>
+              <TouchableHighlight onPress={() => this.changeClass(1)}>
+                <Image
+                  resizeMode="stretch"
+                  style={styles.imageBackgroundFull}
+                  source={getImageFromUIMap("Mini_arrow_right2.png")}
+                />
+              </TouchableHighlight>
+            </View>
+          </View>
         </View>
       </BackgroundContainer>
     );

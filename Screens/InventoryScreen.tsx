@@ -74,7 +74,7 @@ class InventoryScreen extends Component<any, any> {
         isVisible={this.state.showOverlay}>
           <Text>Overlay screen</Text>
         </Overlay>
-        <View style={[styles.flexFullColumn,{padding:15}]}>
+        <View style={styles.flexFullColumn}>
           <View style={styles.header}>
             <HeaderWithButton
               handlePress={this.navigateToPreviousScreen}

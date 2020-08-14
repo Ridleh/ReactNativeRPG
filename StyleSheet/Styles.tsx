@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   },
   rootContainerPadding: {
     paddingTop: 10,
+    padding: 10,
     flex: 1,
   },
   center: {

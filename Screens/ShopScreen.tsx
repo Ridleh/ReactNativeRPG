@@ -137,7 +137,7 @@ class ShopScreen extends Component<any, any> {
             subtitle={"Tap and hold an item for more details"}
           />
         </View>
-        <View style={[styles.flexFullColumn, { padding: 15 }]}>
+        <View style={styles.flexFullColumn}>
           <View>
             <ButtonGroup
               onPress={this.updateIndex.bind(this)}
