@@ -13,6 +13,7 @@ import EnemyComponent from './EnemyComponent';
 import RenderItemsComponent from './RenderItemsComponent';
 import StatsContainerMid from './StatsContainerMidComponent';
 import ButtonWide from './ButtonWideComponent';
+import SectionSelector from './SectionSelectorContainer';
 
 
 //When creating a component, DO NOT import another component
@@ -33,5 +34,6 @@ export {
     EnemyComponent,
     RenderItemsComponent,
     StatsContainerMid,
-    ButtonWide
+    ButtonWide,
+    SectionSelector
 }

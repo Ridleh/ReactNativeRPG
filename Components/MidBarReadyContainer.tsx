@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { View, ImageBackground } from "react-native";
 import styles from "../StyleSheet/Styles";
 import {getImageFromUIMap} from '../AssetMaps/UIMap';
