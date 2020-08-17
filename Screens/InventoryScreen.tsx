@@ -50,7 +50,7 @@ class InventoryScreen extends Component<any, any> {
     const selectedIndex: number = this.state.selectedIndex;
     const armors: Item[] = this.state.armorArray;
     const weapons: Item[] = this.state.weaponsArray;
-    return selectedIndex === 0 ? weapons : armors 
+    return selectedIndex === 0 ? weapons : armors
   }
 
   toggleOverlay = () => {

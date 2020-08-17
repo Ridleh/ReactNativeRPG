@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
     paddingVertical: 20
   },
   header: {
-    width: "100%", 
-    height: "10%" 
+    width: "100%",
+    height: "10%"
   }
 });
 
